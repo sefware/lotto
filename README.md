@@ -1,7 +1,5 @@
-
-
 [![CircleCI](https://circleci.com/gh/chaiwutmaneechot/profile.svg?style=svg)](https://circleci.com/gh/chaiwutmaneechot/profile)
-
+[![codecov](https://codecov.io/gh/chaiwutmaneechot/profile/branch/master/graph/badge.svg)](https://codecov.io/gh/chaiwutmaneechot/profile)
 
 # Profile
 

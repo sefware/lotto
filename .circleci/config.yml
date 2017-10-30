@@ -30,7 +30,7 @@ jobs:
       - run: sudo npm install -g karma
       - run: sudo npm install
       - run: sudo npm run test:ci
-      - run: bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
+      - run: bash <(curl -s https://codecov.io/bash) -t $UPLOAD_TOKEN
       - run: ls
       - store_test_results:
           path: /coverage

@@ -8,6 +8,7 @@
     "build": "ng build",
     "test:unit": "ng test --progress=false --code-coverage",
     "test:lint": "npm run lint",
+    "test:ci": "ng test --single-run --progress=false --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "release": "standard-version"

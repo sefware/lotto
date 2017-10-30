@@ -19,6 +19,18 @@ jobs:
       - run: sudo npm install
       - run: sudo npm run test:lint
 
+  e2e-test:
+    docker:
+      - image: circleci/node:8.3-browsers
+        environment:
+          CHROME_BIN: "/usr/bin/google-chrome"
+    steps:
+      - checkout
+      - run: sudo npm install @angular/cli
+      - run: sudo npm install -g karma
+      - run: sudo npm install
+      - run: sudo npm run e2e
+
   unit-test:
     docker:
       - image: circleci/node:8.3-browsers
@@ -85,6 +97,9 @@ workflows:
     jobs:
       - build
       - lint-test:
+          requires:
+            - build
+      - e2e-test:
           requires:
             - build
       - unit-test:

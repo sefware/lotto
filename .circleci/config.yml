@@ -9,7 +9,6 @@ jobs:
       - run: sudo npm install typescript -g
       - run: sudo npm install
       - run: sudo npm run build
-      - run: sudo tsc -p server
 
   lint-test:
     docker:
@@ -91,17 +90,17 @@ workflows:
       - unit-test:
           requires:
             - build
-      - deploy-firebase:
-          requires:
-            - lint-test
-            - unit-test
-          filters:
-            branches:
-              only: master
-      - deploy-heroku:
-          requires:
-            - lint-test
-            - unit-test
-          filters:
-            branches:
-              only: develop
+#      - deploy-firebase:
+#          requires:
+#            - lint-test
+#            - unit-test
+#          filters:
+#            branches:
+#              only: master
+#      - deploy-heroku:
+#          requires:
+#            - lint-test
+#            - unit-test
+#          filters:
+#            branches:
+#              only: develop

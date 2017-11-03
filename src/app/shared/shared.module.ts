@@ -1,6 +1,5 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {LazyLoadImageModule} from 'ng-lazyload-image';
 import {CommonModule} from '@angular/common';
@@ -50,6 +49,7 @@ import {
 import {TranslateService} from '../services/translate/translate.service';
 import {TranslateModule} from '../services/translate/translate.module';
 import {ConfirmComponent} from './dialog/confirm/confirm.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 const MATERIAL_MODULES: any[] = [
   MatButtonModule,
@@ -94,10 +94,10 @@ const COVALENT_MODULES: any[] = [
 ];
 
 const ANGULAR_MODULES: any[] = [
+  BrowserAnimationsModule,
   CommonModule,
   FormsModule,
   ReactiveFormsModule,
-  HttpModule,
 ];
 
 @NgModule({

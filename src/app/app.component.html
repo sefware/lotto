@@ -76,9 +76,11 @@
     <div [fxLayout]="(!media.query('gt-sm')) ? 'column':'row'">
 
       <mat-card fxFlex>
-        <mat-card-title>
-          <span style="font-weight: 500">Personal Information</span>
-        </mat-card-title>
+        <mat-card-header>
+          <mat-card-title>
+            <span style="font-weight: 500">Personal Information</span>
+          </mat-card-title>
+        </mat-card-header>
         <div class="divider"></div>
         <mat-card-content>
           <div fxLayout="column">

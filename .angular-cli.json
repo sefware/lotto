@@ -22,8 +22,7 @@
         "../node_modules/material-design-icons/iconfont/material-icons.css",
         "../node_modules/@covalent/core/common/platform.scss",
         "../node_modules/font-awesome/css/font-awesome.min.css",
-        "styles/theme.scss",
-        "styles/styles.scss"
+        "styles.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

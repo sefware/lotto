@@ -1,16 +1,16 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {APP_ID, CUSTOM_ELEMENTS_SCHEMA, Inject, NgModule, PLATFORM_ID} from '@angular/core';
+import {APP_ID, Inject, NgModule, PLATFORM_ID} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app.routing';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {AngularFireAuthModule} from 'angularfire2/auth';
-import {L10nConfig, LocalizationModule, ProviderType, StorageStrategy} from 'angular-l10n';
+import {L10nConfig, L10nLoader, ProviderType, StorageStrategy, TranslationModule} from 'angular-l10n';
 import {SharedModule} from './shared/shared.module';
 import {isPlatformBrowser} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
 
 const l10nConfig: L10nConfig = {
   locale: {
@@ -25,7 +25,7 @@ const l10nConfig: L10nConfig = {
   },
   translation: {
     providers: [
-      {type: ProviderType.Static, prefix: './src/assets/locale-'}
+      {type: ProviderType.Static, prefix: './src/assets/locale/app-'}
     ],
     caching: true,
     composedKeySeparator: '.',
@@ -40,14 +40,15 @@ const l10nConfig: L10nConfig = {
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'chaiwut-profile'}),
+    HttpClientModule,
+    TranslationModule.forRoot(l10nConfig),
+
     AppRoutingModule,
     SharedModule,
 
-    // AngularFireModule.initializeApp(environment.firebase),
-    // AngularFirestoreModule.enablePersistence(),
-    // AngularFireAuthModule,
-
-    // LocalizationModule.forRoot(l10nConfig)
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule.enablePersistence(),
+    AngularFireAuthModule,
   ],
   providers: [],
   entryComponents: [],
@@ -55,9 +56,11 @@ const l10nConfig: L10nConfig = {
 })
 
 export class AppModule {
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
-    @Inject(APP_ID) private appId: string) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,
+              @Inject(APP_ID) private appId: string,
+              public l10nLoader: L10nLoader) {
+    this.l10nLoader.load();
+
     const platform = isPlatformBrowser(platformId) ?
       'on the server' : 'in the browser';
     console.log(`Running ${platform} with appId=${appId}`);

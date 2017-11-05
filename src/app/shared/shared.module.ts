@@ -5,9 +5,7 @@ import {CommonModule} from '@angular/common';
 
 import {MatButtonModule, MatCardModule, MatChipsModule, MatIconModule, MatTooltipModule} from '@angular/material';
 
-import {CovalentMediaModule,} from '@covalent/core';
-import {TranslateService} from '../services/translate/translate.service';
-import {TranslateModule} from '../services/translate/translate.module';
+import {CovalentMediaModule} from '@covalent/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 const MATERIAL_MODULES: any[] = [
@@ -36,7 +34,6 @@ const ANGULAR_MODULES: any[] = [
     FlexLayoutModule,
     LazyLoadImageModule,
 
-    TranslateModule
   ],
   exports: [
     // Shared Modules
@@ -47,13 +44,10 @@ const ANGULAR_MODULES: any[] = [
     FlexLayoutModule,
     LazyLoadImageModule,
     // Shared Components
-    TranslateModule
   ],
   declarations: [],
   entryComponents: [],
-  providers: [
-    TranslateService
-  ]
+  providers: []
 })
 export class SharedModule {
 }

@@ -1,9 +1,9 @@
 <div fxLayout="column">
 
   <div fxLayout="row" class="language-sw">
-    <button matTooltip="ภาษาไทย" mat-mini-fab color="">TH</button>
+    <button matTooltip="ภาษาไทย" mat-mini-fab color="" (click)="selectLanguage('th')">TH</button>
     <div style="margin-left: 3px;"></div>
-    <button matTooltip="English" mat-mini-fab color="primary">EN</button>
+    <button matTooltip="English" mat-mini-fab color="primary" (click)="selectLanguage('en')">EN</button>
   </div>
 
   <div fxLayout="row" class="profile-info">

@@ -1,16 +1,16 @@
 
 @import '/theme';
 
-body {
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-  //min-width: 900px;
-  // Helps fonts on OSX looks more consistent with other systems
-  // Isn't currently in button styles due to performance concerns
-  * {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-}
+//body {
+//  font-family: Roboto, 'Helvetica Neue', sans-serif;
+//  //min-width: 900px;
+//  // Helps fonts on OSX looks more consistent with other systems
+//  // Isn't currently in button styles due to performance concerns
+//  * {
+//    -webkit-font-smoothing: antialiased;
+//    -moz-osx-font-smoothing: grayscale;
+//  }
+//}
 
 .mat-dialog-container {
   max-width: 100vw !important;
@@ -44,6 +44,10 @@ td-layout-manage-list .mat-toolbar {
   display: none !important;
 }
 
+::selection {
+  //background: rgba(200,200,255,.1);
+}
+
 .mat-menu-item {
   background: transparent;
   color: rgba(0, 0, 0, 0.87);
@@ -52,3 +56,4 @@ td-layout-manage-list .mat-toolbar {
   height: 32px !important;;
   padding: 0 24px !important;;
 }
+

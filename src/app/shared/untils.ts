@@ -1,8 +1,6 @@
 import {LanguageModel} from '../models/language';
 
 export class Untils {
-  public static placeholder = './assets/images/placeholder.jpg';
-  public static placeholderUser = './assets/images/user.jpg';
 
   public static LANGUAGES: LanguageModel[] = [
     {code: 'en', name: 'English', icon: 'flag-icon flag-icon-gb'},

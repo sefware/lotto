@@ -8,7 +8,7 @@ jobs:
       - run: sudo npm install @angular/cli
       - run: sudo npm install typescript -g
       - run: sudo npm install
-      - run: sudo npm run build
+      - run: sudo npm run build:all
 
   lint-test:
     docker:

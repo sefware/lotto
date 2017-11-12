@@ -6,12 +6,9 @@
   "location": "เชียงใหม่, ประเทศไทย",
   "download_cv":"ดาวน์โหลด CV",
 
-  "personal_information":"ข้อมูลส่วนบุคคล",
-  "name":"ชื่อ",
-  "age":"อายุ",
-  "age_detail":"25 ปี",
   "date_of_birth":"วันเดือนปีเกิด",
   "date_of_birth_detail":"7 พ.ค. 2535",
+  "age_detail":"25 ปี",
   "nationality":"สัญชาติ",
   "nationality_detail":"ไทย",
   "religion":"ศาสนา",

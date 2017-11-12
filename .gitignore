@@ -42,3 +42,6 @@ testem.log
 Thumbs.db
 /functions/node_modules/
 /functions/dist-server/
+/functions/server/
+/functions/browser/
+/firebase-debug.log

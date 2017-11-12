@@ -1,28 +1,29 @@
 import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {LazyLoadImageModule} from 'ng-lazyload-image';
 import {CommonModule} from '@angular/common';
 
 import {MatButtonModule, MatCardModule, MatChipsModule, MatIconModule, MatTooltipModule} from '@angular/material';
+import {HttpClientModule} from '@angular/common/http';
+import {LayoutModule} from '@angular/cdk/layout';
 
-import {CovalentMediaModule} from '@covalent/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+// import {CovalentMediaModule} from '@covalent/core';
 
 const MATERIAL_MODULES: any[] = [
   MatButtonModule,
   MatCardModule,
   MatIconModule,
   MatTooltipModule,
-  MatChipsModule
+  MatChipsModule,
+  LayoutModule
 ];
 
 const COVALENT_MODULES: any[] = [
-  CovalentMediaModule,
+  // CovalentMediaModule,
 ];
 
 const ANGULAR_MODULES: any[] = [
-  BrowserAnimationsModule,
   CommonModule,
+  HttpClientModule
 ];
 
 @NgModule({
@@ -32,8 +33,6 @@ const ANGULAR_MODULES: any[] = [
     MATERIAL_MODULES,
 
     FlexLayoutModule,
-    LazyLoadImageModule,
-
   ],
   exports: [
     // Shared Modules
@@ -42,8 +41,6 @@ const ANGULAR_MODULES: any[] = [
     COVALENT_MODULES,
 
     FlexLayoutModule,
-    LazyLoadImageModule,
-    // Shared Components
   ],
   declarations: [],
   entryComponents: [],

@@ -1,16 +1,15 @@
-import {LanguageModel} from '../models/language';
+import {StorageStrategy} from 'angular-l10n';
 
 export class Untils {
-
-  public static LANGUAGES: LanguageModel[] = [
-    {code: 'en', name: 'English', icon: 'flag-icon flag-icon-gb'},
-    {code: 'th', name: 'ภาษาไทย', icon: 'flag-icon flag-icon-th'},
-    {code: 'ko', name: '한국어', icon: 'flag-icon flag-icon-kr'}
-  ];
-  public static DEFAULT_LANGUAGE = new LanguageModel({code: 'en', name: 'English', icon: 'flag-icon flag-icon-gb'});
-
-  public static FIREBASE_CLOUD_FUNCTIONS = 'https://us-central1-sefware-tour.cloudfunctions.net';
-
-  public static languages = ['en', 'th', 'ko'];
-  public static defaultLanguages = 'en';
+  public static FIREBASE_CLOUD_FUNCTIONS = 'https://us-central1-chaiwut-profile.cloudfunctions.net';
+  public static locale = {
+    languages: [
+      { code: 'en', dir: 'ltr' },
+      { code: 'th', dir: 'ltr' }
+      ],
+    defaultLocale: { languageCode: 'en', countryCode: 'US' },
+    currency: 'USD',
+    storage: StorageStrategy.Cookie,
+    cookieExpiration: 30
+  };
 }

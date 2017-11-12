@@ -3,33 +3,17 @@
  */
 
 import {NgModule} from '@angular/core';
-import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
-import {AppComponent} from './app.component';
+import {RouterModule, Routes} from '@angular/router';
 
-const appRoutes: Routes = [
-  {
-    path: '',
-    component: AppComponent
-  },
-  { path: '**',
-    redirectTo: '',
-    pathMatch: 'full'
-  },
+const routes: Routes = [
+  {path: '', loadChildren: './profile/profile.module#ProfileModule'},
+  {path: 'project', loadChildren: './project/project.module#ProjectModule'},
+  {path: '**', redirectTo: '', pathMatch: 'full'},
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(appRoutes, {
-      useHash: Boolean(history.pushState) === false,
-      preloadingStrategy: PreloadAllModules
-    })
-  ],
-  exports: [
-    RouterModule
-  ],
-  providers: []
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-
 export class AppRoutingModule {
 }
-

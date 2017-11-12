@@ -1,31 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {TdMediaService} from '@covalent/core';
-import {Language, LocaleService, TranslationService} from 'angular-l10n';
+import {Component} from '@angular/core';
+import {fadeAnimation} from './shared/animation';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [fadeAnimation]
 })
-export class AppComponent implements OnInit {
-  @Language() lang: string;
 
-  constructor(public media: TdMediaService,
-              private _locale: LocaleService,
-              private _translate: TranslationService) {
-  }
-
-  ngOnInit(): void {
-    this._translate.translationChanged().subscribe(
-      () => {
-        console.log('getCurrentLanguage : ' + this._locale.getCurrentLanguage());
-      }
-    );
-  }
-
-  selectLanguage(language: string): void {
-    this._locale.setCurrentLanguage(language);
-    console.log('selectLanguage : ' + this._locale.getCurrentLanguage());
+export class AppComponent {
+  public getRouterOutletState(outlet) {
+    return outlet.isActivated ? outlet.activatedRoute : '';
   }
 
 }

@@ -1,11 +1,11 @@
 {
-  "name": "Chaiwut Profile",
+  "name": "I'm Chaiwut",
   "short_name": "Chaiwut",
   "theme_color": "#2196f3",
   "background_color": "#2196f3",
   "display": "standalone",
   "Scope": "/",
-  "start_url": "/",
+  "start_url": "/?utm_source=homescreen",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",

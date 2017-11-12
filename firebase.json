@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/",
+    "public": "dist/firebase-hosting",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -9,7 +9,7 @@
     "rewrites": [
       {
         "source": "**",
-        "function": "ssrapp"
+        "function": "ssr"
       }
     ]
   }

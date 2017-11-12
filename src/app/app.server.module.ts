@@ -8,9 +8,11 @@ import {AppComponent} from './app.component';
   imports: [
     AppModule,
     ServerModule,
-    ModuleMapLoaderModule
+    ModuleMapLoaderModule,
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [
     AppComponent
   ],

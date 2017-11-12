@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es2015",
+    "target": "es6",
     "rootDir": ".",
-    "outDir": "../functions"
+    "outDir": "../functions",
+    "removeComments": true
   },
   "files": [
     "index.ts"

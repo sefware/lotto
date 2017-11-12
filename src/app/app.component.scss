@@ -1,78 +1,13 @@
-@import "../styles/variable";
-
-.language-sw{
-  position: absolute;
-  right: 30px;
-  top: 10px;
-}
-
-.profile-info {
-  padding: 50px;
-
-  .profile-image {
-    max-width: 300px;
+:host {
+  display: flex;
+  main {
+    position: relative;
+    width: 100%;
+    height: 100%;
   }
-
-  .profile-detail {
-    margin-left: 50px;
-
-    .hello {
-      font-weight: 500;
-      font-size: 1.2rem;
-    }
-
-    .i-am {
-      margin-top: 5px;
-      margin-right: 10px;
-      font-weight: 300;
-    }
-
-    .name {
-      font-weight: 500;
-      font-size: 1.8rem;
-    }
-
-    .position {
-      font-size: 1.5rem;
-      font-weight: 400;
-      opacity: 0.7;
-    }
-
-    .divider {
-      margin: 15px 0px;
-      border-bottom: 1px solid $default-primary-color;
-    }
-
-    .download{
-      width: fit-content;
-    }
+  /deep/ router-outlet ~ * {
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
-}
-
-.social-link {
-  text-align: center;
-  height: 60px;
-  background: $default-primary-color;
-  font-size: 1.5rem;
-
-  .social-button {
-    margin: 0 10px;
-    color: white;
-    opacity: 0.8;
-    line-height: 60px;
-    cursor: pointer;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-}
-
-.divider {
-  border-bottom: 1px solid $divider-color;
-}
-
-.icon {
-  width: 42px;
-  height: 42px;
 }

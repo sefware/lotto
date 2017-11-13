@@ -124,6 +124,27 @@
 }
 
 .detail{
-  opacity: 0.7;
+  opacity: 0.54;
   font-weight: 400;
+}
+
+.content{
+  background: #cfd8dc;
+  font-size: 1rem;
+
+  .content-card{
+    margin: 24px 24px 24px 24px;
+
+    mat-card-title{
+      font-weight: 500;
+      font-size: 1.5rem;
+    }
+
+    mat-card-content{
+      font-size: 1rem;
+      opacity: 0.7;
+      line-height: 26px;
+    }
+
+  }
 }

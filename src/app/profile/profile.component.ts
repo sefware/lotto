@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
               private breakpointObserver: BreakpointObserver) {
     breakpointObserver.observe(
       [
-        '(max-width: 599px)'
+        '(max-width: 750px)'
       ]
     ).subscribe(result => {
       this.isSmallScreen = result.matches;

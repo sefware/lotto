@@ -3,10 +3,6 @@ import {APP_ID, Inject, NgModule, PLATFORM_ID} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app.routing';
-// import {environment} from '../environments/environment';
-// import {AngularFireModule} from 'angularfire2';
-// import {AngularFirestoreModule} from 'angularfire2/firestore';
-// import {AngularFireAuthModule} from 'angularfire2/auth';
 import {L10nConfig, L10nLoader, ProviderType, TranslationModule} from 'angular-l10n';
 import {SharedModule} from './shared/shared.module';
 import {isPlatformBrowser} from '@angular/common';
@@ -38,10 +34,6 @@ const l10nConfig: L10nConfig = {
     TranslationModule.forRoot(l10nConfig),
     AppRoutingModule,
     SharedModule,
-
-    // AngularFireModule.initializeApp(environment.firebase),
-    // AngularFirestoreModule.enablePersistence(),
-    // AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

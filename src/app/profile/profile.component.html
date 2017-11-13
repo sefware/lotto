@@ -32,7 +32,7 @@
           {{'position' | translate:lang}}
         </div>
         <div fxLayout="row" class="location">
-          <mat-icon>place</mat-icon>
+          <mat-icon style="color: red;">place</mat-icon>
           <div>
             {{'location' | translate:lang}}
           </div>
@@ -43,33 +43,41 @@
 
       <div fxLayout="column">
         <div fxLayout="row" class="line">
-          <span class="header">{{'date_of_birth' | translate:lang}}</span>
+          <span class="header header-fixwidth">{{'date_of_birth' | translate:lang}}</span>
           <span class="detail">{{'date_of_birth_detail' | translate:lang}}  ({{'age_detail' | translate:lang}})</span>
         </div>
         <div fxLayout="row" class="line">
-          <span class="header">{{'nationality' | translate:lang}}</span>
+          <span class="header header-fixwidth">{{'nationality' | translate:lang}}</span>
           <span class="detail">{{'nationality_detail' | translate:lang}}</span>
         </div>
         <div fxLayout="row" class="line">
-          <span class="header">{{'religion' | translate:lang}}</span>
+          <span class="header header-fixwidth">{{'religion' | translate:lang}}</span>
           <span class="detail">{{'religion_detail' | translate:lang}}</span>
         </div>
         <div fxLayout="row" class="line">
-          <span class="header">{{'phone' | translate:lang}}</span>
+          <span class="header header-fixwidth">{{'phone' | translate:lang}}</span>
           <span class="detail">{{'phone_detail' | translate:lang}}</span>
         </div>
         <div fxLayout="row" class="line">
-          <span class="header">{{'email' | translate:lang}}</span>
+          <span class="header header-fixwidth">{{'email' | translate:lang}}</span>
           <span class="detail">{{'email_detail' | translate:lang}}</span>
         </div>
       </div>
 
       <div style="margin-top: 20px"></div>
 
-      <button mat-raised-button color="accent" class="download">
-        {{ 'download_cv' | translate:lang}}
-        <mat-icon>file_download</mat-icon>
-      </button>
+      <div fxLayout="row">
+        <button mat-raised-button color="accent" class="download">
+          {{ 'download_cv' | translate:lang}}
+          <mat-icon>file_download</mat-icon>
+        </button>
+        <div style="margin-left: 10px;"></div>
+        <button mat-button color="" class="download" (click)="openSocailLink('github_profile')">
+          <i class="fa fa-github social-button" style="font-size: 24px;"></i>
+          {{ 'view_on_github' | translate:lang}}
+        </button>
+      </div>
+
     </div>
 
   </div>
@@ -119,335 +127,314 @@
       </mat-card-content>
     </mat-card>
 
-    <!--<div fxLayout="column">-->
-    <!--<mat-card>-->
-    <!--<mat-card-title>-->
-    <!--<span style="font-weight: 500">{{'personal_information' | translate:lang}}</span>-->
-    <!--</mat-card-title>-->
-    <!--<div class="divider"></div>-->
-    <!--<mat-card-content>-->
+    <mat-card class="content-card" style="margin-top: 0px;">
+      <mat-card-header>
+        <mat-card-title>{{'skills' | translate:lang}}</mat-card-title>
+        <mat-card-subtitle>{{'skill_detail' | translate:lang}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
 
-    <!--</mat-card-content>-->
-    <!--</mat-card>-->
+        <div [fxLayout]="isBigScreen?'row':'column'">
 
-    <!--<mat-card>-->
-    <!--<mat-card-title>-->
-    <!--<span style="font-weight: 500">{{'skills' | translate:lang}}</span>-->
-    <!--</mat-card-title>-->
-    <!--<div class="divider"></div>-->
-    <!--<mat-card-content>-->
-    <!--<div fxLayout="column">-->
+          <div [fxLayout]="isSmallScreen?'column':'row'" [fxFlex]="isBigScreen?'66':'100'">
+            <div fxLayout="column" [fxFlex]="isSmallScreen?'100':'50'">
+              <div class="header">
+                {{'programming_language' | translate:lang}} :
+              </div>
+              <ul>
+                <li>Java (Java7/Java8)</li>
+                <li>TypeScript</li>
+                <li>JavaScript (ES5/ES6)</li>
+                <li>HTML, XHTML</li>
+                <li>CSS, SASS</li>
+                <li>C++</li>
+              </ul>
 
-    <!--<span class="mat-body-2" style="font-weight: 500;">-->
-    <!--{{'programming_language' | translate:lang}} :-->
-    <!--</span>-->
-    <!--<ul>-->
-    <!--<li>Java (Java7/Java8)</li>-->
-    <!--<li>TypeScript</li>-->
-    <!--<li>JavaScript (ES5/ES6)</li>-->
-    <!--<li>HTML, XHTML</li>-->
-    <!--<li>CSS, SASS</li>-->
-    <!--<li>C++</li>-->
-    <!--</ul>-->
+              <div class="header">
+                {{'framework' | translate:lang}} :
+              </div>
+              <ul>
+                <li>ZK Framework</li>
+                <li>Spring Framework</li>
+                <li>Angular</li>
+                <li>Android</li>
+              </ul>
 
-    <!--<span class="mat-body-2" style="font-weight: 500;">-->
-    <!--{{'os_language' | translate:lang}} :-->
-    <!--</span>-->
-    <!--<ul>-->
-    <!--<li>Mac</li>-->
-    <!--<li>Linux</li>-->
-    <!--<li>Windows</li>-->
-    <!--</ul>-->
+              <div class="header">
+                {{'os_language' | translate:lang}} :
+              </div>
+              <ul>
+                <li>Mac</li>
+                <li>Linux</li>
+                <li>Windows</li>
+              </ul>
 
-    <!--<span class="mat-body-2" style="font-weight: 500;">-->
-    <!--{{'framework' | translate:lang}} :-->
-    <!--</span>-->
-    <!--<ul>-->
-    <!--<li>ZK Framework</li>-->
-    <!--<li>Spring Framework</li>-->
-    <!--<li>Angular</li>-->
-    <!--<li>Android</li>-->
-    <!--</ul>-->
+              <div class="header">
+                {{'design_skill_sets' | translate:lang}} :
+              </div>
+              <ul>
+                <li>Materail Design</li>
+                <li>Boostrap</li>
+              </ul>
+            </div>
 
-    <!--<span class="mat-body-2" style="font-weight: 500;">-->
-    <!--{{'database' | translate:lang}} :-->
-    <!--</span>-->
-    <!--<ul>-->
-    <!--<li>Firebase Realtime Database</li>-->
-    <!--<li>MongoDB</li>-->
-    <!--<li>MySQL</li>-->
-    <!--<li>Microsoft SQL Server</li>-->
-    <!--</ul>-->
+            <div fxLayout="column" [fxFlex]="isSmallScreen?'100':'50'">
 
-    <!--<span class="mat-body-2" style="font-weight: 500;">-->
-    <!--{{'environment_and_tools' | translate:lang}} :-->
-    <!--</span>-->
-    <!--<ul>-->
-    <!--<li>Android Studio</li>-->
-    <!--<li>IntelliJ IDEA</li>-->
-    <!--<li>WebStorm</li>-->
-    <!--<li>Eclipse</li>-->
-    <!--</ul>-->
+              <div class="header">
+                {{'database' | translate:lang}} :
+              </div>
+              <ul>
+                <li>Firebase Realtime Database</li>
+                <li>MongoDB</li>
+                <li>MySQL</li>
+                <li>Microsoft SQL Server</li>
+              </ul>
 
-    <!--<span class="mat-body-2" style="font-weight: 500;">-->
-    <!--{{'continuous_integration_and_deployment' | translate:lang}} :-->
-    <!--</span>-->
-    <!--<ul>-->
-    <!--<li>Google Cloud Platforme (GCP)</li>-->
-    <!--<li>Firebase</li>-->
-    <!--<li>Docker</li>-->
-    <!--<li>Heroku</li>-->
-    <!--<li>CircleCI</li>-->
-    <!--<li>Travis</li>-->
-    <!--<li>Tomcat</li>-->
-    <!--<li>Node</li>-->
-    <!--<li>IIS</li>-->
-    <!--</ul>-->
+              <div class="header">
+                {{'environment_and_tools' | translate:lang}} :
+              </div>
+              <ul>
+                <li>Jetbrain IDEA</li>
+                <li>Android Studio</li>
+                <li>Eclipse</li>
+              </ul>
 
-    <!--<span class="mat-body-2" style="font-weight: 500;">-->
-    <!--{{'design_skill_sets' | translate:lang}} :-->
-    <!--</span>-->
-    <!--<ul>-->
-    <!--<li>Materail Design</li>-->
-    <!--<li>Boostrap</li>-->
-    <!--<li>HCI</li>-->
-    <!--</ul>-->
+              <div class="header">
+                {{'continuous_integration_and_deployment' | translate:lang}} :
+              </div>
+              <ul>
+                <li>Google Cloud Platforme (GCP)</li>
+                <li>Firebase</li>
+                <li>Docker</li>
+                <li>Heroku</li>
+                <li>CircleCI</li>
+                <li>Travis</li>
+                <li>Tomcat</li>
+                <li>Node</li>
+                <li>IIS</li>
+              </ul>
+            </div>
+          </div>
 
-    <!--<span class="mat-body-2" style="font-weight: 500;">-->
-    <!--{{'miscellaneous' | translate:lang}} :-->
-    <!--</span>-->
-    <!--<ul>-->
-    <!--<li>Trello</li>-->
-    <!--<li>Git</li>-->
-    <!--<li>Github</li>-->
-    <!--<li>J2EE</li>-->
-    <!--<li>Joomla</li>-->
-    <!--<li>WordPress</li>-->
-    <!--<li>MEAN Stack</li>-->
-    <!--<li>Hibernate</li>-->
-    <!--<li>OpenCV && Image Processing</li>-->
-    <!--<li>OOP, MVC, MVP, MVVM</li>-->
-    <!--<li>SPA (Single Page Application)</li>-->
-    <!--<li>Unit Test</li>-->
-    <!--</ul>-->
+          <div fxLayout="column">
+            <div class="header">
+              {{'miscellaneous' | translate:lang}} :
+            </div>
+            <ul>
+              <li>Trello</li>
+              <li>Git</li>
+              <li>Github</li>
+              <li>J2EE</li>
+              <li>Joomla</li>
+              <li>WordPress</li>
+              <li>MEAN Stack</li>
+              <li>Hibernate</li>
+              <li>OpenCV && Image Processing</li>
+              <li>OOP, MVC, MVP, MVVM</li>
+              <li>SPA (Single Page Application)</li>
+              <li>Unit Test</li>
+            </ul>
+          </div>
 
-    <!--<span class="mat-body-2" style="font-weight: 500;">-->
-    <!--{{'language' | translate:lang}} :-->
-    <!--</span>-->
-    <!--<div style="margin-left: 20px">-->
-    <!--<div fxLayout="row">-->
-    <!--<span class="mat-body-2" style="width: 80px">Thai</span>-->
-    <!--<span style="margin-right: 5px">:</span>-->
-    <!--<span class="mat-body-2" style="font-weight: 400;">Native</span>-->
-    <!--</div>-->
-    <!--<div fxLayout="row">-->
-    <!--<span class="mat-body-2" style="width: 80px">English</span>-->
-    <!--<span style="margin-right: 5px">:</span>-->
-    <!--<span class="mat-body-2" style="font-weight: 400;">Fair</span>-->
-    <!--</div>-->
-    <!--</div>-->
+        </div>
+      </mat-card-content>
+    </mat-card>
 
-    <!--</div>-->
-    <!--</mat-card-content>-->
-    <!--</mat-card>-->
+    <mat-card class="content-card" style="margin-top: 0px;">
+      <mat-card-header>
+        <mat-card-title>{{'work_history' | translate:lang}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div fxLayout="column">
+          <div class="header">
+            Full Stack Developer
+          </div>
+          <div fxLayout="row">
+            <div class="subheader">
+              {{'sefware' | translate:lang}}
+            </div>
+            <div style="margin: 0 5px">-</div>
+            <div>
+              {{'sefware_location' | translate:lang}}
+            </div>
+          </div>
+          <div>{{'sefware_date' | translate:lang}}</div>
 
-    <!--</div>-->
+          <div class="description">
+            {{'description' | translate:lang}}
+          </div>
+          <div>
+            {{'sefware_description' | translate:lang}}
+          </div>
 
-    <!--<div fxLayout="column">-->
+          <div class="responsibilities">
+            <div class="responsibilities_title">
+              {{'responsibilities' | translate:lang}}
+            </div>
+            <ul>
+              <li>{{'sefware_respons1' | translate:lang}}</li>
+              <li>{{'sefware_respons2' | translate:lang}}</li>
+              <li>{{'sefware_respons3' | translate:lang}}</li>
+              <li>{{'sefware_respons4' | translate:lang}}</li>
+              <li>{{'sefware_respons5' | translate:lang}}</li>
+              <li>{{'sefware_respons6' | translate:lang}}</li>
+              <li>{{'sefware_respons7' | translate:lang}}</li>
+              <li>{{'sefware_respons8' | translate:lang}}</li>
+            </ul>
+          </div>
 
-    <!--<mat-card>-->
-    <!--<mat-card-title>-->
-    <!--<span style="font-weight: 500">Experience</span>-->
-    <!--</mat-card-title>-->
-    <!--<div class="divider"></div>-->
-    <!--<mat-card-content>-->
-    <!--<div fxLayout="row">-->
-    <!--<div fxLayout="column" fxFlex="100px" style="padding-top: 3px;">-->
-    <!--<span>May 2016 -</span>-->
-    <!--<span>Sep 2017</span>-->
-    <!--</div>-->
-    <!--<div fxLayout="column">-->
-    <!--<span class="mat-subheader" style="font-size: 1.2rem;font-weight: 500;">-->
-    <!--Full Stack Developer-->
-    <!--</span>-->
-    <!--<span class="mat-subheader"-->
-    <!--style="font-size: 1rem; margin: 5px 0 0 0;">-->
-    <!--Sefware Co.,Ltd.-->
-    <!--</span>-->
-    <!--<span class="mat-subheader"-->
-    <!--style="font-size: 1rem; margin: 5px 0 10px 0;">-->
-    <!--<i style="font-weight: 300">Chiang Mai, Thailand</i>-->
-    <!--</span>-->
-    <!--<span class="mat-body-2" style="font-weight: 400;">-->
-    <!--Drove all phases of enterprise integration and process improvement in <b>Sefware PMS</b> (Property Mangement Systems) to successful completion, including application availability initiatives-->
-    <!--</span>-->
+          <div class="environment">
+            {{'environment' | translate:lang}} :
+          </div>
+          <div>
+            ZK Framework, Java EE, Maven project, Javascript (ES5/ES6), Tomcat 8, Materail design, Github (Private),
+            Google Cloud Platform (GCP), Load Balancing on Google Cloud Plateform, Firebase (Realtime Database,
+            Authentication, Storage)
+          </div>
+        </div>
 
-    <!--<ul>-->
-    <!--<li>Understand Business Requirements.</li>-->
-    <!--<li>Participates in System Requirement Analysis.</li>-->
-    <!--<li>Design Applications based on System Requirements and Architecture, prototype, develop, unit test and-->
-    <!--deployment.-->
-    <!--</li>-->
-    <!--<li>Set-up, configuration of development for ZK Framework</li>-->
-    <!--<li>Troubleshoot and resolve performance issues</li>-->
-    <!--<li>Lead a team of developers</li>-->
-    <!--<li>Mentoring more junior developers</li>-->
-    <!--<li>Assist in design of web based applications for internal and external websites</li>-->
-    <!--</ul>-->
+        <div class="divider" style="margin: 20px 0"></div>
 
-    <!--<span class="mat-body-2" style="font-weight: 500;">-->
-    <!--Technologies :-->
-    <!--</span>-->
-    <!--<ul>-->
-    <!--<li>ZK Framework</li>-->
-    <!--<li>Maven project</li>-->
-    <!--<li>Java EE</li>-->
-    <!--<li>Javascript (ES5/ES6)</li>-->
-    <!--<li>Tomcat 8</li>-->
-    <!--<li>Materail design</li>-->
-    <!--<li>Github (Private)</li>-->
-    <!--<li>Google Cloud Platform (GCP)</li>-->
-    <!--<li>Load Balancing with 2 instance on Google Cloud Plateform</li>-->
-    <!--<li>Firebase (Realtime Database, Authentication, Storage)</li>-->
-    <!--</ul>-->
-    <!--</div>-->
-    <!--</div>-->
+        <div fxLayout="column">
+          <div class="header">
+            Freelance & Outsource
+          </div>
+          <div fxLayout="row">
+            <div>
+              {{'freelance_location' | translate:lang}}
+            </div>
+          </div>
+          <div>{{'freelance_date' | translate:lang}}</div>
 
-    <!--<div style="padding-bottom: 20px;"></div>-->
+          <div class="description">
+            {{'description' | translate:lang}} :
+          </div>
+          <div>
+            {{'freelance_description' | translate:lang}}
+          </div>
 
-    <!--<div fxLayout="row">-->
-    <!--<div fxLayout="column" fxFlex="100px" style="padding-top: 8px;">-->
-    <!--<span>June 2015 -</span>-->
-    <!--<span>May 2016</span>-->
-    <!--</div>-->
-    <!--<div fxLayout="column">-->
-    <!--<span class="mat-subheader" style="font-size: 1.2rem;margin: 5px 0 10px 0;font-weight: 500;">-->
-    <!--Freelance & Outsource-->
-    <!--</span>-->
-    <!--<span class="mat-body-2" style="font-weight: 400;margin-bottom: 5px;">-->
-    <!--Develop web application with <b>ZK Framework</b>,-->
-    <!--<b>Android</b> application and public application in Google Play Store.-->
-    <!--</span>-->
-    <!--<span class="mat-body-2" style="font-weight: 500;">-->
-    <!--Outsource Projects :-->
-    <!--</span>-->
-    <!--<ul>-->
-    <!--<li>VIVA</li>-->
-    <!--<li>Fai Bakery</li>-->
-    <!--<li>Mansion</li>-->
-    <!--</ul>-->
+          <div class="responsibilities">
+            <div class="responsibilities_title">
+              {{'freelance_projects' | translate:lang}} :
+            </div>
+            <ul>
+              <li>VIVA</li>
+              <li>Fai Bakery</li>
+              <li>Mansion</li>
+              <li>แนวข้อสอบ ก.พ.</li>
+              <li>แบบฝึกหัด ป.1</li>
+              <li>Puzzle</li>
+            </ul>
+          </div>
+        </div>
 
-    <!--<span class="mat-body-2" style="font-weight: 500;">-->
-    <!--Other Projects :-->
-    <!--</span>-->
-    <!--<ul>-->
-    <!--<li>แนวข้อสอบ ก.พ.</li>-->
-    <!--<li>แบบฝึกหัด ป.1</li>-->
-    <!--<li>DINOSORUS Puzzle</li>-->
-    <!--</ul>-->
+        <div class="divider" style="margin: 20px 0"></div>
 
-    <!--</div>-->
-    <!--</div>-->
+        <div fxLayout="column">
 
-    <!--<div style="padding-bottom: 20px;"></div>-->
+          <div class="header">
+            Java Web Developer
+          </div>
+          <div fxLayout="row">
+            <div class="subheader">
+              {{'mega_prosoft' | translate:lang}}
+            </div>
+            <div style="margin: 0 5px">-</div>
+            <div>
+              {{'mega_prosoft_location' | translate:lang}}
+            </div>
+          </div>
+          <div>{{'mega_prosoft_date' | translate:lang}}</div>
 
-    <!--<div fxLayout="row">-->
-    <!--<div fxLayout="column" fxFlex="100px" style="padding-top: 3px;">-->
-    <!--<span>June 2013 -</span>-->
-    <!--<span>May 2015</span>-->
-    <!--</div>-->
-    <!--<div fxLayout="column">-->
+          <div class="description">
+            {{'description' | translate:lang}} :
+          </div>
+          <div>
+            {{'mega_prosoft_description' | translate:lang}}
+          </div>
 
-    <!--<span class="mat-subheader" style="font-size: 1.2rem;font-weight: 500;">-->
-    <!--Java Web Developer-->
-    <!--</span>-->
-    <!--<span class="mat-subheader"-->
-    <!--style="font-size: 1rem; margin: 5px 0 0 0;">-->
-    <!--Mega Prosoft Limited Partnership.ncu-->
-    <!--</span>-->
-    <!--<span class="mat-subheader"-->
-    <!--style="font-size: 1rem; margin: 5px 0 10px 0;">-->
-    <!--<i style="font-weight: 300">Chiang Mai, Thailand</i>-->
-    <!--</span>-->
+          <div class="responsibilities">
+            <div class="responsibilities_title">
+              {{'responsibilities' | translate:lang}}
+            </div>
+            <div style="margin-left: 10px;">
+              <div class="responsibilities" style="margin-top: 0px;">
+                <div class="responsibilities_title">
+                  {{'erp_projects' | translate:lang}} :
+                </div>
+                <ul>
+                  <li>{{'erp_projects_1' | translate:lang}}</li>
+                  <li>{{'erp_projects_2' | translate:lang}}</li>
+                  <li>{{'erp_projects_3' | translate:lang}}</li>
+                  <li>{{'erp_projects_4' | translate:lang}}</li>
+                </ul>
+              </div>
 
-    <!--<span class="mat-body-2" style="font-weight: 400;margin-bottom: 5px;">-->
-    <!--Develop java web application of ERP industry with <b>ZK Framework</b>.-->
-    <!--<b>Android Develop</b>, <b>CMS Website</b> and Network Engineer.-->
-    <!--</span>-->
+              <div class="responsibilities">
+                <div class="responsibilities_title">
+                  {{'android_projects' | translate:lang}} :
+                </div>
+                <ul>
+                  <li>Inventory Management with Barcode for ERP</li>
+                  <li>LED Monitor presentation</li>
+                  <li>Car Care Management System</li>
+                </ul>
+              </div>
 
-    <!--<span class="mat-body-2" style="font-weight: 500;">-->
-    <!--ERP Projects :-->
-    <!--</span>-->
-    <!--<ul>-->
-    <!--<li>Resolve and close assigned issue</li>-->
-    <!--<li>Develop and improve stored procedure of SQL Server</li>-->
-    <!--<li>Develop and improve and MegaStock (Stock management)</li>-->
-    <!--<li>Support and solving the problem of production server-firebase of customers</li>-->
-    <!--</ul>-->
-    <!--<span class="mat-body-2" style="font-weight: 500;">-->
-    <!--Android Projects :-->
-    <!--</span>-->
-    <!--<ul>-->
-    <!--<li>Inventory Management with Barcode for ERP</li>-->
-    <!--<li>TV Monitor presentation</li>-->
-    <!--<li>Car Care Management System</li>-->
-    <!--</ul>-->
-    <!--<span class="mat-body-2" style="font-weight: 500;">-->
-    <!--Other Projects :-->
-    <!--</span>-->
-    <!--<ul>-->
-    <!--<li>Video Recognitions</li>-->
-    <!--<li>Website & Web Application of Multiple Cropping Center (MCC)</li>-->
-    <!--<li>Network configuration</li>-->
-    <!--</ul>-->
-    <!--</div>-->
-    <!--</div>-->
+              <div class="responsibilities">
+                <div class="responsibilities_title">
+                  {{'other_projects' | translate:lang}} :
+                </div>
+                <ul>
+                  <li>Video Recognitions</li>
+                  <li>Website & Web Application of Multiple Cropping Center (MCC)</li>
+                  <li>Network configuration</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-    <!--</mat-card-content>-->
-    <!--</mat-card>-->
+        </div>
+      </mat-card-content>
+    </mat-card>
 
-    <!--<mat-card>-->
-    <!--<mat-card-title>-->
-    <!--<span style="font-weight: 500">{{'education' | translate:lang}}</span>-->
-    <!--</mat-card-title>-->
-    <!--<div class="divider"></div>-->
-    <!--<mat-card-content>-->
+    <mat-card class="content-card" style="margin-top: 0px;">
+      <mat-card-header>
+        <mat-card-title>{{'education' | translate:lang}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div fxLayout="column">
+          <div class="header">
+            {{'rmutl_degree' | translate:lang}}
+          </div>
+          <div class="">
+            {{'rmutl' | translate:lang}}
+          </div>
+          <div class="">
+            {{'rmutl_location' | translate:lang}}
+          </div>
+          <div class="detail">
+            {{'rmutl_end' | translate:lang}}
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
 
-    <!--<div fxLayout="row">-->
-    <!--<div fxLayout="column" fxFlex="100px" style="padding-top: 3px;">-->
-    <!--<span>{{'rmutl_start' | translate:lang}} -</span>-->
-    <!--<span>{{'rmutl_end' | translate:lang}}</span>-->
-    <!--</div>-->
-    <!--<div fxLayout="column">-->
-    <!--<span class="mat-subheader" style="font-size: 1.2rem;font-weight: 500;">-->
-    <!--{{'rmutl' | translate:lang}}-->
-    <!--</span>-->
-    <!--<span class="mat-subheader"-->
-    <!--style="font-size: 1rem; margin: 5px 0 10px 0;">-->
-    <!--{{'rmutl_degree' | translate:lang}}-->
-    <!--</span>-->
-    <!--<div fxLayout="row">-->
-    <!--<span class="mat-body-2" style="width: 100px;">{{'factory' | translate:lang}}</span>-->
-    <!--<span style="margin-right: 5px">:</span>-->
-    <!--<span class="mat-body-2" style="font-weight: 400;">{{'factory_detail' | translate:lang}}</span>-->
-    <!--</div>-->
-    <!--<div fxLayout="row">-->
-    <!--<span class="mat-body-2" style="width: 100px;">{{'major' | translate:lang}}</span>-->
-    <!--<span style="margin-right: 5px">:</span>-->
-    <!--<span class="mat-body-2" style="font-weight: 400;">{{'major_detail' | translate:lang}}</span>-->
-    <!--</div>-->
-    <!--<div fxLayout="row">-->
-    <!--<span class="mat-body-2" style="width: 100px">{{'gpa' | translate:lang}}</span>-->
-    <!--<span style="margin-right: 5px">:</span>-->
-    <!--<span class="mat-body-2" style="font-weight: 400;">{{'gpa_detail' | translate:lang}}</span>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <!--</mat-card-content>-->
-    <!--</mat-card>-->
-
-    <!--</div>-->
+    <mat-card class="content-card" style="margin-top: 0px;">
+      <mat-card-header>
+        <mat-card-title>{{'language' | translate:lang}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div fxLayout="row">
+          <span class="header header-fixwidth">{{'thai' | translate:lang}}</span>
+          <span class="">Native</span>
+        </div>
+        <div fxLayout="row">
+          <span class="header header-fixwidth">{{'english' | translate:lang}}</span>
+          <span class="">Fair</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
 
   </div>
 

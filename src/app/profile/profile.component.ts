@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Language, LocaleService} from 'angular-l10n';
 import {BreakpointObserver} from '@angular/cdk/layout';
 
@@ -12,16 +12,17 @@ export class ProfileComponent implements OnInit {
   @Language() lang: string;
 
   isSmallScreen = false;
+  isBigScreen = false;
 
   constructor(private _locale: LocaleService,
-              private _element: ElementRef,
               private breakpointObserver: BreakpointObserver) {
-    breakpointObserver.observe(
-      [
-        '(max-width: 750px)'
-      ]
-    ).subscribe(result => {
+    breakpointObserver.observe(['(max-width: 750px)']).subscribe(result => {
       this.isSmallScreen = result.matches;
+      console.log('isSmallScreen : ' + this.isSmallScreen);
+    });
+    breakpointObserver.observe(['(min-width: 1050px)']).subscribe(result => {
+      this.isBigScreen = result.matches;
+      console.log('isBigScreen : ' + this.isBigScreen);
     });
   }
 
@@ -36,6 +37,9 @@ export class ProfileComponent implements OnInit {
     switch (type) {
       case 'github':
         window.open('https://github.com/chaiwutmaneechot', '_blank');
+        break;
+      case 'github_profile':
+        window.open('https://github.com/chaiwutmaneechot/profile', '_blank');
         break;
       case 'facebook':
         window.open('https://www.facebook.com/chaiwut.maneechot', '_blank');

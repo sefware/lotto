@@ -4,50 +4,13 @@
 
 # Profile
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.0-beta.1.
+link : https://chaiwut-profile.firebaseapp.com
 
 ## Present
 - Angular5
+- SSR with Firebase Cloud Functions
+- PWA (Light House 100%) 
+- CI and Workflow with Circle CI
 - Angular Material
 - Responsive Web design
 - Unit Test
-- CI with Circle CI
-- SSR with Firebase Cloud Functions
-- PWA (Light House 100%) 
-
-Create an account at https://firebase.google.com/
-
-- `git clone https://github.com/codediodeio/angular-firestarter.git firestarter`
-- `cd firestarter`
-- `npm install`
-
-Create the environment files below in `src/environments/`.
-
-#### environment.ts
-```typescript
-export const environment = {
-    production: false,
-    firebaseConfig: {
-        apiKey: 'APIKEY',
-        authDomain: 'DEV-APP.firebaseapp.com',
-        databaseURL: 'https://DEV-APP.firebaseio.com',
-        projectId: 'DEV-APP',
-        storageBucket: 'DEV-APP.appspot.com',
-        messagingSenderId: '123456789'
-    }
-};
-```
-#### environment.prod.ts
-```typescript
-export const environment = {
-    production: true,
-    firebaseConfig: {
-        // same as above, or use a different firebase project to isolate environments
-    }
-};
-```
-And finally `ng serve`
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).

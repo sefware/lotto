@@ -15,6 +15,3 @@ All notable changes to this project will be documented in this file. See [standa
 * karma test ([1f22a64](https://github.com/chaiwutmaneechot/profile/commit/1f22a64))
 
 
-
-<a name="0.0.1-0"></a>
-## 0.0.1-0 (2017-10-30)

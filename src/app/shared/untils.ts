@@ -1,6 +1,7 @@
 import {StorageStrategy} from 'angular-l10n';
 
 export class Untils {
+  public static cv_download = 'https://goo.gl/aeaLKZ';
   public static FIREBASE_CLOUD_FUNCTIONS = 'https://us-central1-chaiwut-profile.cloudfunctions.net';
   public static locale = {
     languages: [

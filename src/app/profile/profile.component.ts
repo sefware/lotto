@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Language, LocaleService} from 'angular-l10n';
 import {BreakpointObserver} from '@angular/cdk/layout';
+import {Untils} from '../shared/untils';
 
 @Component({
   selector: 'app-profile',
@@ -35,6 +36,9 @@ export class ProfileComponent implements OnInit {
 
   openSocailLink(type: string) {
     switch (type) {
+      case 'cv':
+        window.open(Untils.cv_download, '_blank');
+        break;
       case 'github':
         window.open('https://github.com/chaiwutmaneechot', '_blank');
         break;

@@ -67,13 +67,13 @@
       <div style="margin-top: 20px"></div>
 
       <div fxLayout="row">
-        <button mat-raised-button color="accent" class="download">
+        <button mat-raised-button color="accent" class="download" (click)="openSocailLink('cv')">
           {{ 'download_cv' | translate:lang}}
           <mat-icon>file_download</mat-icon>
         </button>
         <div style="margin-left: 10px;"></div>
         <button mat-button color="" class="download" (click)="openSocailLink('github_profile')">
-          <i class="fa fa-github social-button" style="font-size: 24px;"></i>
+          <i class="fa fa-github social-button" style="font-size: 1.6rem;"></i>
           {{ 'view_on_github' | translate:lang}}
         </button>
       </div>
@@ -173,8 +173,8 @@
                 {{'design_skill_sets' | translate:lang}} :
               </div>
               <ul>
-                <li>Materail Design</li>
-                <li>Boostrap</li>
+                <li>Material Design</li>
+                <li>Bootstrap</li>
               </ul>
             </div>
 
@@ -184,7 +184,7 @@
                 {{'database' | translate:lang}} :
               </div>
               <ul>
-                <li>Firebase Realtime Database</li>
+                <li>Firebase Real Time Database</li>
                 <li>MongoDB</li>
                 <li>MySQL</li>
                 <li>Microsoft SQL Server</li>
@@ -203,7 +203,7 @@
                 {{'continuous_integration_and_deployment' | translate:lang}} :
               </div>
               <ul>
-                <li>Google Cloud Platforme (GCP)</li>
+                <li>Google Cloud Platform (GCP)</li>
                 <li>Firebase</li>
                 <li>Docker</li>
                 <li>Heroku</li>
@@ -269,7 +269,7 @@
 
           <div class="responsibilities">
             <div class="responsibilities_title">
-              {{'responsibilities' | translate:lang}}
+              {{'responsibilities' | translate:lang}} :
             </div>
             <ul>
               <li>{{'sefware_respons1' | translate:lang}}</li>
@@ -287,8 +287,8 @@
             {{'environment' | translate:lang}} :
           </div>
           <div>
-            ZK Framework, Java EE, Maven project, Javascript (ES5/ES6), Tomcat 8, Materail design, Github (Private),
-            Google Cloud Platform (GCP), Load Balancing on Google Cloud Plateform, Firebase (Realtime Database,
+            ZK Framework, Java EE, Maven project, Javascript (ES5/ES6), Tomcat 8, Material design, Github (Private),
+            Google Cloud Platform (GCP), Load Balancing on Google Cloud Platform, Firebase (Real Time Database,
             Authentication, Storage)
           </div>
         </div>
@@ -427,11 +427,11 @@
       <mat-card-content>
         <div fxLayout="row">
           <span class="header header-fixwidth">{{'thai' | translate:lang}}</span>
-          <span class="">Native</span>
+          <span class="">{{'thai_detail' | translate:lang}}</span>
         </div>
         <div fxLayout="row">
           <span class="header header-fixwidth">{{'english' | translate:lang}}</span>
-          <span class="">Fair</span>
+          <span class="">{{'english_detail' | translate:lang}}</span>
         </div>
       </mat-card-content>
     </mat-card>

@@ -11,11 +11,11 @@ if (environment.production) {
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule).then(() => {
-  // if (environment.production) {
-  //   if ('serviceWorker' in navigator) {
-  //     navigator.serviceWorker.register('/service-worker.js');
-  //   }
-  // }
+  if (environment.production) {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js');
+    }
+  }
 });
 
 

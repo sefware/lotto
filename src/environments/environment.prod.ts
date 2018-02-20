@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: 'AIzaSyBWjVJXJSgPAeitSRlEk8LRuQr_KhGKnd8',
-    authDomain: 'chaiwut-profile.firebaseapp.com',
-    databaseURL: 'https://chaiwut-profile.firebaseio.com',
-    projectId: 'chaiwut-profile',
-    storageBucket: 'chaiwut-profile.appspot.com',
-    messagingSenderId: '434177376084'
+    apiKey: 'AIzaSyCzKUhjMgp6zu2c638uTEA54IsPz_QBWnY',
+    authDomain: 'formularlotto.firebaseapp.com',
+    databaseURL: 'https://formularlotto.firebaseio.com',
+    projectId: 'formularlotto',
+    storageBucket: 'formularlotto.appspot.com',
+    messagingSenderId: '282416647025'
   }
 };

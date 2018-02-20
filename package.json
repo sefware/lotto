@@ -1,6 +1,6 @@
 {
-  "name": "profile",
-  "version": "0.0.3",
+  "name": "formularlotto",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",

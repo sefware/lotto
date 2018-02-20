@@ -105,13 +105,13 @@ workflows:
       - unit-test:
           requires:
             - build
-#      - deploy-firebase:
-#          requires:
-#            - lint-test
-#            - unit-test
-#          filters:
-#            branches:
-#              only: master
+      - deploy-firebase:
+          requires:
+            - lint-test
+            - unit-test
+          filters:
+            branches:
+              only: master
 #      - deploy-heroku:
 #          requires:
 #            - lint-test

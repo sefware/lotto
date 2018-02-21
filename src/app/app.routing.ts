@@ -6,7 +6,8 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
-  {path: '', loadChildren: './profile/profile.module#ProfileModule'},
+  {path: '', loadChildren: './main/main.module#MainModule'},
+  {path: 'profile', loadChildren: './profile/profile.module#MainModule'},
   {path: 'project', loadChildren: './project/project.module#ProjectModule'},
   {path: '**', redirectTo: '', pathMatch: 'full'},
 ];

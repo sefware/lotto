@@ -29,7 +29,7 @@ const l10nConfig: L10nConfig = {
     AppComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'chaiwut-profile'}),
+    BrowserModule.withServerTransition({appId: 'win-win'}),
     BrowserAnimationsModule,
     TranslationModule.forRoot(l10nConfig),
     AppRoutingModule,

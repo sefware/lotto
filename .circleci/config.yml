@@ -99,12 +99,12 @@ workflows:
       - lint-test:
           requires:
             - build
-      - e2e-test:
-          requires:
-            - build
-      - unit-test:
-          requires:
-            - build
+#      - e2e-test:
+#          requires:
+#            - build
+#      - unit-test:
+#          requires:
+#            - build
       - deploy-firebase:
           requires:
             - lint-test

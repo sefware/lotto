@@ -1,3 +1,78 @@
-<div fxLayout="column">
-  qweq qweqw
+<div class="formular-card">
+  <mat-card style="align-content: left">
+    <mat-card-header>
+      <mat-form-field>
+        <mat-select placeholder="เลือกแบบที่จะคำนวณ" [(value)]="selectedType" (selectionChange)="print()">
+          <mat-option *ngFor="let type of types" [value]="type.value" [disabled]="!type.enable">
+            {{ type.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-header>
+    <div>
+
+    </div>
+
+    <mat-list style="background: #eee">
+      <mat-list-item>
+        <div fxLayout="row">
+          <div style="">รอบ/เวลา</div>
+          <div style="margin-left: 30px">
+            บน
+          </div>
+          <div style="margin-left: 45px">
+            ล่าง
+          </div>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item>
+        <div fxLayout="row">
+          <div>
+            <form class="example-form">
+              <mat-form-field style="width: 60px">
+                <input matInput placeholder="" [(value)]="c_1" maxlength="3" style="text-align: center">
+              </mat-form-field>
+            </form>
+          </div>
+          <div style="margin-left: 30px">
+            <form class="example-form">
+              <mat-form-field style="width: 35px">
+                <input matInput placeholder="" [(value)]="t_1" maxlength="3" style="text-align: center">
+              </mat-form-field>
+            </form>
+          </div>
+          <div style="margin-left: 15px;margin-right: 15px;line-height: 60px">
+            -
+          </div>
+          <div>
+            <mat-form-field style="width: 25px">
+              <input matInput [(value)]="u_1" maxlength="2" style="text-align: center">
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-list-item>
+
+    </mat-list>
+
+    <mat-card-footer style="margin-left: 15px;margin-right: 15px;margin-top: 20px;">
+
+      <mat-form-field>
+        <mat-select placeholder="เลือกแบบที่จะคำนวณ" [(value)]="selectedCal" (selectionChange)="print()">
+          <mat-option *ngFor="let cal of calulate" [value]="cal.value" [disabled]="!cal.enable">
+            {{ cal.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button style="margin-left: 10px" mat-raised-button color="primary">คำนวณ</button>
+
+    </mat-card-footer>
+
+  </mat-card>
+
+
+
 </div>
+
+

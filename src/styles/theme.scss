@@ -1,6 +1,6 @@
 @import '~@angular/material/theming';
-//@import '~@covalent/core/common/platform.css';
-//@import '~@covalent/core/theming/all-theme';
+@import '~@covalent/core/common/platform.css';
+@import '~@covalent/core/theming/all-theme';
 
 @include mat-core();
 
@@ -17,7 +17,7 @@ $theme: mat-light-theme($primary, $accent, $warn);
 // that you are using.
 @include angular-material-theme($theme);
 
-//@include covalent-theme($theme);
+@include covalent-theme($theme);
 
 $foreground: map-get($theme, foreground);
 $background: map-get($theme, background);

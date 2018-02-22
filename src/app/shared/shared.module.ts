@@ -2,15 +2,21 @@ import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {CommonModule} from '@angular/common';
 
-import {MatButtonModule, MatCardModule, MatChipsModule, MatIconModule, MatTooltipModule} from '@angular/material';
+import {
+  MatButtonModule, MatCardModule, MatChipsModule, MatIconModule, MatInputModule, MatListModule, MatSelectModule,
+  MatTooltipModule
+} from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
 import {LayoutModule} from '@angular/cdk/layout';
 
-// import {CovalentMediaModule} from '@covalent/core';
+import {CovalentLayoutModule, CovalentMediaModule} from '@covalent/core';
 
 const MATERIAL_MODULES: any[] = [
   MatButtonModule,
   MatCardModule,
+  MatListModule,
+  MatInputModule,
+  MatSelectModule,
   MatIconModule,
   MatTooltipModule,
   MatChipsModule,
@@ -18,7 +24,8 @@ const MATERIAL_MODULES: any[] = [
 ];
 
 const COVALENT_MODULES: any[] = [
-  // CovalentMediaModule,
+  CovalentMediaModule,
+  CovalentLayoutModule
 ];
 
 const ANGULAR_MODULES: any[] = [

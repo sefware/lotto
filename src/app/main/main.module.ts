@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import {MainComponent} from './main.component';
 import {RouterModule} from '@angular/router';
 import {SharedModule} from '../shared/shared.module';
@@ -30,13 +30,17 @@ const l10nConfig: L10nConfig = {
   declarations: [
     MainComponent
   ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
+  ],
   providers: [
     {
       provide: OverlayContainer, useClass: FullscreenOverlayContainer
     }
   ]
 })
-export class ProfileModule {
+export class MainModule {
   constructor(public l10nLoader: L10nLoader) {
     this.l10nLoader.load();
 

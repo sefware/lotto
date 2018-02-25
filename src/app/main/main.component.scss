@@ -2,5 +2,31 @@
 
 .formular-card{
   padding: 10px;
-  text-align: left;
+  max-width: 500px;
+  margin: auto;
+}
+
+.list-title{
+  font-size: 16px;
+  font-weight: 500;
+  color: $secondary-text-color;
+}
+
+.list-label{
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.list-label-add{
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.list-icon{
+  padding-left: 10px;
+  color: $secondary-text-color;
+}
+
+/deep/ .mat-tab-label{
+  display: none !important;
 }

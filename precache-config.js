@@ -5,7 +5,7 @@ module.exports = {
   root: 'dist/browser',
   plugins: [
     new SWPrecacheWebpackPlugin({
-      cacheId: 'profile',
+      cacheId: 'win',
       dontCacheBustUrlsMatching: /\.\w{8}\./,
       filename: 'service-worker.js',
       minify: true,

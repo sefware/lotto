@@ -5,6 +5,8 @@ import {SharedModule} from '../shared/shared.module';
 import {L10nConfig, L10nLoader, ProviderType, TranslationModule} from 'angular-l10n';
 import {Untils} from '../shared/untils';
 import {FullscreenOverlayContainer, OverlayContainer} from '@angular/cdk/overlay';
+import {InputService} from '../service/input.service';
+import '@firebase/firestore';
 
 const l10nConfig: L10nConfig = {
   locale: Untils.locale,
@@ -30,6 +32,7 @@ const l10nConfig: L10nConfig = {
   declarations: [
     MainComponent
   ],
+  entryComponents: [],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
     NO_ERRORS_SCHEMA
@@ -37,7 +40,8 @@ const l10nConfig: L10nConfig = {
   providers: [
     {
       provide: OverlayContainer, useClass: FullscreenOverlayContainer
-    }
+    },
+    InputService
   ]
 })
 export class MainModule {

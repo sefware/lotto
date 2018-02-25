@@ -1,78 +1,130 @@
-<div class="formular-card">
-  <mat-card style="align-content: left">
-    <mat-card-header>
-      <mat-form-field>
-        <mat-select placeholder="เลือกแบบที่จะคำนวณ" [(value)]="selectedType" (selectionChange)="print()">
-          <mat-option *ngFor="let type of types" [value]="type.value" [disabled]="!type.enable">
-            {{ type.viewValue }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </mat-card-header>
-    <div>
+<td-layout>
+  <td-navigation-drawer flex sidenavTitle="สูตรหวย" name="Firstname Lastname">
+    <mat-nav-list>
+      <a mat-list-item>
+        <mat-icon>home</mat-icon>
+        Home</a>
+    </mat-nav-list>
+  </td-navigation-drawer>
+  <td-layout-nav toolbarTitle="สูตรหวย" navigationRoute="/">
 
+    <button mat-icon-button td-menu-button tdLayoutToggle>
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <div td-toolbar-content layout="row" layout-align="start center" fxFlex="true">
+      <mat-icon [routerLink]="['/']" class="mat-icon-logo cursor-pointer" svgIcon="assets:teradata"></mat-icon>
+      <span fxFlex="true"></span>
+
+      <button class="overflow-visible" mat-icon-button [matMenuTriggerFor]="notificationsMenu">
+        <td-notification-count [notifications]="101">
+          <mat-icon>notifications</mat-icon>
+        </td-notification-count>
+      </button>
+
+      <mat-menu #notificationsMenu="matMenu" [overlapTrigger]="true">
+        <td-menu>
+          <div td-menu-header class="mat-subheading-2 push-none">Notifications</div>
+          <mat-nav-list dense>
+            <ng-template let-last="last" ngFor [ngForOf]="[0,1,2,3,4,5,6,7,8,9]">
+              <a mat-list-item>
+                <mat-icon matListAvatar>today</mat-icon>
+                <h4 matLine><span class="text-wrap">A user did an activity on an item that you've subscribed to follow actions on.</span></h4>
+                <p matLine>22 minutes ago</p>
+              </a>
+              <mat-divider *ngIf="!last"></mat-divider>
+            </ng-template>
+          </mat-nav-list>
+          <button mat-button color="accent" td-menu-footer>
+            See All Notifications
+          </button>
+        </td-menu>
+      </mat-menu>
     </div>
 
-    <mat-list style="background: #eee">
-      <mat-list-item>
-        <div fxLayout="row">
-          <div style="">รอบ/เวลา</div>
-          <div style="margin-left: 30px">
-            บน
+    <mat-tab-group mat-stretch-tabs>
+      <mat-tab>
+        <ng-template matTabLabel style="display: none !important;">
+          <div layout="row" layout-align="center center">
+            สูตรหวย
           </div>
-          <div style="margin-left: 45px">
-            ล่าง
-          </div>
-        </div>
-      </mat-list-item>
+        </ng-template>
 
-      <mat-list-item>
-        <div fxLayout="row">
-          <div>
-            <form class="example-form">
-              <mat-form-field style="width: 60px">
-                <input matInput placeholder="" [(value)]="c_1" maxlength="3" style="text-align: center">
-              </mat-form-field>
-            </form>
-          </div>
-          <div style="margin-left: 30px">
-            <form class="example-form">
-              <mat-form-field style="width: 35px">
-                <input matInput placeholder="" [(value)]="t_1" maxlength="3" style="text-align: center">
-              </mat-form-field>
-            </form>
-          </div>
-          <div style="margin-left: 15px;margin-right: 15px;line-height: 60px">
-            -
-          </div>
-          <div>
-            <mat-form-field style="width: 25px">
-              <input matInput [(value)]="u_1" maxlength="2" style="text-align: center">
+        <div class="formular-card" fxFlex="true">
+          <mat-card style="align-content: center" fxLayout="column">
+
+            <mat-form-field>
+              <mat-select placeholder="เลือกแบบที่จะคำนวณ" [(value)]="selectedType" (selectionChange)="print()">
+                <mat-option *ngFor="let type of types" [value]="type.value" [disabled]="!type.enable">
+                  {{ type.viewValue }}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
-          </div>
+
+            <div fxLayout="row">
+              <button mat-raised-button color="primary" (click)="deleteInput()">Copy วาง</button>
+              <div style="width: 10px"></div>
+              <button mat-raised-button color="primary" (click)="clearInput()">รีเซ็ทข้อมูล</button>
+            </div>
+
+            <div fxLayout="column">
+
+              <mat-nav-list dense flex style="background: #eee">
+
+                <a mat-list-item [disableRipple]="true" style="background: #ccc;">
+                  <div class="list-title">รอบ/เวลา</div>
+                  <div fxFlex></div>
+                  <div class="list-title">บน</div>
+                  <div fxFlex="45px"></div>
+                  <div class="list-title">ล่าง</div>
+                  <div fxFlex="20px"></div>
+                </a>
+                <ng-template ngFor let-list [ngForOf]="_inputService.lists | async">
+                  <a mat-list-item (click)="deleteInput(list)">
+                    <div fxFlex="15px"></div>
+                    <div class="list-label">{{ list.time }}</div>
+                    <div fxFlex></div>
+                    <div class="list-label">{{ list.up }}</div>
+                    <div fxFlex="20px"></div>
+                    <div class="list-label">-</div>
+                    <div fxFlex="20px"></div>
+                    <div class="list-label">{{ list.low }}</div>
+                    <div fxFlex="20px"></div>
+                  </a>
+                </ng-template>
+
+                <mat-divider [inset]="true"></mat-divider>
+
+                <a mat-list-item (click)="addInput()">
+                  <div fxFlex></div>
+                  <div class="list-label-add">+ เพิ่มรอบ</div>
+                  <div fxFlex></div>
+                </a>
+
+                <mat-divider [inset]="true"></mat-divider>
+
+              </mat-nav-list>
+
+              <div fxFlex="40px"></div>
+              <mat-form-field>
+                <mat-select placeholder="เลือกแบบที่จะคำนวณ" [(value)]="selectedCal" (selectionChange)="print()">
+                  <mat-option *ngFor="let cal of calulate" [value]="cal.value" [disabled]="!cal.enable">
+                    {{ cal.viewValue }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <button mat-raised-button color="primary" >คำนวณ</button>
+
+            </div>
+
+          </mat-card>
+
         </div>
-      </mat-list-item>
 
-    </mat-list>
+      </mat-tab>
+    </mat-tab-group>
 
-    <mat-card-footer style="margin-left: 15px;margin-right: 15px;margin-top: 20px;">
-
-      <mat-form-field>
-        <mat-select placeholder="เลือกแบบที่จะคำนวณ" [(value)]="selectedCal" (selectionChange)="print()">
-          <mat-option *ngFor="let cal of calulate" [value]="cal.value" [disabled]="!cal.enable">
-            {{ cal.viewValue }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <button style="margin-left: 10px" mat-raised-button color="primary">คำนวณ</button>
-
-    </mat-card-footer>
-
-  </mat-card>
-
-
-
-</div>
-
+  </td-layout-nav>
+</td-layout>
 

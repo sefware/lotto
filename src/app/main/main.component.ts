@@ -1,16 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {Language, LocaleService} from 'angular-l10n';
 import {BreakpointObserver} from '@angular/cdk/layout';
 import {Untils} from '../shared/untils';
-import {MAT_LABEL_GLOBAL_OPTIONS} from '@angular/material';
+import {TdDialogService} from '@covalent/core';
+import {InputModel} from '../model/input.model';
+import {InputService} from '../service/input.service';
+import {MatDialog} from '@angular/material';
+import {InputDialogComponent} from '../dialog/input/input_dialog.component';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss'],
-  providers: [
-    {provide: MAT_LABEL_GLOBAL_OPTIONS, useValue: {float: 'always'}}
-  ]
+  styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
 
@@ -19,70 +21,40 @@ export class MainComponent implements OnInit {
   isSmallScreen = false;
   isBigScreen = false;
 
+  inputs: Observable<InputModel[]>;
+
   selectedType = '1';
   selectedCal = '1';
 
   c_1: string;
 
   t_1: string;
-  t_2: string;
-  t_3: string;
-  t_4: string;
-  t_5: string;
-  t_6: string;
-  t_7: string;
-  t_8: string;
-  t_9: string;
-  t_10: string;
 
   u_1: string;
-  u_2: string;
-  u_3: string;
-  u_4: string;
-  u_5: string;
-  u_6: string;
-  u_7: string;
-  u_8: string;
-  u_9: string;
-  u_10: string;
 
-  types = [
-    {value: '1', viewValue: 'แบบกรอกผล' , enable: true},
-    {value: '2', viewValue: 'ผลหอย' , enable: false},
-    {value: '3', viewValue: 'ผลหมู' , enable: false},
-    {value: '4', viewValue: 'ผลหมี' , enable: false},
-    {value: '5', viewValue: 'ผลโชค' , enable: false},
-    {value: '6', viewValue: 'ผลเจต' , enable: false},
-    {value: '7', viewValue: 'ผลแพ' , enable: false},
-    {value: '8', viewValue: 'ผลแมน' , enable: false}
-  ];
+  types = Untils.types;
 
-  calulate = [
-    {value: '1', viewValue: 'เสียวตัวเดียว' , enable: true},
-    {value: '2', viewValue: 'ปักสิบบน' , enable: false},
-    {value: '3', viewValue: 'ปักหน่วยบน' , enable: false},
-    {value: '4', viewValue: 'ปักสิบล่าง' , enable: false},
-    {value: '5', viewValue: 'ปักหน่วยล่าง' , enable: false},
-    {value: '6', viewValue: 'รูดบน' , enable: false},
-    {value: '7', viewValue: 'รูดล่าง' , enable: false},
-    {value: '8', viewValue: 'เลขวินบน เรียงเลข' , enable: false}
-  ];
+  calulate = Untils.calulate;
 
   formulars = [
-    {value: '1', operate: '+', formular: '0' },
-    {value: '2', operate: '+', formular: '1' },
-    {value: '3', operate: '+', formular: '2' },
-    {value: '4', operate: '+', formular: '3' },
-    {value: '5', operate: '+', formular: '4' },
-    {value: '6', operate: '+', formular: '5' },
-    {value: '7', operate: '+', formular: '6' },
-    {value: '8', operate: '+', formular: '7' },
-    {value: '9', operate: '+', formular: '8' },
-    {value: '10', operate: '+', formular: '9' }
-  ]
+    {value: '1', operate: '+', formular: '0'},
+    {value: '2', operate: '+', formular: '1'},
+    {value: '3', operate: '+', formular: '2'},
+    {value: '4', operate: '+', formular: '3'},
+    {value: '5', operate: '+', formular: '4'},
+    {value: '6', operate: '+', formular: '5'},
+    {value: '7', operate: '+', formular: '6'},
+    {value: '8', operate: '+', formular: '7'},
+    {value: '9', operate: '+', formular: '8'},
+    {value: '10', operate: '+', formular: '9'}
+  ];
 
-  constructor(private _locale: LocaleService,
-              private breakpointObserver: BreakpointObserver) {
+  constructor(public _inputService: InputService,
+              private _locale: LocaleService,
+              private _dialogService: TdDialogService,
+              private _viewContainerRef: ViewContainerRef,
+              private breakpointObserver: BreakpointObserver,
+              private _dialog: MatDialog) {
     breakpointObserver.observe(['(max-width: 750px)']).subscribe(result => {
       this.isSmallScreen = result.matches;
       console.log('isSmallScreen : ' + this.isSmallScreen);
@@ -93,12 +65,63 @@ export class MainComponent implements OnInit {
     });
   }
 
-
   ngOnInit(): void {
     console.log(this.formulars[0]);
     this.c_1 = '8.15';
     this.t_1 = '000';
     this.u_1 = '00';
+
+    this.load();
+  }
+
+  load() {
+    this.inputs = this._inputService.loadData();
+
+    // this.inputs.subscribe( (snapshort) => {
+    //   console.log('snapshort is ' + snapshort.keys());
+    // });
+  }
+
+  addInput() {
+    const dialogRef = this._dialog.open(InputDialogComponent, {
+      disableClose: true,
+      width: 'auto',
+      height: 'auto'
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        const newData = <InputModel>{
+          time: 'time',
+          up: 'up',
+          low: 'low'
+        };
+        this._inputService.addData(newData);
+      }
+    });
+  }
+
+  editInput(data: InputModel) {
+    this._inputService.updateData(<InputModel>{
+      time: 'time',
+      up: 'up',
+      low: 'low',
+
+    });
+  }
+
+  clearInput() {
+    this._inputService.lists.subscribe((data: InputModel[]) => {
+
+      data.forEach((s: InputModel) => {
+        this.deleteInput(s);
+        console.log('ss ' + s.id);
+      });
+    });
+  }
+
+  deleteInput(data: InputModel) {
+    this._inputService.removeData(data);
   }
 
   selectLanguage(language: string): void {
@@ -109,11 +132,28 @@ export class MainComponent implements OnInit {
     console.log(this.selectedType);
   }
 
-  openSocailLink(type: string) {
+  openPrompt(): void {
+    this.load();
+    // this._dialogService.openPrompt({
+    //   message: 'This is how simple it is to create a prompt with this wrapper service. Prompt something.',
+    //   disableClose: true,
+    //   viewContainerRef: this._viewContainerRef,
+    //   title: 'Prompt',
+    //   value: 'Prepopulated value',
+    //   cancelButton: 'ยกเลิก',
+    //   acceptButton: 'เพิ่ม',
+    //   width: '300px',
+    // }).afterClosed().subscribe((newValue: string) => {
+    //   if (newValue) {
+    //     // DO SOMETHING
+    //   } else {
+    //     // DO SOMETHING ELSE
+    //   }
+    // });
+  }
+
+  openLink(type: string) {
     switch (type) {
-      case 'cv':
-        window.open(Untils.cv_download, '_blank');
-        break;
       case 'github':
         window.open('https://github.com/chaiwutmaneechot', '_blank');
         break;
@@ -136,6 +176,4 @@ export class MainComponent implements OnInit {
         break;
     }
   }
-
-
 }

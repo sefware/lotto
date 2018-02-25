@@ -1,0 +1,29 @@
+<div class="form">
+  <h2 mat-dialog-title>เพิ่มรอบ</h2>
+
+  <mat-dialog-content class="area-info">
+    <div fxLayout="column">
+      <i class="mati mati-email icon"></i>
+      <div class="content">
+        Content
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-content >
+    <div fxLayout="column">
+      <div class="data-title">
+        Title
+      </div>
+      <div class="data-list">
+        data
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="operation">
+    <button class="btn btn-cancel" mat-button [mat-dialog-close]="false">ยกเลิก</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">เพิ่ม</button>
+  </mat-dialog-actions>
+</div>
+

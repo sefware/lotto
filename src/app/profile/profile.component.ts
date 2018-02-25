@@ -36,9 +36,6 @@ export class ProfileComponent implements OnInit {
 
   openSocailLink(type: string) {
     switch (type) {
-      case 'cv':
-        window.open(Untils.cv_download, '_blank');
-        break;
       case 'github':
         window.open('https://github.com/chaiwutmaneechot', '_blank');
         break;

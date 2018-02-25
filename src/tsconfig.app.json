@@ -6,7 +6,8 @@
     "baseUrl": "./",
     "module": "es2015",
     "types": [
-      "node"
+      "node",
+      "firebase"
     ]
   },
   "typeRoots": [

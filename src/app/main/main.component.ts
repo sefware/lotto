@@ -7,7 +7,7 @@ import {InputModel} from '../model/input.model';
 import {InputService} from '../service/input.service';
 import {MatDialog} from '@angular/material';
 import {InputDialogComponent} from '../dialog/input/input_dialog.component';
-import {Observable} from 'rxjs/Observable';
+import {ResultDialogComponent} from '../dialog/result/result_dialog.component';
 
 @Component({
   selector: 'app-main',
@@ -21,20 +21,13 @@ export class MainComponent implements OnInit {
   isSmallScreen = false;
   isBigScreen = false;
 
-  inputs: Observable<InputModel[]>;
-
-  selectedType = '1';
-  selectedCal = '1';
-
-  c_1: string;
-
-  t_1: string;
-
-  u_1: string;
+  inputs: InputModel[];
 
   types = Untils.types;
+  selectedType = '1';
 
-  calulate = Untils.calulate;
+  calculate = Untils.calulate;
+  selectedCal = '1';
 
   formulars = [
     {value: '1', operate: '+', formular: '0'},
@@ -67,34 +60,38 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.formulars[0]);
-    this.c_1 = '8.15';
-    this.t_1 = '000';
-    this.u_1 = '00';
-
     this.load();
   }
 
   load() {
-    this.inputs = this._inputService.loadData();
-
-    // this.inputs.subscribe( (snapshort) => {
-    //   console.log('snapshort is ' + snapshort.keys());
-    // });
+    this._inputService.loadData().subscribe((lists: InputModel[]) => {
+        this.inputs = [];
+        lists.forEach((data: InputModel) => {
+          this.inputs.push(data);
+        });
+      }
+    );
   }
 
   addInput() {
     const dialogRef = this._dialog.open(InputDialogComponent, {
       disableClose: true,
       width: 'auto',
-      height: 'auto'
+      height: 'auto',
+      data: {
+        mode: 'add',
+        time: (this.inputs.length == undefined ? 0 : this.inputs.length) + 1,
+        up: 1,
+        low: 1
+      }
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
         const newData = <InputModel>{
-          time: 'time',
-          up: 'up',
-          low: 'low'
+          time: result.time,
+          up: result.up,
+          low: result.low
         };
         this._inputService.addData(newData);
       }
@@ -102,21 +99,50 @@ export class MainComponent implements OnInit {
   }
 
   editInput(data: InputModel) {
-    this._inputService.updateData(<InputModel>{
-      time: 'time',
-      up: 'up',
-      low: 'low',
 
+    const dialogRef = this._dialog.open(InputDialogComponent, {
+      disableClose: true,
+      width: 'auto',
+      height: 'auto',
+      data: {
+        mode: 'edit',
+        time: data.time,
+        up: data.up,
+        low: data.low
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        const editData = <InputModel>{
+          time: result.time,
+          up: result.up,
+          low: result.low,
+          id: data.id
+        };
+        this._inputService.updateData(editData);
+      }
     });
   }
 
-  clearInput() {
-    this._inputService.lists.subscribe((data: InputModel[]) => {
+  calculateList() {
 
-      data.forEach((s: InputModel) => {
-        this.deleteInput(s);
-        console.log('ss ' + s.id);
+    if (this.inputs.length > 0) {
+      this._dialog.open(ResultDialogComponent, {
+        disableClose: true,
+        width: '100%',
+        height: '100%',
+        data: {
+          inputs: this.inputs
+        }
       });
+    }
+
+  }
+
+  clearInput() {
+    this.inputs.forEach((data: InputModel) => {
+      this.deleteInput(data);
     });
   }
 
@@ -130,26 +156,6 @@ export class MainComponent implements OnInit {
 
   print() {
     console.log(this.selectedType);
-  }
-
-  openPrompt(): void {
-    this.load();
-    // this._dialogService.openPrompt({
-    //   message: 'This is how simple it is to create a prompt with this wrapper service. Prompt something.',
-    //   disableClose: true,
-    //   viewContainerRef: this._viewContainerRef,
-    //   title: 'Prompt',
-    //   value: 'Prepopulated value',
-    //   cancelButton: 'ยกเลิก',
-    //   acceptButton: 'เพิ่ม',
-    //   width: '300px',
-    // }).afterClosed().subscribe((newValue: string) => {
-    //   if (newValue) {
-    //     // DO SOMETHING
-    //   } else {
-    //     // DO SOMETHING ELSE
-    //   }
-    // });
   }
 
   openLink(type: string) {

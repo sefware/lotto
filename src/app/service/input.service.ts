@@ -12,7 +12,9 @@ export class InputService {
   _path = 'user_input';
 
   constructor(private afs: AngularFirestore) {
-    this.itemsCollection = afs.collection<InputModel>(this._path).doc('user_id').collection('12345678');
+    this.itemsCollection = afs.collection<InputModel>(this._path)
+      .doc('user_id')
+      .collection('12345678', ref => ref.orderBy('time'));
     this.lists = this.itemsCollection.valueChanges();
   }
 
@@ -31,12 +33,6 @@ export class InputService {
 
   removeData(data: InputModel) {
     return this.itemsCollection.doc(data.id).delete();
-  }
-
-  clearData() {
-    this.lists.forEach( (data: any) => {
-      console.log('data : ' + data.keys);
-    });
   }
 
 }

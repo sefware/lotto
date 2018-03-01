@@ -7,6 +7,7 @@ import {Untils} from '../shared/untils';
 import {FullscreenOverlayContainer, OverlayContainer} from '@angular/cdk/overlay';
 import {InputService} from '../service/input.service';
 import '@firebase/firestore';
+import {FormulaService} from '../service/formula.service';
 
 const l10nConfig: L10nConfig = {
   locale: Untils.locale,
@@ -41,7 +42,8 @@ const l10nConfig: L10nConfig = {
     {
       provide: OverlayContainer, useClass: FullscreenOverlayContainer
     },
-    InputService
+    InputService,
+    FormulaService
   ]
 })
 export class MainModule {

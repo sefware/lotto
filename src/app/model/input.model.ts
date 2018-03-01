@@ -1,9 +1,9 @@
 export class InputModel {
 
-  id: string;
-  time: string;
-  up: string;
-  low: string;
+  id?: string;
+  time: number;
+  up: number;
+  low: number;
 
   constructor(params: InputModel) {
     Object.assign(this, params);

@@ -1,7 +1,7 @@
 @import "../../../styles/variable";
 
 .form{
-  width: 512px;
+  width: auto;
 }
 
 .content{
@@ -23,22 +23,6 @@
 .btn-colored-primay{
   color: #fff;
   background: $secondary-text-color;
-}
-
-.area-info{
-  background-color: #eceff1;
-  color: #546e7a;
-  flex-wrap: wrap;
-  margin: 0 0 24px 0;
-  flex-direction: row;
-  position: relative;
-  padding: 12px 0;
-  line-height: 20px;
-  font-size: 14px;
-}
-
-.data-list{
-  margin-bottom: 10px;
 }
 
 .data-title{

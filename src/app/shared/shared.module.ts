@@ -6,7 +6,7 @@ import {
   MatButtonModule,
   MatCardModule,
   MatChipsModule,
-  MatDividerModule,
+  MatDividerModule, MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
@@ -23,6 +23,8 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {CovalentLayoutModule, CovalentMediaModule, CovalentNotificationsModule, TdDialogService} from '@covalent/core';
 import {CovalentDynamicFormsModule} from '@covalent/dynamic-forms';
 import {InputDialogComponent} from '../dialog/input/input_dialog.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {ResultDialogComponent} from '../dialog/result/result_dialog.component';
 
 const MATERIAL_MODULES: any[] = [
   MatButtonModule,
@@ -37,7 +39,7 @@ const MATERIAL_MODULES: any[] = [
   MatTooltipModule,
   MatChipsModule,
   MatDialogModule,
-  LayoutModule
+  MatGridListModule
 ];
 
 const COVALENT_MODULES: any[] = [
@@ -49,7 +51,9 @@ const COVALENT_MODULES: any[] = [
 
 const ANGULAR_MODULES: any[] = [
   CommonModule,
-  HttpClientModule
+  HttpClientModule,
+  ReactiveFormsModule,
+  LayoutModule
 ];
 
 @NgModule({
@@ -69,10 +73,12 @@ const ANGULAR_MODULES: any[] = [
     FlexLayoutModule,
   ],
   declarations: [
-    InputDialogComponent
+    InputDialogComponent,
+    ResultDialogComponent
   ],
   entryComponents: [
-    InputDialogComponent
+    InputDialogComponent,
+    ResultDialogComponent
   ],
   providers: [
     TdDialogService

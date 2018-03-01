@@ -1,0 +1,44 @@
+<td-layout>
+  <td-layout-nav>
+    <button mat-icon-button td-menu-button (click)="disable()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <div class="content" fxLayout="column" fxLayoutAlign="center center">
+
+      <ng-template ngFor let-model [ngForOf]="resultModel" let-currentElementIndex="index">
+        <mat-card class="card">
+          <mat-card-header>
+            <mat-card-title>{{model.name}}</mat-card-title>
+          </mat-card-header>
+          <ng-template ngFor let-input [ngForOf]="model.inputs">
+
+            <div fxLayout="row">
+              <div>{{input.time}}</div>
+              <div style="margin-left: 10px;margin-right: 10px;">=</div>
+              <div>{{input.value}}</div>
+              <div style="margin-left: 10px;margin-right: 10px;">=</div>
+              <div>{{input.result}}</div>
+              <div *ngIf="input.result == true">({{input.resultCount}})</div>
+
+            </div>
+
+          </ng-template>
+
+        </mat-card>
+      </ng-template>
+
+    </div>
+
+    <!--<mat-grid-list cols="1">-->
+    <!---->
+    <!--</mat-grid-list>-->
+
+    <!--<ng-template ngFor let-list [ngForOf]="inputs" let-currentElementIndex="index">-->
+    <!---->
+    <!--</ng-template>-->
+
+  </td-layout-nav>
+
+
+</td-layout>

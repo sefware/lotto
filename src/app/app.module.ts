@@ -37,7 +37,7 @@ const l10nConfig: L10nConfig = {
     BrowserAnimationsModule,
     TranslationModule.forRoot(l10nConfig),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     AngularFireAuthModule,
     AppRoutingModule,
     SharedModule,

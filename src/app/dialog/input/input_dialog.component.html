@@ -1,29 +1,30 @@
 <div class="form">
-  <h2 mat-dialog-title>เพิ่มรอบ</h2>
+  <h2 mat-dialog-title *ngIf="data.mode == 'add'">เพิ่มรอบ</h2>
+  <h2 mat-dialog-title *ngIf="data.mode == 'edit'">แก้ไขรอบ</h2>
+  <mat-dialog-content>
 
-  <mat-dialog-content class="area-info">
-    <div fxLayout="column">
-      <i class="mati mati-email icon"></i>
-      <div class="content">
-        Content
-      </div>
-    </div>
-  </mat-dialog-content>
+    <form [formGroup]="inputForm">
+      <div fxLayout="column">
+        <mat-form-field hintLabel="">
+          <input formControlName="time" matInput #time_input maxlength="10" placeholder="รอบ/เวลา" type="number">
+        </mat-form-field>
 
-  <mat-dialog-content >
-    <div fxLayout="column">
-      <div class="data-title">
-        Title
+        <mat-form-field hintLabel="">
+          <input formControlName="up" matInput #up_input maxlength="3" placeholder="เลขบน" type="number">
+          <mat-hint align="end">{{up_input.value?.length || 0}}/3</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field hintLabel="">
+          <input formControlName="low" matInput #low_input maxlength="2" placeholder="เลขล่าง">
+          <mat-hint align="end">{{low_input.value?.length || 0}}/2</mat-hint>
+        </mat-form-field>
       </div>
-      <div class="data-list">
-        data
-      </div>
-    </div>
+    </form>
   </mat-dialog-content>
 
   <mat-dialog-actions class="operation">
     <button class="btn btn-cancel" mat-button [mat-dialog-close]="false">ยกเลิก</button>
-    <button mat-raised-button color="primary" [mat-dialog-close]="true">เพิ่ม</button>
+    <button mat-raised-button color="primary" [disabled]="inputForm.invalid" (click)="saveData()">บันทึก</button>
   </mat-dialog-actions>
 </div>
 

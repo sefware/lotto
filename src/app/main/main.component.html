@@ -61,41 +61,54 @@
               </mat-select>
             </mat-form-field>
 
-            <div fxLayout="row">
-              <button mat-raised-button color="primary" (click)="deleteInput()">Copy วาง</button>
+            <div fxLayout="row" style="margin-bottom: 10px">
+              <button mat-raised-button color="primary">
+                <mat-icon>content_paste</mat-icon>
+                Copy วาง
+              </button>
               <div style="width: 10px"></div>
-              <button mat-raised-button color="primary" (click)="clearInput()">รีเซ็ทข้อมูล</button>
+              <button mat-raised-button color="primary" (click)="clearInput()">
+                <mat-icon>cached</mat-icon>
+                รีเซ็ทข้อมูล
+              </button>
             </div>
 
             <div fxLayout="column">
 
-              <mat-nav-list dense flex style="background: #eee">
+              <mat-nav-list dense flex>
 
                 <a mat-list-item [disableRipple]="true" style="background: #ccc;">
                   <div class="list-title">รอบ/เวลา</div>
                   <div fxFlex></div>
                   <div class="list-title">บน</div>
-                  <div fxFlex="45px"></div>
+                  <div fxFlex="32px"></div>
                   <div class="list-title">ล่าง</div>
-                  <div fxFlex="20px"></div>
+                  <div fxFlex="45px"></div>
                 </a>
-                <ng-template ngFor let-list [ngForOf]="_inputService.lists | async">
-                  <a mat-list-item (click)="deleteInput(list)">
-                    <div fxFlex="15px"></div>
-                    <div class="list-label">{{ list.time }}</div>
-                    <div fxFlex></div>
-                    <div class="list-label">{{ list.up }}</div>
-                    <div fxFlex="20px"></div>
-                    <div class="list-label">-</div>
-                    <div fxFlex="20px"></div>
-                    <div class="list-label">{{ list.low }}</div>
-                    <div fxFlex="20px"></div>
+                <ng-template ngFor let-list [ngForOf]="inputs" let-currentElementIndex="index">
+                  <a mat-list-item>
+                    <div fxFlex="row" (click)="editInput(list)">
+                      <div fxFlex="15px"></div>
+                      <div class="list-label">{{ list.time }}</div>
+                      <div fxFlex></div>
+                      <div class="list-label">{{ list.up }}</div>
+                      <div fxFlex="20px"></div>
+                      <div class="list-label">-</div>
+                      <div fxFlex="20px"></div>
+                      <div class="list-label">{{ list.low }}</div>
+                      <div fxFlex="20px"></div>
+                    </div>
+                    <div (click)="deleteInput(list)" fxFlex="26px">
+                      <div class="list-label" *ngIf="currentElementIndex == 0 || currentElementIndex == (inputs.length-1)">
+                        <mat-icon>close</mat-icon>
+                      </div>
+                    </div>
                   </a>
                 </ng-template>
 
                 <mat-divider [inset]="true"></mat-divider>
 
-                <a mat-list-item (click)="addInput()">
+                <a mat-list-item (click)="addInput()" style="background: #eee">
                   <div fxFlex></div>
                   <div class="list-label-add">+ เพิ่มรอบ</div>
                   <div fxFlex></div>
@@ -108,13 +121,13 @@
               <div fxFlex="40px"></div>
               <mat-form-field>
                 <mat-select placeholder="เลือกแบบที่จะคำนวณ" [(value)]="selectedCal" (selectionChange)="print()">
-                  <mat-option *ngFor="let cal of calulate" [value]="cal.value" [disabled]="!cal.enable">
+                  <mat-option *ngFor="let cal of calculate" [value]="cal.value" [disabled]="!cal.enable">
                     {{ cal.viewValue }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
 
-              <button mat-raised-button color="primary" >คำนวณ</button>
+              <button mat-raised-button color="primary" (click)="calculateList()">คำนวณ</button>
 
             </div>
 

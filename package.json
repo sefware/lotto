@@ -17,7 +17,7 @@
     "test:ci": "ng test --single-run --progress=false --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy:firebase": "npm run build:client && npm run build:firebase && firebase deploy --only:hosting"
+    "deploy:firebase": "npm run build:client && npm run build:firebase && firebase deploy --only hosting"
   },
   "private": true,
   "dependencies": {

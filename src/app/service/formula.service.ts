@@ -41,6 +41,56 @@ export class FormulaService {
     'R028',
     'R029',
     'R030',
+    'R031',
+    'R032',
+    'R033',
+    'R034',
+    'R035',
+    'R036',
+    'R037',
+    'R038',
+    'R039',
+    'R040',
+    'R041',
+    'R042',
+    'R043',
+    'R044',
+    'R045',
+    'R046',
+    'R047',
+    'R048',
+    'R049',
+    'R050',
+    'R051',
+    'R052',
+    'R053',
+    'R054',
+    'R055',
+    'R056',
+    'R057',
+    'R058',
+    'R059',
+    'R060',
+    'R061',
+    'R062',
+    'R063',
+    'R064',
+    'R065',
+    'R066',
+    'R067',
+    'R068',
+    'R069',
+    'R070',
+    'R071',
+    'R072',
+    'R073',
+    'R074',
+    'R075',
+    'R076',
+    'R077',
+    'R078',
+    'R079',
+    'R080',
   ];
 
   getFormula(index: number) {
@@ -322,12 +372,15 @@ export class FormulaService {
       let SumresultCount = 0;
       if ((String(s.up).indexOf(String(calValue)) >= 0) || (String(s.low).indexOf(String(calValue)) >= 0)) {
         sumResult = true;
-        SumresultCount = SumresultCount + (String(s.up).match(new RegExp(String(calValue), 'g'))).length;
-        SumresultCount = SumresultCount + (String(s.low).match(new RegExp(String(calValue), 'g'))).length;
+        // SumresultCount = SumresultCount + (String(s.up).match(new RegExp(String(calValue), 'g'))).length == null ? (String(s.up).match(new RegExp(String(calValue), 'g'))).length : 0;
+        // SumresultCount = SumresultCount + (String(s.low).match(new RegExp(String(calValue), 'g'))).length == null ? (String(s.low).match(new RegExp(String(calValue), 'g'))).length : 0;
+        SumresultCount = SumresultCount;
       }
 
       resultList.push(<ResultInputModel>{
         time: s.time,
+        up: s.up,
+        low: s.low,
         value: calValue,
         result: sumResult,
         resultCount: SumresultCount

@@ -6,20 +6,21 @@
 
     <div class="content" fxLayout="column" fxLayoutAlign="center center">
 
-      <ng-template ngFor let-model [ngForOf]="resultModel" let-currentElementIndex="index">
+      <ng-template ngFor let-model [ngForOf]="resultModel" let-currentModelIndex="index">
         <mat-card class="card">
           <mat-card-header>
             <mat-card-title>{{model.name}}</mat-card-title>
           </mat-card-header>
-          <ng-template ngFor let-input [ngForOf]="model.inputs">
+          <ng-template ngFor let-input [ngForOf]="model.inputs" let-currentInputsIndex="index">
 
             <div fxLayout="row">
               <div>{{input.time}}</div>
-              <div style="margin-left: 10px;margin-right: 10px;">=</div>
-              <div>{{input.value}}</div>
-              <div style="margin-left: 10px;margin-right: 10px;">=</div>
-              <div>{{input.result}}</div>
-              <div *ngIf="input.result == true">({{input.resultCount}})</div>
+              <div *ngIf="currentInputsIndex != 0" style="margin-left: 10px;margin-right: 10px;">=</div>
+              <div *ngIf="currentInputsIndex != 0">{{input.value}}</div>
+              <div *ngIf="currentInputsIndex != 0" style="margin-left: 10px;margin-right: 10px;">=</div>
+              <div *ngIf="currentInputsIndex != 0">{{input.result}}</div>
+
+              <!--<div *ngIf="input.result == true">({{input.resultCount}})</div>-->
 
             </div>
 

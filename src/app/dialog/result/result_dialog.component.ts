@@ -29,9 +29,8 @@ export class ResultDialogComponent {
       console.log('time ' + s.time);
     });
 
-    this.resultModel = this.service.formulaCalculate(this.inputs);
+    this.resultModel = this.service.formulaCalculate(this.inputs, this.data.calType);
   }
-
 
   disable() {
     this.dialogRef.close();

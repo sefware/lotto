@@ -34,7 +34,7 @@
                 {{model.inputs[currentInputsIndex - 1].result?'เข้า':'ตาย'}}
               </div>
 
-              <div *ngIf="model.inputs[currentInputsIndex - 1]?.result == true">
+              <div *ngIf="model.inputs[currentInputsIndex - 1]?.result == true && model.inputs[currentInputsIndex - 1].resultCount != 0">
                 ({{model.inputs[currentInputsIndex - 1]?.resultCount}})
               </div>
 

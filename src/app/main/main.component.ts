@@ -130,7 +130,8 @@ export class MainComponent implements OnInit {
         width: '100%',
         height: '100%',
         data: {
-          inputs: this.inputs
+          inputs: this.inputs,
+          calType: this.selectedCal
         }
       });
     }

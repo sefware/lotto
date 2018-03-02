@@ -15,24 +15,29 @@ export class Untils {
 
   public static types = [
     {value: '1', viewValue: 'แบบกรอกผล', enable: true},
-    {value: '2', viewValue: 'ผลหอย', enable: false},
-    {value: '3', viewValue: 'ผลหมู', enable: false},
-    {value: '4', viewValue: 'ผลหมี', enable: false},
-    {value: '5', viewValue: 'ผลโชค', enable: false},
-    {value: '6', viewValue: 'ผลเจต', enable: false},
-    {value: '7', viewValue: 'ผลแพ', enable: false},
-    {value: '8', viewValue: 'ผลแมน', enable: false}
+    // {value: '2', viewValue: 'ผลหอย', enable: false},
+    // {value: '3', viewValue: 'ผลหมู', enable: false},
+    // {value: '4', viewValue: 'ผลหมี', enable: false},
+    // {value: '5', viewValue: 'ผลโชค', enable: false},
+    // {value: '6', viewValue: 'ผลเจต', enable: false},
+    // {value: '7', viewValue: 'ผลแพ', enable: false},
+    // {value: '8', viewValue: 'ผลแมน', enable: false}
   ];
 
   public static calulate = [
-    {value: '1', viewValue: 'เสียวตัวเดียว', enable: true},
-    {value: '2', viewValue: 'ปักสิบบน', enable: false},
-    {value: '3', viewValue: 'ปักหน่วยบน', enable: false},
-    {value: '4', viewValue: 'ปักสิบล่าง', enable: false},
-    {value: '5', viewValue: 'ปักหน่วยล่าง', enable: false},
-    {value: '6', viewValue: 'รูดบน', enable: false},
-    {value: '7', viewValue: 'รูดล่าง', enable: false},
-    {value: '8', viewValue: 'เลขวินบน เรียงเลข', enable: false}
+    {value: '1', viewValue: 'รูดตัวเดียว', enable: true},
+    {value: '6', viewValue: 'รูดบน', enable: true},
+    {value: '7', viewValue: 'รูดล่าง', enable: true},
+    {value: '2', viewValue: 'ปักสิบบน', enable: true},
+    {value: '3', viewValue: 'ปักหน่วยบน', enable: true},
+    {value: '4', viewValue: 'ปักสิบล่าง', enable: true},
+    {value: '5', viewValue: 'ปักหน่วยล่าง', enable: true},
+    {value: '8', viewValue: 'เลขวินบน 6 ตัว', enable: true},
+    {value: '9', viewValue: 'เลขวินบน 7 ตัว', enable: true},
+    {value: '10', viewValue: 'เลขวินบน 8 ตัว', enable: true},
+    {value: '11', viewValue: 'เลขวินล่าง 6 ตัว', enable: true},
+    {value: '12', viewValue: 'เลขวินล่าง 7 ตัว', enable: true},
+    {value: '13', viewValue: 'เลขวินล่าง 8 ตัว', enable: true}
   ];
 
 }

@@ -15,12 +15,28 @@
 
             <div fxLayout="row">
               <div>{{input.time}}</div>
-              <div *ngIf="currentInputsIndex != 0" style="margin-left: 10px;margin-right: 10px;">=</div>
-              <div *ngIf="currentInputsIndex != 0">{{input.value}}</div>
-              <div *ngIf="currentInputsIndex != 0" style="margin-left: 10px;margin-right: 10px;">=</div>
-              <div *ngIf="currentInputsIndex != 0">{{input.result}}</div>
+              <div *ngIf="currentInputsIndex == (model.inputs.length - 1)">รอบถัดไป</div>
+              <div *ngIf="currentInputsIndex != 0 " style="margin-left: 10px;margin-right: 10px;">=</div>
+              <div *ngIf="currentInputsIndex != 0">{{model.inputs[currentInputsIndex - 1].value}}</div>
+              <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)"
+                   style="margin-left: 10px;margin-right: 10px;">=
+              </div>
 
-              <!--<div *ngIf="input.result == true">({{input.resultCount}})</div>-->
+              <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">{{input.up}} -
+                {{input.low}}
+              </div>
+
+              <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)"
+                   style="margin-left: 10px;margin-right: 10px;">=
+              </div>
+
+              <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">
+                {{model.inputs[currentInputsIndex - 1].result?'เข้า':'ตาย'}}
+              </div>
+
+              <div *ngIf="model.inputs[currentInputsIndex - 1]?.result == true">
+                ({{model.inputs[currentInputsIndex - 1]?.resultCount}})
+              </div>
 
             </div>
 

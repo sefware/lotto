@@ -33,7 +33,7 @@ const l10nConfig: L10nConfig = {
     AppComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'win-win'}),
+    BrowserModule.withServerTransition({appId: 'risa-0.01'}),
     BrowserAnimationsModule,
     TranslationModule.forRoot(l10nConfig),
     AngularFireModule.initializeApp(environment.firebase),

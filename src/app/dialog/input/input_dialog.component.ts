@@ -32,10 +32,38 @@ export class InputDialogComponent {
   }
 
   saveData() {
+    let saveUp = String(this.inputForm.get('up').value);
+    let saveLow = String(this.inputForm.get('low').value);
+
+    if (saveUp.length < 3) {
+      if (saveUp.length === 0) {
+        saveUp = '000';
+      }
+      if (saveUp.length === 1) {
+        saveUp = '00' + saveUp;
+      }
+      if (saveUp.length === 2) {
+        saveUp = '0' + saveUp;
+      }
+    }
+
+    if (saveLow.length < 2) {
+      if (saveLow.length === 0) {
+        saveLow = '00';
+      }
+      if (saveLow.length === 1) {
+        saveLow = '0' + saveLow;
+      }
+    }
+
     this.dialogRef.close({
-      time: this.inputForm.get('time').value,
-      up: this.inputForm.get('up').value,
-      low: this.inputForm.get('low').value
+      time: String(this.inputForm.get('time').value),
+      up: saveUp,
+      low: saveLow
     });
+  }
+
+  disable() {
+    this.dialogRef.close();
   }
 }

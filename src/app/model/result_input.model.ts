@@ -1,9 +1,9 @@
 export class ResultInputModel {
 
-  time: number;
-  up: number;
-  low: number;
-  value: number;
+  time: string;
+  up: string;
+  low: string;
+  value: string;
   result: boolean;
   resultCount = 0;
 

@@ -76,13 +76,10 @@ export class MainComponent implements OnInit {
   addInput() {
     const dialogRef = this._dialog.open(InputDialogComponent, {
       disableClose: true,
-      width: 'auto',
-      height: 'auto',
+      width: '100%',
+      height: '100%',
       data: {
-        mode: 'add',
-        time: (this.inputs.length == undefined ? 0 : this.inputs.length) + 1,
-        up: 1,
-        low: 1
+        mode: 'add'
       }
     });
 
@@ -102,8 +99,8 @@ export class MainComponent implements OnInit {
 
     const dialogRef = this._dialog.open(InputDialogComponent, {
       disableClose: true,
-      width: 'auto',
-      height: 'auto',
+      width: '100%',
+      height: '100%',
       data: {
         mode: 'edit',
         time: data.time,

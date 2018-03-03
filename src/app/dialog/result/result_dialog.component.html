@@ -1,8 +1,12 @@
 <td-layout>
   <td-layout-nav toolbarTitle="{{title}}">
-    <button mat-icon-button td-menu-button (click)="disable()">
-      <mat-icon>arrow_back</mat-icon>
-    </button>
+
+    <div td-toolbar-content layout="row" layout-align="start center" fxFlex="true">
+      <span fxFlex="true"></span>
+      <button class="overflow-visible" mat-icon-button (click)="disable()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
 
     <div class="content" fxLayout="row">
       <div fxFlex>
@@ -25,10 +29,6 @@
 
                 <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">
                   {{input.up}}-{{input.low}}
-                </div>
-
-                <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)"
-                     style="margin-left: 0px;margin-right: 0px;">=
                 </div>
 
                 <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">
@@ -77,10 +77,6 @@
                   {{input.up}}-{{input.low}}
                 </div>
 
-                <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)"
-                     style="margin-left: 0px;margin-right: 0px;">=
-                </div>
-
                 <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">
                   <!--{{model.inputs[currentInputsIndex - 1].result?'เข้า':'ตาย'}}-->
                   <div *ngIf="model.inputs[currentInputsIndex - 1].result">
@@ -125,10 +121,6 @@
 
                 <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">
                   {{input.up}}-{{input.low}}
-                </div>
-
-                <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)"
-                     style="margin-left: 0px;margin-right: 0px;">=
                 </div>
 
                 <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">

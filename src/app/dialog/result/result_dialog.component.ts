@@ -4,6 +4,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {InputModel} from '../../model/input.model';
 import {FormulaService} from '../../service/formula.service';
 import {ResultModel} from '../../model/result.model';
+import {Untils} from '../../shared/untils';
 
 @Component({
   selector: 'app-result-dialog',
@@ -17,6 +18,7 @@ export class ResultDialogComponent {
   resultModel: ResultModel[];
   data: any;
   inputs: InputModel[];
+  title: string;
 
   constructor(public service: FormulaService,
               public dialogRef: MatDialogRef<ResultDialogComponent>,
@@ -30,6 +32,7 @@ export class ResultDialogComponent {
     });
 
     this.resultModel = this.service.formulaCalculate(this.inputs, this.data.calType);
+    this.title = Untils.getCalculateTitle(this.data.calType);
   }
 
   disable() {

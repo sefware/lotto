@@ -27,20 +27,6 @@ export class MainComponent implements OnInit {
   selectedType = '1';
 
   calculate = Untils.calulate;
-  selectedCal = '1';
-
-  formulars = [
-    {value: '1', operate: '+', formular: '0'},
-    {value: '2', operate: '+', formular: '1'},
-    {value: '3', operate: '+', formular: '2'},
-    {value: '4', operate: '+', formular: '3'},
-    {value: '5', operate: '+', formular: '4'},
-    {value: '6', operate: '+', formular: '5'},
-    {value: '7', operate: '+', formular: '6'},
-    {value: '8', operate: '+', formular: '7'},
-    {value: '9', operate: '+', formular: '8'},
-    {value: '10', operate: '+', formular: '9'}
-  ];
 
   constructor(public _inputService: InputService,
               private _locale: LocaleService,
@@ -59,7 +45,6 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.formulars[0]);
     this.load();
   }
 
@@ -73,56 +58,20 @@ export class MainComponent implements OnInit {
     );
   }
 
-  addInput() {
-    const dialogRef = this._dialog.open(InputDialogComponent, {
+  openInput(_data: InputModel) {
+    console.log('this.inputs.length : ' + this.inputs.length);
+    this._dialog.open(InputDialogComponent, {
       disableClose: true,
       width: '100%',
       height: '100%',
       data: {
-        mode: 'add'
-      }
-    });
-
-    dialogRef.afterClosed().subscribe((result: any) => {
-      if (result) {
-        const newData = <InputModel>{
-          time: result.time,
-          up: result.up,
-          low: result.low
-        };
-        this._inputService.addData(newData);
+        input: _data,
+        inputs: this.inputs
       }
     });
   }
 
-  editInput(data: InputModel) {
-
-    const dialogRef = this._dialog.open(InputDialogComponent, {
-      disableClose: true,
-      width: '100%',
-      height: '100%',
-      data: {
-        mode: 'edit',
-        time: data.time,
-        up: data.up,
-        low: data.low
-      }
-    });
-
-    dialogRef.afterClosed().subscribe((result: any) => {
-      if (result) {
-        const editData = <InputModel>{
-          time: result.time,
-          up: result.up,
-          low: result.low,
-          id: data.id
-        };
-        this._inputService.updateData(editData);
-      }
-    });
-  }
-
-  calculateList() {
+  calculateList(selectedCal: string) {
 
     if (this.inputs.length > 0) {
       this._dialog.open(ResultDialogComponent, {
@@ -131,7 +80,7 @@ export class MainComponent implements OnInit {
         height: '100%',
         data: {
           inputs: this.inputs,
-          calType: this.selectedCal
+          calType: selectedCal
         }
       });
     }
@@ -152,32 +101,4 @@ export class MainComponent implements OnInit {
     this._locale.setCurrentLanguage(language);
   }
 
-  print() {
-    console.log(this.selectedType);
-  }
-
-  openLink(type: string) {
-    switch (type) {
-      case 'github':
-        window.open('https://github.com/chaiwutmaneechot', '_blank');
-        break;
-      case 'github_profile':
-        window.open('https://github.com/chaiwutmaneechot/profile', '_blank');
-        break;
-      case 'facebook':
-        window.open('https://www.facebook.com/chaiwut.maneechot', '_blank');
-        break;
-      case 'twitter':
-        window.open('https://twitter.com/chaiwut_maneech', '_blank');
-        break;
-      case 'trello':
-        window.open('https://trello.com/chaiwutmaneechot1', '_blank');
-        break;
-      case 'youtube':
-        window.open('https://www.youtube.com/channel/UCokOLO_r8BlaDfoB3CASTvw?view_as=subscriber', '_blank');
-        break;
-      default:
-        break;
-    }
-  }
 }

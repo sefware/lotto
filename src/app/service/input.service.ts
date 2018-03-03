@@ -23,12 +23,12 @@ export class InputService {
   }
 
   addData(data: InputModel) {
-    data.id = this.afs.createId();
-    return this.itemsCollection.doc(data.id).set(data);
-  }
-
-  updateData(data: InputModel) {
-    return this.itemsCollection.doc(data.id).update(data);
+    if (data.id) {
+      return this.itemsCollection.doc(data.id).update(data);
+    } else {
+      data.id = this.afs.createId();
+      return this.itemsCollection.doc(data.id).set(data);
+    }
   }
 
   removeData(data: InputModel) {

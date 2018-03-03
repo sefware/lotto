@@ -1,45 +1,43 @@
 @import "../../../styles/variable";
 
-.form{
-  width: auto;
-}
-
-.content{
-  padding-left: 46px;
-  padding-right: 10px;
-}
-
-.icon{
-  font-size: 24px;
-  position: absolute;
-  margin-right: 12px;
-  margin-left: 10px;
-}
-
-.operation{
-  float: right;
-}
-
-.btn-colored-primay{
-  color: #fff;
-  background: $secondary-text-color;
-}
-
-.data-title{
-  color: rgba(0,0,0,0.54);
-  display: block;
-  font-size: 13px;
-  padding-bottom: 8px;
-}
-
-.btn-cancel{
-  margin-right: 10px;
-}
-
-.btn{
-  text-transform: uppercase;
-}
 
 .mat-dialog-actions {
   padding: 23px 0;
+}
+
+.input-container {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+/deep/ .td-layout-nav-content{
+  background: #dedede;
+}
+
+/deep/ .mat-form-field-infix{
+  background: #ffffff;
+}
+
+/deep/ .mat-input-element {
+  margin-top: 0px;
+  padding: 10px;
+}
+/deep/ .mat-form-field-wrapper {
+  padding-bottom: 0.8em;
+}
+
+/deep/ .mat-form-field-infix {
+  padding: 0px;
+  border-top: 0px;
+}
+
+/deep/ .mat-form-field-underline {
+  bottom: 0.8em;
+}
+
+.btn-more{
+  line-height: 42px;
+  margin-bottom: 20px;
+  background: #eee;
 }

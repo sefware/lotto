@@ -7,7 +7,7 @@ import {L10nConfig, L10nLoader, ProviderType, TranslationModule} from 'angular-l
 import {SharedModule} from './shared/shared.module';
 import {isPlatformBrowser} from '@angular/common';
 import {Untils} from './shared/untils';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {environment} from '../environments/environment';
@@ -34,7 +34,7 @@ const l10nConfig: L10nConfig = {
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'risa-0.01'}),
-    BrowserAnimationsModule,
+    NoopAnimationsModule,
     TranslationModule.forRoot(l10nConfig),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),

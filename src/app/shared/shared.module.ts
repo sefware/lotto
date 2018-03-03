@@ -6,6 +6,7 @@ import {
   MatButtonModule,
   MatCardModule,
   MatDividerModule,
+  MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
@@ -49,7 +50,8 @@ const ANGULAR_MODULES: any[] = [
   CommonModule,
   HttpClientModule,
   ReactiveFormsModule,
-  LayoutModule
+  LayoutModule,
+  MatGridListModule
 ];
 
 @NgModule({

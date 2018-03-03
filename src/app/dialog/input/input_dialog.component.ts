@@ -31,7 +31,6 @@ export class InputDialogComponent {
       });
       this.addList(s.time, _s);
     });
-
     this.addEmptyList();
   }
 
@@ -115,8 +114,8 @@ export class InputDialogComponent {
       saveUp.replace('_', '');
       saveLow.replace('_', '');
 
-      console.log('saveUp ' + saveUp);
-      console.log('saveLow ' + saveLow);
+      // console.log('saveUp ' + saveUp);
+      // console.log('saveLow ' + saveLow);
 
       if (saveUp !== '' && saveLow !== '') {
 

@@ -15,7 +15,10 @@ import {Untils} from '../../shared/untils';
 export class ResultDialogComponent {
   @Language() lang: string;
 
-  resultModel: ResultModel[];
+  resultModel: ResultModel[] = [];
+  resultModel1: ResultModel[] = [];
+  resultModel2: ResultModel[] = [];
+  resultModel3: ResultModel[] = [];
   data: any;
   inputs: InputModel[];
   title: string;
@@ -27,11 +30,21 @@ export class ResultDialogComponent {
 
     this.inputs = this.data.inputs;
 
-    this.inputs.forEach(s => {
-      console.log('time ' + s.time);
+    this.resultModel = this.service.formulaCalculate(this.inputs, this.data.calType);
+
+    this.resultModel.forEach(s => {
+      const _index = this.resultModel.indexOf(s);
+      if (_index % 3 === 0) {
+        this.resultModel1.push(s);
+      }
+      if (_index % 3 === 1) {
+        this.resultModel2.push(s);
+      }
+      if (_index % 3 === 2) {
+        this.resultModel3.push(s);
+      }
     });
 
-    this.resultModel = this.service.formulaCalculate(this.inputs, this.data.calType);
     this.title = Untils.getCalculateTitle(this.data.calType);
   }
 

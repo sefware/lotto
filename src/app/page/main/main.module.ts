@@ -1,13 +1,13 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import {MainComponent} from './main.component';
 import {RouterModule} from '@angular/router';
-import {SharedModule} from '../shared/shared.module';
+import {SharedModule} from '../../shared/shared.module';
 import {L10nConfig, L10nLoader, ProviderType, TranslationModule} from 'angular-l10n';
-import {Untils} from '../shared/untils';
+import {Untils} from '../../shared/untils';
 import {FullscreenOverlayContainer, OverlayContainer} from '@angular/cdk/overlay';
-import {InputService} from '../service/input.service';
 import '@firebase/firestore';
-import {FormulaService} from '../service/formula.service';
+import {FormulaService} from '../../service/formula.service';
+import {StorageService} from '../../service/storage.service';
 
 const l10nConfig: L10nConfig = {
   locale: Untils.locale,
@@ -42,8 +42,7 @@ const l10nConfig: L10nConfig = {
     {
       provide: OverlayContainer, useClass: FullscreenOverlayContainer
     },
-    InputService,
-    FormulaService
+    StorageService
   ]
 })
 export class MainModule {

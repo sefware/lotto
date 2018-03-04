@@ -7,11 +7,15 @@ import {L10nConfig, L10nLoader, ProviderType, TranslationModule} from 'angular-l
 import {SharedModule} from './shared/shared.module';
 import {isPlatformBrowser} from '@angular/common';
 import {Untils} from './shared/untils';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from 'angularfire2/auth';
+import {AuthService} from './service/auth.service';
+import {LoginService} from './service/login.service';
+import {AppService} from './service/app.service';
+import {WebStorageModule} from 'ngx-store';
 
 
 const l10nConfig: L10nConfig = {
@@ -33,17 +37,22 @@ const l10nConfig: L10nConfig = {
     AppComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'risa-0.01'}),
-    NoopAnimationsModule,
+    BrowserModule.withServerTransition({appId: 'herolotto-0.03'}),
+    BrowserAnimationsModule,
     TranslationModule.forRoot(l10nConfig),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule.enablePersistence(),
+    AngularFirestoreModule,
     AngularFireAuthModule,
+    WebStorageModule,
     AppRoutingModule,
     SharedModule,
   ],
   entryComponents: [],
-  providers: [],
+  providers: [
+    AuthService,
+    LoginService,
+    AppService
+  ],
   bootstrap: [AppComponent]
 })
 

@@ -6,6 +6,8 @@ import {ResultInputModel} from '../model/result_input.model';
 @Injectable()
 export class FormulaService {
 
+  inputs = [];
+
   constructor() {
   }
 
@@ -20,132 +22,282 @@ export class FormulaService {
     return 'R' + index;
   }
 
+  private static getFormulaNameHero(index: string) {
+    if (index.length < 2) {
+      index = '00' + index;
+    }
+
+    if (index.length < 3) {
+      index = '0' + index;
+    }
+    return 'H' + index;
+  }
+
   getFormula(index: number) {
     return FormulaService.getFormulaName(String(index));
   }
 
-  formulaCalculate(inputs: InputModel[], calType: string) {
+  getFormulaHero(index: number) {
+    return FormulaService.getFormulaNameHero(String(index));
+  }
+
+  // async formulaCalculate(inputs: InputModel[], calType: string): Promise<ResultModel[]> {
+  //   const resultModel: ResultModel[] = [];
+  //   // ร้อยบน
+  //   for (let _i = 0; _i < 10; _i++) {
+  //     resultModel.push({
+  //       name: this.getFormula(_i + 1),
+  //       inputs: this.formula(calType, inputs, 'up', '', 1, 0, '', _i % 10, '+')
+  //     });
+  //   }
+  //   // สิบบน
+  //   for (let _i = 10; _i < 20; _i++) {
+  //     resultModel.push({
+  //       name: this.getFormula(_i + 1),
+  //       inputs: this.formula(calType, inputs, 'up', '', 2, 0, '', _i % 10, '+')
+  //     });
+  //   }
+  //   // หน่วยบน
+  //   for (let _i = 20; _i < 30; _i++) {
+  //     resultModel.push({
+  //       name: this.getFormula(_i + 1),
+  //       inputs: this.formula(calType, inputs, 'up', '', 3, 0, '', _i % 10, '+')
+  //     });
+  //   }
+  //   // สิบล่าง
+  //   for (let _i = 30; _i < 40; _i++) {
+  //     resultModel.push({
+  //       name: this.getFormula(_i + 1),
+  //       inputs: this.formula(calType, inputs, 'low', '', 1, 0, '', _i % 10, '+')
+  //     });
+  //   }
+  //   // หน่วยล่าง
+  //   for (let _i = 40; _i < 50; _i++) {
+  //     resultModel.push({
+  //       name: this.getFormula(_i + 1),
+  //       inputs: this.formula(calType, inputs, 'low', '', 2, 0, '', _i % 10, '+')
+  //     });
+  //   }
+  //   // ร้อย + สิบบน
+  //   for (let _i = 50; _i < 60; _i++) {
+  //     resultModel.push({
+  //       name: this.getFormula(_i + 1),
+  //       inputs: this.formula(calType, inputs, 'up', 'up', 1, 2, '+', _i % 10, '+')
+  //     });
+  //   }
+  //   // ร้อย + หน่วยบน
+  //   for (let _i = 60; _i < 70; _i++) {
+  //     resultModel.push({
+  //       name: this.getFormula(_i + 1),
+  //       inputs: this.formula(calType, inputs, 'up', 'up', 1, 3, '+', _i % 10, '+')
+  //     });
+  //   }
+  //   // ร้อย + สิบล่าง
+  //   for (let _i = 70; _i < 80; _i++) {
+  //     resultModel.push({
+  //       name: this.getFormula(_i + 1),
+  //       inputs: this.formula(calType, inputs, 'up', 'low', 1, 1, '+', _i, '+')
+  //     });
+  //   }
+  //   // ร้อย + หน่วยล่าง
+  //   for (let _i = 80; _i < 90; _i++) {
+  //     resultModel.push({
+  //       name: this.getFormula(_i + 1),
+  //       inputs: this.formula(calType, inputs, 'up', 'low', 1, 2, '+', _i % 10, '+')
+  //     });
+  //   }
+  //   // สิบบน + หน่วยบน
+  //   for (let _i = 90; _i < 100; _i++) {
+  //     resultModel.push({
+  //       name: this.getFormula(_i + 1),
+  //       inputs: this.formula(calType, inputs, 'up', 'up', 2, 3, '+', _i % 10, '+')
+  //     });
+  //   }
+  //   // สิบบน + สิบล่าง
+  //   for (let _i = 100; _i < 110; _i++) {
+  //     resultModel.push({
+  //       name: this.getFormula(_i + 1),
+  //       inputs: this.formula(calType, inputs, 'up', 'low', 2, 1, '+', _i % 10, '+')
+  //     });
+  //   }
+  //   // สิบบน + หน่วยล่าง
+  //   for (let _i = 110; _i < 120; _i++) {
+  //     resultModel.push({
+  //       name: this.getFormula(_i + 1),
+  //       inputs: this.formula(calType, inputs, 'up', 'low', 2, 2, '+', _i % 10, '+')
+  //     });
+  //   }
+  //   // หน่วยบน + สิบล่าง
+  //   for (let _i = 120; _i < 130; _i++) {
+  //     resultModel.push({
+  //       name: this.getFormula(_i + 1),
+  //       inputs: this.formula(calType, inputs, 'up', 'low', 3, 1, '+', _i % 10, '+')
+  //     });
+  //   }
+  //   // หน่วยบน + หน่วยล่าง
+  //   for (let _i = 130; _i < 140; _i++) {
+  //     resultModel.push({
+  //       name: this.getFormula(_i + 1),
+  //       inputs: this.formula(calType, inputs, 'up', 'low', 3, 2, '+', _i % 10, '+')
+  //     });
+  //   }
+  //   // สิบล่าง + หน่วยล่าง
+  //   for (let _i = 140; _i < 150; _i++) {
+  //     resultModel.push({
+  //       name: this.getFormula(_i + 1),
+  //       inputs: this.formula(calType, inputs, 'low', 'low', 2, 2, '+', _i % 10, '+')
+  //     });
+  //   }
+  //   return resultModel;
+  // }
+
+  async formulaCalculateHero(inputs: InputModel[], calType: string): Promise<ResultModel[]> {
+    this.inputs = inputs;
     const resultModel: ResultModel[] = [];
-    // ร้อยบน
+    // ร้อยบน + สิบบน + หน่วยบน
     for (let _i = 0; _i < 10; _i++) {
       resultModel.push({
-        name: this.getFormula(_i + 1),
-        inputs: this.formula(calType, inputs, 'up', '', 1, 0, '', _i % 10, '+')
+        name: this.getFormulaHero(_i + 1),
+        inputs: this.formula(calType, 'up', 'up', 'up', 0, 1, 2, '+', '+', '+', _i % 10)
       });
     }
-    // สิบบน
+    // ร้อยบน + สิบบน + สิบล่าง
     for (let _i = 10; _i < 20; _i++) {
       resultModel.push({
-        name: this.getFormula(_i + 1),
-        inputs: this.formula(calType, inputs, 'up', '', 2, 0, '', _i % 10, '+')
+        name: this.getFormulaHero(_i + 1),
+        inputs: this.formula(calType, 'up', 'up', 'low', 0, 1, 0, '+', '+', '+', _i % 10)
       });
     }
-    // หน่วยบน
+    // ร้อยบน + สิบบน + หน่วยล่าง
     for (let _i = 20; _i < 30; _i++) {
       resultModel.push({
-        name: this.getFormula(_i + 1),
-        inputs: this.formula(calType, inputs, 'up', '', 3, 0, '', _i % 10, '+')
+        name: this.getFormulaHero(_i + 1),
+        inputs: this.formula(calType, 'up', 'up', 'low', 0, 1, 1, '+', '+', '+', _i % 10)
       });
     }
-    // สิบล่าง
+    // ร้อยบน + หน่วยบน + สิบล่าง
     for (let _i = 30; _i < 40; _i++) {
       resultModel.push({
-        name: this.getFormula(_i + 1),
-        inputs: this.formula(calType, inputs, 'low', '', 1, 0, '', _i % 10, '+')
+        name: this.getFormulaHero(_i + 1),
+        inputs: this.formula(calType, 'up', 'up', 'low', 0, 2, 0, '+', '+', '+', _i % 10)
       });
     }
-    // หน่วยล่าง
+    // ร้อยบน + สิบล่าง + หน่วยล่าง
     for (let _i = 40; _i < 50; _i++) {
       resultModel.push({
-        name: this.getFormula(_i + 1),
-        inputs: this.formula(calType, inputs, 'low', '', 2, 0, '', _i % 10, '+')
+        name: this.getFormulaHero(_i + 1),
+        inputs: this.formula(calType, 'up', 'low', 'low', 0, 0, 1, '+', '+', '+', _i % 10)
       });
     }
-    // ร้อย + สิบบน
+    // ร้อยบน + หน่วยบน + หน่วยล่าง
     for (let _i = 50; _i < 60; _i++) {
       resultModel.push({
-        name: this.getFormula(_i + 1),
-        inputs: this.formula(calType, inputs, 'up', 'up', 1, 2, '+', _i % 10, '+')
+        name: this.getFormulaHero(_i + 1),
+        inputs: this.formula(calType, 'up', 'up', 'low', 0, 2, 1, '+', '+', '+', _i % 10)
       });
     }
-    // ร้อย + หน่วยบน
+    // สิบบน + หน่วยบน + สิบล่าง
     for (let _i = 60; _i < 70; _i++) {
       resultModel.push({
-        name: this.getFormula(_i + 1),
-        inputs: this.formula(calType, inputs, 'up', 'up', 1, 3, '+', _i % 10, '+')
+        name: this.getFormulaHero(_i + 1),
+        inputs: this.formula(calType, 'up', 'up', 'low', 1, 2, 0, '+', '+', '+', _i % 10)
       });
     }
-    // ร้อย + สิบล่าง
+    // สิบบน + หน่วยบน + หน่วยล่าง
     for (let _i = 70; _i < 80; _i++) {
       resultModel.push({
-        name: this.getFormula(_i + 1),
-        inputs: this.formula(calType, inputs, 'up', 'low', 1, 1, '+', _i, '+')
+        name: this.getFormulaHero(_i + 1),
+        inputs: this.formula(calType, 'up', 'up', 'low', 1, 2, 1, '+', '+', '+', _i % 10)
       });
     }
-    // ร้อย + หน่วยล่าง
+    // สิบบน + สิบล่าง + หน่วยล่าง
     for (let _i = 80; _i < 90; _i++) {
       resultModel.push({
-        name: this.getFormula(_i + 1),
-        inputs: this.formula(calType, inputs, 'up', 'low', 1, 2, '+', _i % 10, '+')
+        name: this.getFormulaHero(_i + 1),
+        inputs: this.formula(calType, 'up', 'low', 'low', 1, 0, 1, '+', '+', '+', _i % 10)
       });
     }
-    // สิบบน + หน่วยบน
+
+    // ร้อยบน + สิบบน + หน่วยบน *
     for (let _i = 90; _i < 100; _i++) {
       resultModel.push({
-        name: this.getFormula(_i + 1),
-        inputs: this.formula(calType, inputs, 'up', 'up', 2, 3, '+', _i % 10, '+')
+        name: this.getFormulaHero(_i + 1),
+        inputs: this.formula(calType, 'up', 'up', 'up', 0, 1, 2, '+', '+', '*', _i % 10)
       });
     }
-    // สิบบน + สิบล่าง
+    // ร้อยบน + สิบบน + สิบล่าง *
     for (let _i = 100; _i < 110; _i++) {
       resultModel.push({
-        name: this.getFormula(_i + 1),
-        inputs: this.formula(calType, inputs, 'up', 'low', 2, 1, '+', _i % 10, '+')
+        name: this.getFormulaHero(_i + 1),
+        inputs: this.formula(calType, 'up', 'up', 'low', 0, 1, 0, '+', '+', '*', _i % 10)
       });
     }
-    // สิบบน + หน่วยล่าง
+    // ร้อยบน + สิบบน + หน่วยล่าง *
     for (let _i = 110; _i < 120; _i++) {
       resultModel.push({
-        name: this.getFormula(_i + 1),
-        inputs: this.formula(calType, inputs, 'up', 'low', 2, 2, '+', _i % 10, '+')
+        name: this.getFormulaHero(_i + 1),
+        inputs: this.formula(calType, 'up', 'up', 'low', 0, 1, 1, '+', '+', '*', _i % 10)
       });
     }
-    // หน่วยบน + สิบล่าง
+    // ร้อยบน + หน่วยบน + สิบล่าง *
     for (let _i = 120; _i < 130; _i++) {
       resultModel.push({
-        name: this.getFormula(_i + 1),
-        inputs: this.formula(calType, inputs, 'up', 'low', 3, 1, '+', _i % 10, '+')
+        name: this.getFormulaHero(_i + 1),
+        inputs: this.formula(calType, 'up', 'up', 'low', 0, 2, 0, '+', '+', '*', _i % 10)
       });
     }
-    // หน่วยบน + หน่วยล่าง
+    // ร้อยบน + สิบล่าง + หน่วยล่าง *
     for (let _i = 130; _i < 140; _i++) {
       resultModel.push({
-        name: this.getFormula(_i + 1),
-        inputs: this.formula(calType, inputs, 'up', 'low', 3, 2, '+', _i % 10, '+')
+        name: this.getFormulaHero(_i + 1),
+        inputs: this.formula(calType, 'up', 'low', 'low', 0, 0, 1, '+', '+', '*', _i % 10)
       });
     }
-    // สิบล่าง + หน่วยล่าง
+    // ร้อยบน + หน่วยบน + หน่วยล่าง *
     for (let _i = 140; _i < 150; _i++) {
       resultModel.push({
-        name: this.getFormula(_i + 1),
-        inputs: this.formula(calType, inputs, 'low', 'low', 2, 2, '+', _i % 10, '+')
+        name: this.getFormulaHero(_i + 1),
+        inputs: this.formula(calType, 'up', 'up', 'low', 0, 2, 1, '+', '+', '*', _i % 10)
+      });
+    }
+    // สิบบน + หน่วยบน + สิบล่าง *
+    for (let _i = 150; _i < 160; _i++) {
+      resultModel.push({
+        name: this.getFormulaHero(_i + 1),
+        inputs: this.formula(calType, 'up', 'up', 'low', 1, 2, 0, '+', '+', '*', _i % 10)
+      });
+    }
+    // สิบบน + หน่วยบน + หน่วยล่าง *
+    for (let _i = 160; _i < 170; _i++) {
+      resultModel.push({
+        name: this.getFormulaHero(_i + 1),
+        inputs: this.formula(calType, 'up', 'up', 'low', 1, 2, 1, '+', '+', '*', _i % 10)
+      });
+    }
+    // สิบบน + สิบล่าง + หน่วยล่าง *
+    for (let _i = 170; _i < 180; _i++) {
+      resultModel.push({
+        name: this.getFormulaHero(_i + 1),
+        inputs: this.formula(calType, 'up', 'low', 'low', 1, 0, 1, '+', '+', '*', _i % 10)
       });
     }
     return resultModel;
   }
 
   formula(calType: String,
-          inputs: InputModel[],
           type1: string,
           type2: string,
+          type3: string,
           position1: number,
           position2: number,
-          positionOperaion: string,
-          value: number,
-          cal: string) {
+          position3: number,
+          positionOperaion1: string,
+          positionOperaion2: string,
+          positionOperaion3: string,
+          value: number) {
 
     const resultList: ResultInputModel[] = [];
-    inputs.forEach(s => {
+    this.inputs.forEach(s => {
       let a = '';
 
       switch (type1) {
@@ -159,7 +311,7 @@ export class FormulaService {
         }
       }
 
-      const calValue1 = this.calSingleValue(a, position1, cal, value);
+      const calValue1 = this.calSingleValue(a, position1, positionOperaion1, value);
       let calValue = String(calValue1);
 
       if (type2 !== '') {
@@ -175,20 +327,43 @@ export class FormulaService {
           }
         }
 
-        const calValue2 = this.calSingleValue(b, position2, cal, value);
+        const calValue2 = this.calSingleValue(b, position2, positionOperaion2, 0);
 
-        switch (positionOperaion) {
+        switch (positionOperaion1) {
           case '+': {
             calValue = String(calValue1 + calValue2);
-            break;
-          }
-          case '-': {
-            calValue = String(calValue1 - calValue2);
             break;
           }
           case '*': {
             calValue = String(calValue1 * calValue2);
             break;
+          }
+        }
+
+        if (type3 !== '') {
+          let c = '';
+          switch (type3) {
+            case 'up': {
+              c = s.up;
+              break;
+            }
+            case 'low': {
+              c = s.low;
+              break;
+            }
+          }
+
+          const calValue3 = this.calSingleValue(c, position3, positionOperaion3, 0);
+
+          switch (positionOperaion2) {
+            case '+': {
+              calValue = String(calValue1 + calValue2 + calValue3);
+              break;
+            }
+            case '*': {
+              calValue = String(calValue1 * calValue2 * calValue3);
+              break;
+            }
           }
         }
       }
@@ -209,14 +384,14 @@ export class FormulaService {
 
       switch (calType) {
         case '1': {
-          if (inputs.indexOf(s) !== (inputs.length - 1)) {
-            indexResultUp = inputs[inputs.indexOf(s) + 1].up.indexOf(String(calValue));
-            indexResultLow = inputs[inputs.indexOf(s) + 1].low.indexOf(String(calValue));
+          if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
+            indexResultUp = this.inputs[this.inputs.indexOf(s) + 1].up.indexOf(String(calValue));
+            indexResultLow = this.inputs[this.inputs.indexOf(s) + 1].low.indexOf(String(calValue));
 
             if ((indexResultUp >= 0) || (indexResultLow >= 0)) {
               sumResult = true;
-              const trueCountUp = inputs[inputs.indexOf(s) + 1].up.match(new RegExp(String(calValue), 'g'));
-              const trueCountLow = inputs[inputs.indexOf(s) + 1].low.match(new RegExp(String(calValue), 'g'));
+              const trueCountUp = this.inputs[this.inputs.indexOf(s) + 1].up.match(new RegExp(String(calValue), 'g'));
+              const trueCountLow = this.inputs[this.inputs.indexOf(s) + 1].low.match(new RegExp(String(calValue), 'g'));
               SumresultCount = SumresultCount + (trueCountUp ? trueCountUp.length : 0);
               SumresultCount = SumresultCount + (trueCountLow ? trueCountLow.length : 0);
             }
@@ -235,8 +410,8 @@ export class FormulaService {
           }
           calValue = calValueFinal;
 
-          if (inputs.indexOf(s) !== (inputs.length - 1)) {
-            const valueResultUp = inputs[inputs.indexOf(s) + 1].up[1];
+          if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
+            const valueResultUp = this.inputs[this.inputs.indexOf(s) + 1].up[1];
 
             const checkValue = calValue.match(new RegExp(valueResultUp, 'g'));
             if (checkValue && checkValue.length > 0) {
@@ -258,8 +433,8 @@ export class FormulaService {
           }
           calValue = calValueFinal;
 
-          if (inputs.indexOf(s) !== (inputs.length - 1)) {
-            const valueResultUp = inputs[inputs.indexOf(s) + 1].up[2];
+          if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
+            const valueResultUp = this.inputs[this.inputs.indexOf(s) + 1].up[2];
 
             const checkValue = calValue.match(new RegExp(valueResultUp, 'g'));
             if (checkValue && checkValue.length > 0) {
@@ -282,8 +457,8 @@ export class FormulaService {
           }
           calValue = calValueFinal;
 
-          if (inputs.indexOf(s) !== (inputs.length - 1)) {
-            const valueResultUp = inputs[inputs.indexOf(s) + 1].low[0];
+          if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
+            const valueResultUp = this.inputs[this.inputs.indexOf(s) + 1].low[0];
 
             const checkValue = calValue.match(new RegExp(valueResultUp, 'g'));
             if (checkValue && checkValue.length > 0) {
@@ -305,8 +480,8 @@ export class FormulaService {
           }
           calValue = calValueFinal;
 
-          if (inputs.indexOf(s) !== (inputs.length - 1)) {
-            const valueResultUp = inputs[inputs.indexOf(s) + 1].low[1];
+          if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
+            const valueResultUp = this.inputs[this.inputs.indexOf(s) + 1].low[1];
 
             const checkValue = calValue.match(new RegExp(valueResultUp, 'g'));
             if (checkValue && checkValue.length > 0) {
@@ -328,9 +503,9 @@ export class FormulaService {
           }
           calValue = calValueFinal;
 
-          if (inputs.indexOf(s) !== (inputs.length - 1)) {
-            const valueResult1 = inputs[inputs.indexOf(s) + 1].up[1];
-            const valueResult2 = inputs[inputs.indexOf(s) + 1].up[2];
+          if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
+            const valueResult1 = this.inputs[this.inputs.indexOf(s) + 1].up[1];
+            const valueResult2 = this.inputs[this.inputs.indexOf(s) + 1].up[2];
 
             const checkValue1 = calValue.match(new RegExp(valueResult1, 'g'));
             const checkValue2 = calValue.match(new RegExp(valueResult2, 'g'));
@@ -359,9 +534,9 @@ export class FormulaService {
           }
           calValue = calValueFinal;
 
-          if (inputs.indexOf(s) !== (inputs.length - 1)) {
-            const valueResult1 = inputs[inputs.indexOf(s) + 1].low[0];
-            const valueResult2 = inputs[inputs.indexOf(s) + 1].low[1];
+          if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
+            const valueResult1 = this.inputs[this.inputs.indexOf(s) + 1].low[0];
+            const valueResult2 = this.inputs[this.inputs.indexOf(s) + 1].low[1];
 
             const checkValue1 = calValue.match(new RegExp(valueResult1, 'g'));
             const checkValue2 = calValue.match(new RegExp(valueResult2, 'g'));
@@ -390,9 +565,9 @@ export class FormulaService {
           }
           calValue = calValueFinal;
 
-          if (inputs.indexOf(s) !== (inputs.length - 1)) {
-            const valueResult1 = inputs[inputs.indexOf(s) + 1].up[1];
-            const valueResult2 = inputs[inputs.indexOf(s) + 1].up[2];
+          if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
+            const valueResult1 = this.inputs[this.inputs.indexOf(s) + 1].up[1];
+            const valueResult2 = this.inputs[this.inputs.indexOf(s) + 1].up[2];
 
             const checkValue1 = calValue.match(new RegExp(valueResult1, 'g'));
             const checkValue2 = calValue.match(new RegExp(valueResult2, 'g'));
@@ -416,9 +591,9 @@ export class FormulaService {
           }
           calValue = calValueFinal;
 
-          if (inputs.indexOf(s) !== (inputs.length - 1)) {
-            const valueResult1 = inputs[inputs.indexOf(s) + 1].up[1];
-            const valueResult2 = inputs[inputs.indexOf(s) + 1].up[2];
+          if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
+            const valueResult1 = this.inputs[this.inputs.indexOf(s) + 1].up[1];
+            const valueResult2 = this.inputs[this.inputs.indexOf(s) + 1].up[2];
 
             const checkValue1 = calValue.match(new RegExp(valueResult1, 'g'));
             const checkValue2 = calValue.match(new RegExp(valueResult2, 'g'));
@@ -442,9 +617,9 @@ export class FormulaService {
           }
           calValue = calValueFinal;
 
-          if (inputs.indexOf(s) !== (inputs.length - 1)) {
-            const valueResult1 = inputs[inputs.indexOf(s) + 1].up[1];
-            const valueResult2 = inputs[inputs.indexOf(s) + 1].up[2];
+          if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
+            const valueResult1 = this.inputs[this.inputs.indexOf(s) + 1].up[1];
+            const valueResult2 = this.inputs[this.inputs.indexOf(s) + 1].up[2];
 
             const checkValue1 = calValue.match(new RegExp(valueResult1, 'g'));
             const checkValue2 = calValue.match(new RegExp(valueResult2, 'g'));
@@ -468,9 +643,9 @@ export class FormulaService {
           }
           calValue = calValueFinal;
 
-          if (inputs.indexOf(s) !== (inputs.length - 1)) {
-            const valueResult1 = inputs[inputs.indexOf(s) + 1].low[0];
-            const valueResult2 = inputs[inputs.indexOf(s) + 1].low[1];
+          if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
+            const valueResult1 = this.inputs[this.inputs.indexOf(s) + 1].low[0];
+            const valueResult2 = this.inputs[this.inputs.indexOf(s) + 1].low[1];
 
             const checkValue1 = calValue.match(new RegExp(valueResult1, 'g'));
             const checkValue2 = calValue.match(new RegExp(valueResult2, 'g'));
@@ -494,9 +669,9 @@ export class FormulaService {
           }
           calValue = calValueFinal;
 
-          if (inputs.indexOf(s) !== (inputs.length - 1)) {
-            const valueResult1 = inputs[inputs.indexOf(s) + 1].low[0];
-            const valueResult2 = inputs[inputs.indexOf(s) + 1].low[1];
+          if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
+            const valueResult1 = this.inputs[this.inputs.indexOf(s) + 1].low[0];
+            const valueResult2 = this.inputs[this.inputs.indexOf(s) + 1].low[1];
 
             const checkValue1 = calValue.match(new RegExp(valueResult1, 'g'));
             const checkValue2 = calValue.match(new RegExp(valueResult2, 'g'));
@@ -520,9 +695,9 @@ export class FormulaService {
           }
           calValue = calValueFinal;
 
-          if (inputs.indexOf(s) !== (inputs.length - 1)) {
-            const valueResult1 = inputs[inputs.indexOf(s) + 1].low[0];
-            const valueResult2 = inputs[inputs.indexOf(s) + 1].low[1];
+          if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
+            const valueResult1 = this.inputs[this.inputs.indexOf(s) + 1].low[0];
+            const valueResult2 = this.inputs[this.inputs.indexOf(s) + 1].low[1];
 
             const checkValue1 = calValue.match(new RegExp(valueResult1, 'g'));
             const checkValue2 = calValue.match(new RegExp(valueResult2, 'g'));

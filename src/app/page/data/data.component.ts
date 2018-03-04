@@ -1,28 +1,25 @@
-import {Component, Inject} from '@angular/core';
-import {Language} from 'angular-l10n';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {InputModel} from '../../model/input.model';
+import {Component} from '@angular/core';
 import {StorageService} from '../../service/storage.service';
+import {InputModel} from '../../model/input.model';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-input-dialog',
-  templateUrl: './input_dialog.component.html',
-  styleUrls: ['./input_dialog.component.scss'],
+  selector: 'app-data',
+  templateUrl: './data.component.html',
+  styleUrls: ['./data.component.scss']
 })
-
-export class InputDialogComponent {
-  @Language() lang: string;
+export class DataComponent {
 
   data: InputModel[];
-  public mask = [/\d/, /\d/, /\d/, ' ', '-', ' ', /\d/, /\d/];
+  _mask = [/\d/, /\d/, /\d/, ' ', '-', ' ', /\d/, /\d/];
   lists: InputModel[] = [];
 
   constructor(public _storageService: StorageService,
-              public dialogRef: MatDialogRef<InputDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public mdData: any) {
-    this.data = this.mdData;
+              private _router: Router) {
 
     this.data = this._storageService.getListData();
+
+    this.addEmptyList();
 
     this.data.forEach(s => {
       const _s = new InputModel({
@@ -30,27 +27,13 @@ export class InputDialogComponent {
         up: s.up + ' - ' + s.low,
         low: '',
       });
-      this.addList(s.time, _s);
+      this.lists[Number(s.time) - 1] = _s;
     });
-    this.addEmptyList();
   }
 
   addEmptyList() {
-
-    const listSize = this.lists.length;
-
-    if (listSize < 20) {
-      for (let i = listSize; i < 20; i++) {
-        if (this.lists.length < 100) {
-          this.addList(String(i + 1), null);
-        }
-      }
-    } else {
-      for (let i = listSize; i < (listSize + 5); i++) {
-        if (this.lists.length < 100) {
-          this.addList(String(i + 1), null);
-        }
-      }
+    for (let i = 0; i < 99; i++) {
+      this.addList(String(i + 1), null);
     }
   }
 
@@ -148,6 +131,7 @@ export class InputDialogComponent {
   }
 
   disable() {
-    this.dialogRef.close();
+    this._router.navigateByUrl('/');
   }
+
 }

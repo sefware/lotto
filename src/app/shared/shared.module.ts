@@ -20,11 +20,15 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {HttpClientModule} from '@angular/common/http';
 import {LayoutModule} from '@angular/cdk/layout';
 
-import {CovalentLayoutModule, CovalentMediaModule, CovalentNotificationsModule, TdDialogService} from '@covalent/core';
+import {
+  CovalentLayoutModule, CovalentLoadingModule, CovalentMediaModule, CovalentNotificationsModule,
+  TdDialogService
+} from '@covalent/core';
 import {InputDialogComponent} from '../dialog/input/input_dialog.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ResultDialogComponent} from '../dialog/result/result_dialog.component';
 import {TextMaskModule} from 'angular2-text-mask';
+import {ConfirmComponent} from '../dialog/confirm/confirm.component';
 
 const MATERIAL_MODULES: any[] = [
   MatButtonModule,
@@ -43,7 +47,8 @@ const MATERIAL_MODULES: any[] = [
 const COVALENT_MODULES: any[] = [
   CovalentMediaModule,
   CovalentLayoutModule,
-  CovalentNotificationsModule
+  CovalentNotificationsModule,
+  CovalentLoadingModule
 ];
 
 const ANGULAR_MODULES: any[] = [
@@ -73,11 +78,13 @@ const ANGULAR_MODULES: any[] = [
   ],
   declarations: [
     InputDialogComponent,
-    ResultDialogComponent
+    ResultDialogComponent,
+    ConfirmComponent
   ],
   entryComponents: [
     InputDialogComponent,
-    ResultDialogComponent
+    ResultDialogComponent,
+    ConfirmComponent
   ],
   providers: [
     TdDialogService

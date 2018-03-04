@@ -53,31 +53,43 @@
         <div class="formular-card" fxFlex="true">
           <mat-card style="align-content: center" fxLayout="column">
 
-            <mat-form-field>
-              <mat-select placeholder="ประเภทการคำนวณ" [(value)]="selectedType">
-                <mat-option *ngFor="let type of types" [value]="type.value" [disabled]="!type.enable">
-                  {{ type.viewValue }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+            <div fxLayout="row">
+              <mat-form-field fxFlex>
+                <mat-select placeholder="ประเภทการคำนวณ" [(value)]="selectedType">
+                  <mat-option *ngFor="let type of types" [value]="type.value" [disabled]="!type.enable">
+                    {{ type.viewValue }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
 
-            <div fxLayout="row" style="margin-bottom: 10px">
-              <button mat-raised-button color="primary">
-                <mat-icon>content_paste</mat-icon>
-                Copy วาง
-              </button>
-              <div style="width: 10px"></div>
-              <button mat-raised-button color="primary" (click)="clearInput()">
-                <mat-icon>cached</mat-icon>
-                รีเซ็ทข้อมูล
-              </button>
+              <!--<button mat-raised-button color="primary" (click)="clearInput()" style="margin-left: 15px;height: 40px;margin-top: 10px;">-->
+                <!--<mat-icon>cached</mat-icon>-->
+                <!--ล้างรอบคำนวณ-->
+              <!--</button>-->
             </div>
+
+
+            <!--<div fxLayout="row" style="margin-bottom: 10px">-->
+              <!--&lt;!&ndash;<button mat-raised-button color="primary">&ndash;&gt;-->
+                <!--&lt;!&ndash;<mat-icon>content_paste</mat-icon>&ndash;&gt;-->
+                <!--&lt;!&ndash;Copy วาง&ndash;&gt;-->
+              <!--&lt;!&ndash;</button>&ndash;&gt;-->
+              <!--&lt;!&ndash;<button mat-raised-button color="primary" (click)="openInput(null)">&ndash;&gt;-->
+                <!--&lt;!&ndash;<mat-icon>edit</mat-icon>&ndash;&gt;-->
+                <!--&lt;!&ndash;เพิ่มรอบการคำนวณ&ndash;&gt;-->
+              <!--&lt;!&ndash;</button>&ndash;&gt;-->
+              <!--<div style="width: 10px"></div>-->
+              <!--<button mat-raised-button color="primary" (click)="clearInput()">-->
+                <!--<mat-icon>cached</mat-icon>-->
+                <!--รีเซ็ทข้อมูล-->
+              <!--</button>-->
+            <!--</div>-->
 
             <div fxLayout="column">
 
               <mat-nav-list dense flex>
 
-                <a mat-list-item [disableRipple]="true" style="background: #ccc;">
+                <a mat-list-item [disableRipple]="true" style="background: #ddd;">
                   <div class="list-title">รอบ/เวลา</div>
                   <div fxFlex></div>
                   <div class="list-title">บน</div>
@@ -110,7 +122,7 @@
 
                 <a mat-list-item (click)="openInput(null)" style="background: #eee">
                   <div fxFlex></div>
-                  <div class="list-label-add">แก้ไขรอบ</div>
+                  <div class="list-label-add">เพิ่มตัวเลขการคำนวณที่นี่</div>
                   <div fxFlex></div>
                 </a>
 

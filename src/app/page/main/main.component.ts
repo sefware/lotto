@@ -1,13 +1,13 @@
 import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {Language, LocaleService} from 'angular-l10n';
 import {BreakpointObserver} from '@angular/cdk/layout';
-import {Untils} from '../shared/untils';
+import {Untils} from '../../shared/untils';
 import {TdDialogService} from '@covalent/core';
-import {InputModel} from '../model/input.model';
-import {InputService} from '../service/input.service';
+import {InputModel} from '../../model/input.model';
 import {MatDialog} from '@angular/material';
-import {InputDialogComponent} from '../dialog/input/input_dialog.component';
-import {ResultDialogComponent} from '../dialog/result/result_dialog.component';
+import {SessionStorage} from 'ngx-store';
+import {StorageService} from '../../service/storage.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -28,7 +28,8 @@ export class MainComponent implements OnInit {
 
   calculate = Untils.calulate;
 
-  constructor(public _inputService: InputService,
+  constructor(public _storageService: StorageService,
+              private _router: Router,
               private _locale: LocaleService,
               private _dialogService: TdDialogService,
               private _viewContainerRef: ViewContainerRef,
@@ -49,42 +50,38 @@ export class MainComponent implements OnInit {
   }
 
   load() {
-    this._inputService.loadData().subscribe((lists: InputModel[]) => {
-        this.inputs = [];
-        lists.forEach((data: InputModel) => {
-          this.inputs.push(data);
-        });
-      }
-    );
+    this.inputs = this._storageService.getListData();
+    // this.inputs = this._inputService.lists;
   }
 
   openInput(_data: InputModel) {
-    console.log('this.inputs.length : ' + this.inputs.length);
-    this._dialog.open(InputDialogComponent, {
-      disableClose: true,
-      width: '100%',
-      height: '100%',
-      data: {
-        input: _data,
-        inputs: this.inputs
-      }
-    });
+    this._router.navigateByUrl('/data');
+    // console.log('this.inputs.length : ' + this.inputs.length);
+    // this._dialog.open(InputDialogComponent, {
+    //   disableClose: true,
+    //   width: '100%',
+    //   height: '100%',
+    //   data: {
+    //     input: _data,
+    //     inputs: this.inputs
+    //   }
+    // });
   }
 
   calculateList(selectedCal: string) {
+    this._storageService.saveCalType(selectedCal);
+    this._router.navigateByUrl('/result');
 
-    if (this.inputs.length > 0) {
-      this._dialog.open(ResultDialogComponent, {
-        disableClose: true,
-        width: '100%',
-        height: '100%',
-        data: {
-          inputs: this.inputs,
-          calType: selectedCal
-        }
-      });
-    }
-
+    // if (this.inputs.length > 0) {
+    //   this._dialog.open(ResultDialogComponent, {
+    //     disableClose: true,
+    //     width: '100%',
+    //     height: '100%',
+    //     data: {
+    //       calType: selectedCal
+    //     }
+    //   });
+    // }
   }
 
   clearInput() {
@@ -94,7 +91,8 @@ export class MainComponent implements OnInit {
   }
 
   deleteInput(data: InputModel) {
-    this._inputService.removeData(data);
+    this._storageService.removeData(data.time);
+    this.inputs = this._storageService.getListData();
   }
 
   selectLanguage(language: string): void {

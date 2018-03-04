@@ -1,6 +1,5 @@
 export class InputModel {
 
-  id?: string;
   time: string;
   up: string;
   low: string;

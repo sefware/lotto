@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 export class DataComponent {
 
   data: InputModel[];
-  _mask = [/\d/, /\d/, /\d/, ' ', '-', ' ', /\d/, /\d/];
+  public mask = [/\d/, /\d/, /\d/, ' ', '-', ' ', /\d/, /\d/];
   lists: InputModel[] = [];
 
   constructor(public _storageService: StorageService,
@@ -19,35 +19,45 @@ export class DataComponent {
 
     this.data = this._storageService.getListData();
 
-    this.addEmptyList();
+    let lastIndex = 0;
+    if (this.data.length > 1) {
+      lastIndex = Number(this.data[this.data.length - 1].time);
+    }
+
+    this.addEmptyList(lastIndex);
 
     this.data.forEach(s => {
-      const _s = new InputModel({
+      this.lists[Number(s.time) - 1] = new InputModel({
         time: s.time,
         up: s.up + ' - ' + s.low,
         low: '',
       });
-      this.lists[Number(s.time) - 1] = _s;
     });
   }
 
-  addEmptyList() {
-    for (let i = 0; i < 99; i++) {
+  addEmptyList(lastIndex: number) {
+    if (lastIndex < 10) {
+      lastIndex = 10;
+    } else {
+      lastIndex = lastIndex + 5;
+    }
+    for (let i = 0; i < lastIndex; i++) {
       this.addList(String(i + 1), null);
     }
   }
 
-  setValue(index: number, type: string, value: string) {
-    switch (type) {
-      case 'time': {
-        this.lists[index].time = String(value);
-        break;
-      }
-      case 'up': {
-        this.lists[index].up = value;
-        break;
+  addEmptyListMore() {
+    const start = this.lists.length;
+    const stop = this.lists.length + 10;
+    for (let i = start; i < stop; i++) {
+      if (i < 100) {
+        this.addList(String(i + 1), null);
       }
     }
+  }
+
+  setValue(index: number, type: string, value: string) {
+    this.lists[index].up = value;
   }
 
   clearList() {
@@ -55,7 +65,7 @@ export class DataComponent {
       this._storageService.removeData(data.time);
     });
     this.lists = [];
-    this.addEmptyList();
+    this.addEmptyList(0);
   }
 
   addList(time: string, input: InputModel) {

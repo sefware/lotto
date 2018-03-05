@@ -5,7 +5,7 @@ import {DataComponent} from './data.component';
 const DATA_ROUTER: Routes = [
   {
     path: '',
-    component: DataComponent
+    component: DataComponent,
   }
 ];
 

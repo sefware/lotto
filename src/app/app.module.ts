@@ -5,9 +5,9 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app.routing';
 import {L10nConfig, L10nLoader, ProviderType, TranslationModule} from 'angular-l10n';
 import {SharedModule} from './shared/shared.module';
-import {isPlatformBrowser} from '@angular/common';
+import {HashLocationStrategy, isPlatformBrowser, LocationStrategy} from '@angular/common';
 import {Untils} from './shared/untils';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {environment} from '../environments/environment';
@@ -37,8 +37,8 @@ const l10nConfig: L10nConfig = {
     AppComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'herolotto-0.03'}),
-    BrowserAnimationsModule,
+    BrowserModule.withServerTransition({appId: 'herolotto-0.05'}),
+    NoopAnimationsModule,
     TranslationModule.forRoot(l10nConfig),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

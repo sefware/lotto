@@ -21,7 +21,10 @@ import {HttpClientModule} from '@angular/common/http';
 import {LayoutModule} from '@angular/cdk/layout';
 
 import {
-  CovalentLayoutModule, CovalentLoadingModule, CovalentMediaModule, CovalentNotificationsModule,
+  CovalentLayoutModule,
+  CovalentLoadingModule,
+  CovalentMediaModule,
+  CovalentNotificationsModule,
   TdDialogService
 } from '@covalent/core';
 import {InputDialogComponent} from '../dialog/input/input_dialog.component';

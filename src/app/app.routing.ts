@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     // canActivate: [AppService],
-    loadChildren: './page/main/main.module#MainModule'
+    loadChildren: './page/main/main.module#MainModule',
   },
   {
     path: 'data',

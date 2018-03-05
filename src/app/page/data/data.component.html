@@ -9,28 +9,29 @@
 
     <div class="input-container" for>
       <!--<form >-->
-      <ng-template ngFor let-list [ngForOf]="lists" let-currentListIndex="index" style="margin: 10px">
+      <ng-template ngFor let-list [ngForOf]="lists" let-currentListIndex="index" style="padding: 10px">
 
         <div fxLayout="row">
-          <mat-form-field hintLabel="" fxFlex="80px">
+          <mat-form-field fxFlex="50px">
             <input [value]="list.time" matInput placeholder="" [disabled]="true">
           </mat-form-field>
           <div fxFlex="10px"></div>
-          <mat-form-field hintLabel="" fxFlex>
+          <mat-form-field fxFlex>
             <input #up matInput placeholder="" type="text"
-                   [textMask]="{mask: _mask}"
+                   [textMask]="{mask: mask}"
                    [value]="list.up"
                    (change)="setValue(currentListIndex,'up',up.value)"/>
+
           </mat-form-field>
         </div>
       </ng-template>
 
-      <!--<a mat-list-item *ngIf="lists.length < 100">-->
-        <!--<button fxFlex mat-raised-button (click)="addEmptyList()" style="margin-bottom: 10px">-->
-          <!--<mat-icon>plus</mat-icon>-->
-          <!--เพิ่มแถว-->
-        <!--</button>-->
-      <!--</a>-->
+      <a mat-list-item *ngIf="lists.length < 100">
+        <button fxFlex mat-raised-button (click)="addEmptyListMore()" style="margin-bottom: 10px">
+          <mat-icon>plus</mat-icon>
+          เพิ่มแถว
+        </button>
+      </a>
     </div>
 
 

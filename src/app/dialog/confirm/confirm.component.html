@@ -59,7 +59,7 @@
   </mat-dialog-content>
 
   <mat-dialog-actions class="operation">
-    <button class="btn btn-cancel" mat-button [mat-dialog-close]="false">{{data.btn_cancel_text}}</button>
+    <button class="btn btn-cancel" mat-raised-button [mat-dialog-close]="false">{{data.btn_cancel_text}}</button>
     <button *ngIf="(data.type === 'confirm_alert')" class="btn btn-colored-danger" mat-button [mat-dialog-close]="true">
       {{data.btn_confirm_text}}
     </button>

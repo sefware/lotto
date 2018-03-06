@@ -6,11 +6,11 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyCzKUhjMgp6zu2c638uTEA54IsPz_QBWnY',
-    authDomain: 'formularlotto.firebaseapp.com',
-    databaseURL: 'https://formularlotto.firebaseio.com',
-    projectId: 'formularlotto',
-    storageBucket: 'formularlotto.appspot.com',
-    messagingSenderId: '282416647025'
+    apiKey: 'AIzaSyBkOw5kPTVfQy48GT1JdJUNCjjXnvaxM8M',
+    authDomain: 'hero-lotto.firebaseapp.com',
+    databaseURL: 'https://hero-lotto.firebaseio.com',
+    projectId: 'hero-lotto',
+    storageBucket: 'hero-lotto.appspot.com',
+    messagingSenderId: '178762889465'
   }
 };

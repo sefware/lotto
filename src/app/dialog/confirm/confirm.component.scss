@@ -1,8 +1,10 @@
+@import "../../../styles/variable";
+
 :host /deep/{
   .form{
-    padding: 24px;
-    padding-bottom: 82px;
-    width: 512px;
+    padding: 10px;
+    padding-bottom: 40px;
+    width: 250px;
   }
 
   .content{
@@ -24,7 +26,7 @@
 
   .btn-colored-primay{
     color: #fff;
-    background: var(--default-primary-color);
+    background: $default-primary-color;
   }
 
   .btn-colored-danger{
@@ -68,7 +70,7 @@
   }
 
   .btn-cancel{
-    margin-right: 10px;
+    //margin-right: 10px;
   }
 
   .btn{
@@ -76,6 +78,6 @@
   }
 
   .mat-dialog-actions {
-    padding: 23px 0;
+    padding: 10px 0;
   }
 }

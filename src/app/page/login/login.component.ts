@@ -44,18 +44,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this._changeDetectorRef.detectChanges();
   }
 
-  setUser(user: string) {
-    this.username = user;
-  }
-
-  setPassword(password: string) {
-    this.password = password;
-  }
-
   login() {
+    console.log('username : ' + this, this.username);
+    console.log('password : ' + this, this.password);
+
     // this.error = false;
     this._loadingService.register();
-    this._authService.authentication.auth.signInWithEmailAndPassword(this.username + '@lotto.com', this.password)
+    this._authService.authentication.auth.signInWithEmailAndPassword(this.username + '@herolotto.com', this.password)
       .then((user: firebase.User) => {
         this._loadingService.resolve();
       }).catch((err: any) => {
@@ -77,5 +72,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
       }
     );
+  }
+
+  setUsername(_userName: string) {
+    this.username = _userName;
+  }
+
+  setPassword(_password: string) {
+    this.password = _password;
   }
 }

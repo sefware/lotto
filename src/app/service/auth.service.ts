@@ -35,7 +35,8 @@ export class AuthService {
   // }
 
   verified(user: firebase.User): boolean {
-    return (user && user.emailVerified);
+    // return (user && user.emailVerified);
+    return !!user;
   }
 
   updateUser(user: firebase.User) {

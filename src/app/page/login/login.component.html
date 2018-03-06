@@ -1,39 +1,36 @@
 <div class="body" fxFlex fxLayout="column">
 
-  <div fxLayout="row" style="margin: 10px">
+  <div fxLayout="row" style="margin: 10px" fxLayoutAlign="center">
 
-    <div fxLayout="column" fxFlex="100" style="height:100%;background: #fff">
+    <mat-card class="card" fxFlex fxFlexAlign="center center">
+      <div style="max-width: 300px;text-align: center;margin: auto;" fxLayout="column">
 
-      <div fxFlex style="background: #fff">
-        <div style="max-width: 300px;text-align: center;margin: auto;" fxLayout="column">
+        <div style="font-size: 24px; font-weight: 400; line-height: 32px;text-align: start;padding-top: 10px;">
+          เข้าสู่ระบบ
+        </div>
 
-          <div style="font-size: 24px; font-weight: 400; line-height: 32px;text-align: start;padding-top: 40px;">
-            เข้าสู่ระบบ
-          </div>
-
-          <div style="text-align: start; font-size: 14px; line-height: 20px;color: rgba(0,0,0,.87)">
-
-          </div>
-
-          <div style="padding-top: 32px;" >
-            <mat-form-field [floatPlaceholder]="'auto'" fxFlexFill>
-              <input matInput placeholder="ชื่อผู้ใช้" type="text" [value]="username">
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field [floatPlaceholder]="'auto'" fxFlexFill>
-              <input matInput placeholder="รหัสผ่าน" type="password" [value]="password">
-            </mat-form-field>
-          </div>
-
-          <div class="push-top push-bottom">
-            <button id="email" mat-raised-button fxFlexFill color="primary" (click)="login()">SIGN_IN</button>
-          </div>
+        <div style="text-align: start; font-size: 14px; line-height: 20px;color: rgba(0,0,0,.87)">
 
         </div>
-      </div>
 
-    </div>
+        <div style="padding-top: 32px;" >
+          <mat-form-field [floatPlaceholder]="'auto'" fxFlexFill>
+            <input #_username matInput placeholder="ชื่อผู้ใช้" type="text" [value]="username" (change)="setUsername(_username.value)">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field [floatPlaceholder]="'auto'" fxFlexFill>
+            <input #_password matInput placeholder="รหัสผ่าน" type="password" [value]="password" (change)="setPassword(_password.value)">
+          </mat-form-field>
+        </div>
+
+        <div class="push-top push-bottom">
+          <button id="email" mat-raised-button fxFlexFill color="primary" (click)="login()">เข้าสู่ระบบ</button>
+        </div>
+
+      </div>
+    </mat-card>
+
   </div>
 
 </div>

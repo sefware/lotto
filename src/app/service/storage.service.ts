@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {LocalStorageService} from 'ngx-store';
 import {InputModel} from '../model/input.model';
+import {LocalStorageService} from 'ngx-store';
 
 @Injectable()
 export class StorageService {

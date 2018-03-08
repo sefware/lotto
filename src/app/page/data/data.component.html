@@ -7,21 +7,19 @@
       </button>
     </div>
 
-    <div class="input-container" for>
+    <div class="input-container">
       <!--<form >-->
       <ng-template ngFor let-list [ngForOf]="lists" let-currentListIndex="index" style="padding: 10px">
 
         <div fxLayout="row">
-          <mat-form-field fxFlex="50px">
+          <mat-form-field fxFlex="50px" [floatLabel]="'never'">
             <input [value]="list.time" matInput placeholder="" [disabled]="true">
           </mat-form-field>
           <div fxFlex="10px"></div>
           <mat-form-field fxFlex>
-            <input #up matInput placeholder="" type="text"
+            <input matInput placeholder="เลขบน - เลขล่าง" type="text"
                    [textMask]="{mask: mask}"
-                   [value]="list.up"
-                   (change)="setValue(currentListIndex,'up',up.value)"/>
-
+                   [(ngModel)]="list.up"/>
           </mat-form-field>
         </div>
       </ng-template>

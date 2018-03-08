@@ -6,7 +6,7 @@
   <!--Home</a>-->
   <!--</mat-nav-list>-->
   <!--</td-navigation-drawer>-->
-  <td-layout-nav toolbarTitle="สูตรหวย" navigationRoute="/">
+  <td-layout-nav toolbarTitle="HERO LOTTO" navigationRoute="/">
 
     <!--<button mat-icon-button td-menu-button tdLayoutToggle>-->
     <!--<mat-icon>menu</mat-icon>-->
@@ -14,6 +14,7 @@
 
     <div td-toolbar-content layout="row" layout-align="start center" fxFlex="true">
       <!--<mat-icon [routerLink]="['/']" class="mat-icon-logo cursor-pointer" svgIcon="assets:teradata"></mat-icon>-->
+      <div class="version">version 1.3</div>
       <span fxFlex="true"></span>
 
       <!--<button class="overflow-visible" mat-icon-button [matMenuTriggerFor]="notificationsMenu">-->
@@ -63,26 +64,26 @@
               </mat-form-field>
 
               <!--<button mat-raised-button color="primary" (click)="clearInput()" style="margin-left: 15px;height: 40px;margin-top: 10px;">-->
-                <!--<mat-icon>cached</mat-icon>-->
-                <!--ล้างรอบคำนวณ-->
+              <!--<mat-icon>cached</mat-icon>-->
+              <!--ล้างรอบคำนวณ-->
               <!--</button>-->
             </div>
 
 
             <!--<div fxLayout="row" style="margin-bottom: 10px">-->
-              <!--&lt;!&ndash;<button mat-raised-button color="primary">&ndash;&gt;-->
-                <!--&lt;!&ndash;<mat-icon>content_paste</mat-icon>&ndash;&gt;-->
-                <!--&lt;!&ndash;Copy วาง&ndash;&gt;-->
-              <!--&lt;!&ndash;</button>&ndash;&gt;-->
-              <!--&lt;!&ndash;<button mat-raised-button color="primary" (click)="openInput(null)">&ndash;&gt;-->
-                <!--&lt;!&ndash;<mat-icon>edit</mat-icon>&ndash;&gt;-->
-                <!--&lt;!&ndash;เพิ่มรอบการคำนวณ&ndash;&gt;-->
-              <!--&lt;!&ndash;</button>&ndash;&gt;-->
-              <!--<div style="width: 10px"></div>-->
-              <!--<button mat-raised-button color="primary" (click)="clearInput()">-->
-                <!--<mat-icon>cached</mat-icon>-->
-                <!--รีเซ็ทข้อมูล-->
-              <!--</button>-->
+            <!--&lt;!&ndash;<button mat-raised-button color="primary">&ndash;&gt;-->
+            <!--&lt;!&ndash;<mat-icon>content_paste</mat-icon>&ndash;&gt;-->
+            <!--&lt;!&ndash;Copy วาง&ndash;&gt;-->
+            <!--&lt;!&ndash;</button>&ndash;&gt;-->
+            <!--&lt;!&ndash;<button mat-raised-button color="primary" (click)="openInput(null)">&ndash;&gt;-->
+            <!--&lt;!&ndash;<mat-icon>edit</mat-icon>&ndash;&gt;-->
+            <!--&lt;!&ndash;เพิ่มรอบการคำนวณ&ndash;&gt;-->
+            <!--&lt;!&ndash;</button>&ndash;&gt;-->
+            <!--<div style="width: 10px"></div>-->
+            <!--<button mat-raised-button color="primary" (click)="clearInput()">-->
+            <!--<mat-icon>cached</mat-icon>-->
+            <!--รีเซ็ทข้อมูล-->
+            <!--</button>-->
             <!--</div>-->
 
             <div fxLayout="column">
@@ -115,56 +116,83 @@
                       </div>
                     </div>
                   </a>
+
+                  <mat-divider [inset]="true" style="padding-bottom: 0px"></mat-divider>
+
                 </ng-template>
 
-                <mat-divider [inset]="true"></mat-divider>
-
-                <a mat-list-item (click)="openInput(null)" style="background: #eee">
-                  <div fxFlex></div>
-                  <div class="list-label-add">เพิ่มตัวเลขการคำนวณที่นี่</div>
-                  <div fxFlex></div>
-                </a>
-
-                <mat-divider [inset]="true"></mat-divider>
+                <div *ngIf="inputs.length === 0" fxFlexAlign="center center" style="text-align: center;">
+                  ข้อมูลว่างเปล่า
+                </div>
 
               </mat-nav-list>
 
+              <div fxFlex="10px"></div>
+
+              <div fxLayout="row" fxLayoutAlign="center">
+                <button class="btn-add-input" fxFlex mat-raised-button (click)="openInput(null)">
+                  <mat-icon>add</mat-icon>
+                  เพิ่มตัวเลขการคำนวณ
+                </button>
+              </div>
+
               <div fxFlex="40px"></div>
               <!--<mat-form-field>-->
-                <!--<mat-select placeholder="เลือกแบบที่จะคำนวณ" [(value)]="selectedCal">-->
-                  <!--<mat-option *ngFor="let cal of calculate" [value]="cal.value" [disabled]="!cal.enable">-->
-                    <!--{{ cal.viewValue }}-->
-                  <!--</mat-option>-->
-                <!--</mat-select>-->
+              <!--<mat-select placeholder="เลือกแบบที่จะคำนวณ" [(value)]="selectedCal">-->
+              <!--<mat-option *ngFor="let cal of calculate" [value]="cal.value" [disabled]="!cal.enable">-->
+              <!--{{ cal.viewValue }}-->
+              <!--</mat-option>-->
+              <!--</mat-select>-->
               <!--</mat-form-field>-->
 
               <div fxLayout="row" fxLayoutAlign="center">
-                <button fxFlex mat-raised-button color="primary" (click)="calculateList('1')">{{calculate[0].viewValue}}</button>
-                <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary" (click)="calculateList('6')">{{calculate[1].viewValue}}</button>
-                <button fxFlex mat-raised-button color="primary" (click)="calculateList('7')">{{calculate[2].viewValue}}</button>
-              </div>
-              <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 10px">
-                <button fxFlex mat-raised-button color="primary" (click)="calculateList('8')">{{calculate[3].viewValue}}</button>
-                <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary" (click)="calculateList('9')">{{calculate[4].viewValue}}</button>
-                <button fxFlex mat-raised-button color="primary" (click)="calculateList('10')">{{calculate[5].viewValue}}</button>
-              </div>
-              <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 10px">
-                <button fxFlex mat-raised-button color="primary" (click)="calculateList('11')">{{calculate[6].viewValue}}</button>
-                <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary" (click)="calculateList('12')">{{calculate[7].viewValue}}</button>
-                <button fxFlex mat-raised-button color="primary" (click)="calculateList('13')">{{calculate[8].viewValue}}</button>
+                <button fxFlex mat-raised-button color="primary" (click)="calculateList('1')">
+                  {{calculate[0].viewValue}}
+                </button>
+                <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary"
+                        (click)="calculateList('6')">{{calculate[1].viewValue}}
+                </button>
+                <button fxFlex mat-raised-button color="primary" (click)="calculateList('7')">
+                  {{calculate[2].viewValue}}
+                </button>
               </div>
 
               <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 10px">
-                <button fxFlex mat-raised-button color="primary" (click)="calculateList('2')">{{calculate[9].viewValue}}</button>
-                <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary" (click)="calculateList('3')">{{calculate[10].viewValue}}</button>
-                <button fxFlex mat-raised-button color="primary" (click)="calculateList('4')">{{calculate[11].viewValue}}</button>
+                <button fxFlex mat-raised-button color="primary"
+                        (click)="calculateList('9')">{{calculate[4].viewValue}}
+                </button>
+                <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary" (click)="calculateList('10')">
+                  {{calculate[5].viewValue}}
+                </button>
+                <button  fxFlex mat-raised-button color="primary"
+                        (click)="calculateList('12')">{{calculate[7].viewValue}}
+                </button>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 10px">
+                <button fxFlex mat-raised-button color="primary" (click)="calculateList('13')">
+                  {{calculate[8].viewValue}}
+                </button>
+                <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary" (click)="calculateList('2')">
+                  {{calculate[9].viewValue}}
+                </button>
+                <button fxFlex mat-raised-button color="primary"
+                        (click)="calculateList('3')">{{calculate[10].viewValue}}
+                </button>
               </div>
 
               <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 10px">
-                <button fxFlex mat-raised-button color="primary" (click)="calculateList('5')">{{calculate[12].viewValue}}</button>
-                <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary" [disabled]="true" (click)="calculateList('5')">สูตรอื่นๆ</button>
-                <button fxFlex mat-raised-button color="primary" (click)="calculateList('5')" [disabled]="true">สูตรอื่นๆ</button>
+
+                <button fxFlex mat-raised-button color="primary" (click)="calculateList('4')">
+                  {{calculate[11].viewValue}}
+                </button>
+                <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary" (click)="calculateList('5')">
+                  {{calculate[12].viewValue}}
+                </button>
+                <button fxFlex mat-raised-button color="primary"
+                        [disabled]="true" (click)="calculateList('5')">สูตรอื่นๆ
+                </button>
               </div>
+
             </div>
 
           </mat-card>

@@ -6,6 +6,7 @@ import {
   MatButtonModule,
   MatCardModule,
   MatDividerModule,
+  MatFormFieldModule,
   MatGridListModule,
   MatIconModule,
   MatInputModule,
@@ -28,7 +29,7 @@ import {
   TdDialogService
 } from '@covalent/core';
 import {InputDialogComponent} from '../dialog/input/input_dialog.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ResultDialogComponent} from '../dialog/result/result_dialog.component';
 import {TextMaskModule} from 'angular2-text-mask';
 import {ConfirmComponent} from '../dialog/confirm/confirm.component';
@@ -44,7 +45,8 @@ const MATERIAL_MODULES: any[] = [
   MatDividerModule,
   MatIconModule,
   MatTooltipModule,
-  MatDialogModule
+  MatDialogModule,
+  MatFormFieldModule
 ];
 
 const COVALENT_MODULES: any[] = [
@@ -59,7 +61,8 @@ const ANGULAR_MODULES: any[] = [
   HttpClientModule,
   ReactiveFormsModule,
   LayoutModule,
-  MatGridListModule
+  MatGridListModule,
+  FormsModule
 ];
 
 @NgModule({

@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {StorageService} from '../../service/storage.service';
 import {InputModel} from '../../model/input.model';
 import {Router} from '@angular/router';
+import {TdLoadingService} from '@covalent/core';
 
 @Component({
   selector: 'app-data',
@@ -15,8 +16,9 @@ export class DataComponent {
   lists: InputModel[] = [];
 
   constructor(public _storageService: StorageService,
+              private _loadingService: TdLoadingService,
               private _router: Router) {
-
+    // this._loadingService.register();
     this.data = this._storageService.getListData();
 
     let lastIndex = 0;
@@ -58,6 +60,8 @@ export class DataComponent {
 
   setValue(index: number, type: string, value: string) {
     this.lists[index].up = value;
+
+    console.log('save : ' + value);
   }
 
   clearList() {

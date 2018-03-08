@@ -5,7 +5,7 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app.routing';
 import {L10nConfig, L10nLoader, ProviderType, TranslationModule} from 'angular-l10n';
 import {SharedModule} from './shared/shared.module';
-import {HashLocationStrategy, isPlatformBrowser, LocationStrategy} from '@angular/common';
+import {isPlatformBrowser} from '@angular/common';
 import {Untils} from './shared/untils';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularFireModule} from 'angularfire2';
@@ -16,6 +16,13 @@ import {AuthService} from './service/auth.service';
 import {LoginService} from './service/login.service';
 import {AppService} from './service/app.service';
 import {WebStorageModule} from 'ngx-store';
+import {DataComponent} from './page/data/data.component';
+import {ResultComponent} from './page/result/result.component';
+import {MainComponent} from './page/main/main.component';
+import {TextMaskModule} from 'angular2-text-mask';
+import {StorageService} from './service/storage.service';
+import {FormulaService} from './service/formula.service';
+import {AngularPageVisibilityModule} from 'angular-page-visibility';
 
 
 const l10nConfig: L10nConfig = {
@@ -34,7 +41,10 @@ const l10nConfig: L10nConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DataComponent,
+    ResultComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'herolotto-0.05'}),
@@ -46,12 +56,20 @@ const l10nConfig: L10nConfig = {
     WebStorageModule,
     AppRoutingModule,
     SharedModule,
+    TextMaskModule,
+    AngularPageVisibilityModule
   ],
-  entryComponents: [],
+  entryComponents: [
+    DataComponent,
+    ResultComponent,
+    MainComponent
+  ],
   providers: [
     AuthService,
     LoginService,
-    AppService
+    AppService,
+    StorageService,
+    FormulaService
   ],
   bootstrap: [AppComponent]
 })

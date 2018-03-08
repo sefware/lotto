@@ -41,117 +41,119 @@ export class FormulaService {
     return FormulaService.getFormulaNameHero(String(index));
   }
 
-  // async formulaCalculate(inputs: InputModel[], calType: string): Promise<ResultModel[]> {
-  //   const resultModel: ResultModel[] = [];
-  //   // ร้อยบน
-  //   for (let _i = 0; _i < 10; _i++) {
-  //     resultModel.push({
-  //       name: this.getFormula(_i + 1),
-  //       inputs: this.formula(calType, inputs, 'up', '', 1, 0, '', _i % 10, '+')
-  //     });
-  //   }
-  //   // สิบบน
-  //   for (let _i = 10; _i < 20; _i++) {
-  //     resultModel.push({
-  //       name: this.getFormula(_i + 1),
-  //       inputs: this.formula(calType, inputs, 'up', '', 2, 0, '', _i % 10, '+')
-  //     });
-  //   }
-  //   // หน่วยบน
-  //   for (let _i = 20; _i < 30; _i++) {
-  //     resultModel.push({
-  //       name: this.getFormula(_i + 1),
-  //       inputs: this.formula(calType, inputs, 'up', '', 3, 0, '', _i % 10, '+')
-  //     });
-  //   }
-  //   // สิบล่าง
-  //   for (let _i = 30; _i < 40; _i++) {
-  //     resultModel.push({
-  //       name: this.getFormula(_i + 1),
-  //       inputs: this.formula(calType, inputs, 'low', '', 1, 0, '', _i % 10, '+')
-  //     });
-  //   }
-  //   // หน่วยล่าง
-  //   for (let _i = 40; _i < 50; _i++) {
-  //     resultModel.push({
-  //       name: this.getFormula(_i + 1),
-  //       inputs: this.formula(calType, inputs, 'low', '', 2, 0, '', _i % 10, '+')
-  //     });
-  //   }
-  //   // ร้อย + สิบบน
-  //   for (let _i = 50; _i < 60; _i++) {
-  //     resultModel.push({
-  //       name: this.getFormula(_i + 1),
-  //       inputs: this.formula(calType, inputs, 'up', 'up', 1, 2, '+', _i % 10, '+')
-  //     });
-  //   }
-  //   // ร้อย + หน่วยบน
-  //   for (let _i = 60; _i < 70; _i++) {
-  //     resultModel.push({
-  //       name: this.getFormula(_i + 1),
-  //       inputs: this.formula(calType, inputs, 'up', 'up', 1, 3, '+', _i % 10, '+')
-  //     });
-  //   }
-  //   // ร้อย + สิบล่าง
-  //   for (let _i = 70; _i < 80; _i++) {
-  //     resultModel.push({
-  //       name: this.getFormula(_i + 1),
-  //       inputs: this.formula(calType, inputs, 'up', 'low', 1, 1, '+', _i, '+')
-  //     });
-  //   }
-  //   // ร้อย + หน่วยล่าง
-  //   for (let _i = 80; _i < 90; _i++) {
-  //     resultModel.push({
-  //       name: this.getFormula(_i + 1),
-  //       inputs: this.formula(calType, inputs, 'up', 'low', 1, 2, '+', _i % 10, '+')
-  //     });
-  //   }
-  //   // สิบบน + หน่วยบน
-  //   for (let _i = 90; _i < 100; _i++) {
-  //     resultModel.push({
-  //       name: this.getFormula(_i + 1),
-  //       inputs: this.formula(calType, inputs, 'up', 'up', 2, 3, '+', _i % 10, '+')
-  //     });
-  //   }
-  //   // สิบบน + สิบล่าง
-  //   for (let _i = 100; _i < 110; _i++) {
-  //     resultModel.push({
-  //       name: this.getFormula(_i + 1),
-  //       inputs: this.formula(calType, inputs, 'up', 'low', 2, 1, '+', _i % 10, '+')
-  //     });
-  //   }
-  //   // สิบบน + หน่วยล่าง
-  //   for (let _i = 110; _i < 120; _i++) {
-  //     resultModel.push({
-  //       name: this.getFormula(_i + 1),
-  //       inputs: this.formula(calType, inputs, 'up', 'low', 2, 2, '+', _i % 10, '+')
-  //     });
-  //   }
-  //   // หน่วยบน + สิบล่าง
-  //   for (let _i = 120; _i < 130; _i++) {
-  //     resultModel.push({
-  //       name: this.getFormula(_i + 1),
-  //       inputs: this.formula(calType, inputs, 'up', 'low', 3, 1, '+', _i % 10, '+')
-  //     });
-  //   }
-  //   // หน่วยบน + หน่วยล่าง
-  //   for (let _i = 130; _i < 140; _i++) {
-  //     resultModel.push({
-  //       name: this.getFormula(_i + 1),
-  //       inputs: this.formula(calType, inputs, 'up', 'low', 3, 2, '+', _i % 10, '+')
-  //     });
-  //   }
-  //   // สิบล่าง + หน่วยล่าง
-  //   for (let _i = 140; _i < 150; _i++) {
-  //     resultModel.push({
-  //       name: this.getFormula(_i + 1),
-  //       inputs: this.formula(calType, inputs, 'low', 'low', 2, 2, '+', _i % 10, '+')
-  //     });
-  //   }
-  //   return resultModel;
-  // }
+  formulaCalculate(inputs: InputModel[], calType: string) {
+    const resultModel: ResultModel[] = [];
+    this.inputs = inputs;
 
-  async formulaCalculateHero(inputs: InputModel[], calType: string): Promise<ResultModel[]> {
+    // ร้อยบน
+    for (let _i = 0; _i < 10; _i++) {
+      resultModel.push({
+        name: this.getFormula(_i + 1),
+        inputs: this.formula(calType, 'up', '', '', 0, 0, 0, '+', '', '', _i % 10)
+      });
+    }
+    // สิบบน
+    for (let _i = 10; _i < 20; _i++) {
+      resultModel.push({
+        name: this.getFormula(_i + 1),
+        inputs: this.formula(calType, 'up', '', '', 1, 0, 0, '+', '*', '*', _i % 10)
+      });
+    }
+    // หน่วยบน
+    for (let _i = 20; _i < 30; _i++) {
+      resultModel.push({
+        name: this.getFormula(_i + 1),
+        inputs: this.formula(calType, 'up', '', '', 2, 0, 0, '+', '*', '*', _i % 10)
+      });
+    }
+    // สิบล่าง
+    for (let _i = 30; _i < 40; _i++) {
+      resultModel.push({
+        name: this.getFormula(_i + 1),
+        inputs: this.formula(calType, 'low', '', '', 0, 0, 0, '+', '*', '*', _i % 10)
+      });
+    }
+    // หน่วยล่าง
+    for (let _i = 40; _i < 50; _i++) {
+      resultModel.push({
+        name: this.getFormula(_i + 1),
+        inputs: this.formula(calType, 'low', '', '', 1, 0, 0, '+', '*', '*', _i % 10)
+      });
+    }
+    // ร้อย + สิบบน
+    for (let _i = 50; _i < 60; _i++) {
+      resultModel.push({
+        name: this.getFormula(_i + 1),
+        inputs: this.formula(calType, 'up', 'up', '', 0, 1, 0, '+', '*', '*', _i % 10)
+      });
+    }
+    // ร้อย + หน่วยบน
+    for (let _i = 60; _i < 70; _i++) {
+      resultModel.push({
+        name: this.getFormula(_i + 1),
+        inputs: this.formula(calType, 'up', 'up', '', 0, 2, 0, '+', '*', '', _i % 10)
+      });
+    }
+    // ร้อย + สิบล่าง
+    for (let _i = 70; _i < 80; _i++) {
+      resultModel.push({
+        name: this.getFormula(_i + 1),
+        inputs: this.formula(calType, 'up', 'low', '', 0, 1, 0, '+', '*', '', _i % 10)
+      });
+    }
+    // ร้อย + หน่วยล่าง
+    for (let _i = 80; _i < 90; _i++) {
+      resultModel.push({
+        name: this.getFormula(_i + 1),
+        inputs: this.formula(calType, 'up', 'low', '', 0, 1, 0, '+', '*', '', _i % 10)
+      });
+    }
+    // สิบบน + หน่วยบน
+    for (let _i = 90; _i < 100; _i++) {
+      resultModel.push({
+        name: this.getFormula(_i + 1),
+        inputs: this.formula(calType, 'up', 'up', '', 1, 2, 0, '+', '*', '', _i % 10)
+      });
+    }
+    // สิบบน + สิบล่าง
+    for (let _i = 100; _i < 110; _i++) {
+      resultModel.push({
+        name: this.getFormula(_i + 1),
+        inputs: this.formula(calType, 'up', 'low', '', 1, 0, 0, '+', '*', '', _i % 10)
+      });
+    }
+    // สิบบน + หน่วยล่าง
+    for (let _i = 110; _i < 120; _i++) {
+      resultModel.push({
+        name: this.getFormula(_i + 1),
+        inputs: this.formula(calType, 'up', 'low', '', 1, 1, 0, '+', '*', '', _i % 10)
+      });
+    }
+    // หน่วยบน + สิบล่าง
+    for (let _i = 120; _i < 130; _i++) {
+      resultModel.push({
+        name: this.getFormula(_i + 1),
+        inputs: this.formula(calType, 'up', 'low', '', 2, 0, 0, '+', '*', '', _i % 10)
+      });
+    }
+    // หน่วยบน + หน่วยล่าง
+    for (let _i = 130; _i < 140; _i++) {
+      resultModel.push({
+        name: this.getFormula(_i + 1),
+        inputs: this.formula(calType, 'up', 'low', '', 2, 1, 0, '+', '*', '', _i % 10)
+      });
+    }
+    // สิบล่าง + หน่วยล่าง
+    for (let _i = 140; _i < 150; _i++) {
+      resultModel.push({
+        name: this.getFormula(_i + 1),
+        inputs: this.formula(calType, 'low', 'low', '', 1, 1, 0, '+', '*', '', _i % 10)
+      });
+    }
+    return resultModel;
+  }
+
+  formulaCalculateHero(inputs: InputModel[], calType: string) {
     this.inputs = inputs;
     const resultModel: ResultModel[] = [];
     // ร้อยบน + สิบบน + หน่วยบน
@@ -313,6 +315,8 @@ export class FormulaService {
 
       const calValue1 = this.calSingleValue(a, position1, positionOperaion1, value);
       let calValue = String(calValue1);
+
+      console.log('calValue1 ' + calValue1);
 
       if (type2 !== '') {
         let b = '';

@@ -1,23 +1,28 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {LoginService} from './service/login.service';
-import {AppService} from './service/app.service';
+import {DataComponent} from './page/data/data.component';
+import {ResultComponent} from './page/result/result.component';
+import {MainComponent} from './page/main/main.component';
 
 const routes: Routes = [
   {
     path: '',
     // canActivate: [AppService],
-    loadChildren: './page/main/main.module#MainModule',
+    component: MainComponent,
+    children: [
+      // {path: 'data', component: DataComponent},
+      // {path: 'result', component: ResultComponent}
+    ]
   },
   {
     path: 'data',
     // canActivate: [AppService],
-    loadChildren: './page/data/data.module#DataModule'
+    component: DataComponent,
   },
   {
     path: 'result',
     // canActivate: [AppService],
-    loadChildren: './page/result/result.module#ResultModule'
+    component: ResultComponent,
   },
   {
     path: 'login',

@@ -19,7 +19,7 @@ export class Untils {
     // {value: '3', viewValue: 'ผลหมู', enable: false},
     // {value: '4', viewValue: 'ผลหมี', enable: false},
     // {value: '5', viewValue: 'ผลโชค', enable: false},
-    {value: '6', viewValue: 'ผลเจต (เร็วๆนี้)', enable: false},
+    // {value: '6', viewValue: 'ผลเจต (เร็วๆนี้)', enable: false},
     // {value: '7', viewValue: 'ผลแพ', enable: false},
     // {value: '8', viewValue: 'ผลแมน', enable: false}
   ];

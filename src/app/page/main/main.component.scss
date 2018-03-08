@@ -1,32 +1,48 @@
 @import "../../../styles/variable";
 
-.formular-card{
+.formular-card {
   padding: 10px;
   max-width: 500px;
   margin: auto;
 }
 
-.list-title{
+.version {
+  font-weight: 300;
+  font-size: 10px;
+  padding-top: 0px;
+  margin-left: 8px;
+  left: 10px;
+  position: absolute;
+}
+
+.list-title {
   font-size: 16px;
   font-weight: 500;
   color: $secondary-text-color;
 }
 
-.list-label{
+.list-label {
   font-size: 16px;
   font-weight: 400;
 }
 
-.list-label-add{
+.list-label-add {
   font-size: 16px;
   font-weight: 400;
 }
 
-.list-icon{
+.list-icon {
   padding-left: 10px;
   color: $secondary-text-color;
 }
 
-/deep/ .mat-tab-label{
+.btn-add-input {
+  color: white;
+  background: $default-primary-color;
+}
+
+/deep/ .mat-tab-label {
   display: none !important;
 }
+
+

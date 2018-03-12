@@ -6,7 +6,6 @@ import {TdDialogService, TdLoadingService} from '@covalent/core';
 import {InputModel} from '../../model/input.model';
 import {StorageService} from '../../service/storage.service';
 import {Router} from '@angular/router';
-import {OnPageHidden, OnPageVisibilityChange, OnPageVisible} from 'angular-page-visibility';
 
 @Component({
   selector: 'app-main',
@@ -20,7 +19,7 @@ export class MainComponent implements OnInit {
   isSmallScreen = false;
   isBigScreen = false;
 
-  inputs: InputModel[];
+  inputs: InputModel[] = [];
 
   types = Untils.types;
   selectedType = '1';
@@ -42,10 +41,25 @@ export class MainComponent implements OnInit {
       this.isBigScreen = result.matches;
       // console.log('isBigScreen : ' + this.isBigScreen);
     });
+    // this._loadingService.register('main');
+  }
+
+  async delay(milliseconds: number) {
+    return new Promise<void>(resolve => {
+      setTimeout(resolve, milliseconds);
+    });
+  }
+
+  async init() {
+    await this.delay(200);
   }
 
   ngOnInit(): void {
-    this.load();
+    this.init().then(() => {
+      this.load();
+      // this._loadingService.resolve('main');
+    });
+
   }
 
   load() {
@@ -84,25 +98,25 @@ export class MainComponent implements OnInit {
     this._locale.setCurrentLanguage(language);
   }
 
-  @OnPageVisible()
-  logWhenPageVisible(): void {
-    console.log( 'OnPageVisible' );
-    console.log( 'visible' );
-  }
-
-  @OnPageHidden()
-  logWhenPageHidden(): void {
-    console.log( 'OnPageHidden' );
-    console.log( 'hidden' );
-  }
-
-  @OnPageVisibilityChange()
-  logWhenPageVisibilityChange( isPageVisible: boolean ): void {
-    console.log( 'OnPageVisibilityChange' );
-    if ( isPageVisible ) {
-      console.log( 'visible' );
-    } else {
-      console.log( 'hidden' );
-    }
-  }
+  // @OnPageVisible()
+  // logWhenPageVisible(): void {
+  //   console.log( 'OnPageVisible' );
+  //   console.log( 'visible' );
+  // }
+  //
+  // @OnPageHidden()
+  // logWhenPageHidden(): void {
+  //   console.log( 'OnPageHidden' );
+  //   console.log( 'hidden' );
+  // }
+  //
+  // @OnPageVisibilityChange()
+  // logWhenPageVisibilityChange( isPageVisible: boolean ): void {
+  //   console.log( 'OnPageVisibilityChange' );
+  //   if ( isPageVisible ) {
+  //     console.log( 'visible' );
+  //   } else {
+  //     console.log( 'hidden' );
+  //   }
+  // }
 }

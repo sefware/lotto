@@ -12,5 +12,6 @@ export const environment = {
     projectId: 'hero-lotto',
     storageBucket: 'hero-lotto.appspot.com',
     messagingSenderId: '178762889465'
-  }
+  },
+  api: 'https://us-central1-hero-lotto.cloudfunctions.net'
 };

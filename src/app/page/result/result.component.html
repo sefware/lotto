@@ -8,144 +8,149 @@
       </button>
     </div>
 
-    <div class="content" fxLayout="row">
-      <div fxFlex>
-        <ng-template ngFor let-model [ngForOf]="resultModel1" let-currentModelIndex="index">
+    <div *ngIf="resultModel1.length == 0s" style="margin-top: 80px"></div>
+    <div *tdLoading="'result'; mode:'indeterminate'; type:'circle'; strategy:'overlay'; color:'accent'">
 
-          <mat-card class="card">
-            <mat-card-header>
-              <mat-card-title>{{model.name}}</mat-card-title>
-            </mat-card-header>
-            <ng-template ngFor let-input [ngForOf]="model.inputs" let-currentInputsIndex="index">
+      <div class="content" fxLayout="row">
+        <div fxFlex>
+          <ng-template ngFor let-model [ngForOf]="resultModel1" let-currentModelIndex="index">
 
-              <div fxLayout="row">
-                <div>{{input.time}}</div>
-                <div *ngIf="currentInputsIndex == (model.inputs.length - 1)">ถัดไป</div>
-                <div *ngIf="currentInputsIndex != 0 " style="margin-left: 0px;margin-right: 0px;">=</div>
-                <div *ngIf="currentInputsIndex != 0">{{model.inputs[currentInputsIndex - 1].value}}</div>
-                <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)"
-                     style="margin-left: 0px;margin-right: 0px;">=
-                </div>
+            <mat-card class="card">
+              <mat-card-header>
+                <mat-card-title>{{model.name}}</mat-card-title>
+              </mat-card-header>
+              <ng-template ngFor let-input [ngForOf]="model.inputs" let-currentInputsIndex="index">
 
-                <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">
-                  {{input.up}}-{{input.low}}
-                </div>
-
-                <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">
-                  <!--{{model.inputs[currentInputsIndex - 1].result?'เข้า':'ตาย'}}-->
-                  <div *ngIf="model.inputs[currentInputsIndex - 1].result">
-                    <mat-icon class="icon-true">done</mat-icon>
+                <div fxLayout="row">
+                  <div>{{input.time}}</div>
+                  <div *ngIf="currentInputsIndex == (model.inputs.length - 1)">ถัดไป</div>
+                  <div *ngIf="currentInputsIndex != 0 " style="margin-left: 0px;margin-right: 0px;">=</div>
+                  <div *ngIf="currentInputsIndex != 0">{{model.inputs[currentInputsIndex - 1].value}}</div>
+                  <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)"
+                       style="margin-left: 0px;margin-right: 0px;">=
                   </div>
-                  <div *ngIf="!model.inputs[currentInputsIndex - 1].result">
-                    <mat-icon class="icon-false">clear</mat-icon>
+
+                  <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">
+                    {{input.up}}-{{input.low}}
                   </div>
+
+                  <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">
+                    <!--{{model.inputs[currentInputsIndex - 1].result?'เข้า':'ตาย'}}-->
+                    <div *ngIf="model.inputs[currentInputsIndex - 1].result">
+                      <mat-icon class="icon-true">done</mat-icon>
+                    </div>
+                    <div *ngIf="!model.inputs[currentInputsIndex - 1].result">
+                      <mat-icon class="icon-false">clear</mat-icon>
+                    </div>
+                  </div>
+
+                  <div
+                    *ngIf="model.inputs[currentInputsIndex - 1]?.result == true && model.inputs[currentInputsIndex - 1].resultCount != 0">
+                    ({{model.inputs[currentInputsIndex - 1]?.resultCount}})
+                  </div>
+
                 </div>
 
-                <div
-                  *ngIf="model.inputs[currentInputsIndex - 1]?.result == true && model.inputs[currentInputsIndex - 1].resultCount != 0">
-                  ({{model.inputs[currentInputsIndex - 1]?.resultCount}})
+              </ng-template>
+
+            </mat-card>
+
+          </ng-template>
+        </div>
+
+        <div fxFlex>
+          <ng-template ngFor let-model [ngForOf]="resultModel2" let-currentModelIndex="index">
+
+            <mat-card class="card">
+              <mat-card-header>
+                <mat-card-title>{{model.name}}</mat-card-title>
+              </mat-card-header>
+              <ng-template ngFor let-input [ngForOf]="model.inputs" let-currentInputsIndex="index">
+
+                <div fxLayout="row">
+                  <div>{{input.time}}</div>
+                  <div *ngIf="currentInputsIndex == (model.inputs.length - 1)">ถัดไป</div>
+                  <div *ngIf="currentInputsIndex != 0 " style="margin-left: 0px;margin-right: 0px;">=</div>
+                  <div *ngIf="currentInputsIndex != 0">{{model.inputs[currentInputsIndex - 1].value}}</div>
+                  <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)"
+                       style="margin-left: 0px;margin-right: 0px;">=
+                  </div>
+
+                  <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">
+                    {{input.up}}-{{input.low}}
+                  </div>
+
+                  <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">
+                    <!--{{model.inputs[currentInputsIndex - 1].result?'เข้า':'ตาย'}}-->
+                    <div *ngIf="model.inputs[currentInputsIndex - 1].result">
+                      <mat-icon class="icon-true">done</mat-icon>
+                    </div>
+                    <div *ngIf="!model.inputs[currentInputsIndex - 1].result">
+                      <mat-icon class="icon-false">clear</mat-icon>
+                    </div>
+                  </div>
+
+                  <div
+                    *ngIf="model.inputs[currentInputsIndex - 1]?.result == true && model.inputs[currentInputsIndex - 1].resultCount != 0">
+                    ({{model.inputs[currentInputsIndex - 1]?.resultCount}})
+                  </div>
+
                 </div>
 
-              </div>
+              </ng-template>
 
-            </ng-template>
+            </mat-card>
 
-          </mat-card>
+          </ng-template>
+        </div>
 
-        </ng-template>
+        <div fxFlex>
+          <ng-template ngFor let-model [ngForOf]="resultModel3" let-currentModelIndex="index">
+
+            <mat-card class="card">
+              <mat-card-header>
+                <mat-card-title>{{model.name}}</mat-card-title>
+              </mat-card-header>
+              <ng-template ngFor let-input [ngForOf]="model.inputs" let-currentInputsIndex="index">
+
+                <div fxLayout="row">
+                  <div>{{input.time}}</div>
+                  <div *ngIf="currentInputsIndex == (model.inputs.length - 1)">ถัดไป</div>
+                  <div *ngIf="currentInputsIndex != 0 " style="margin-left: 0px;margin-right: 0px;">=</div>
+                  <div *ngIf="currentInputsIndex != 0">{{model.inputs[currentInputsIndex - 1].value}}</div>
+                  <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)"
+                       style="margin-left: 0px;margin-right: 0px;">=
+                  </div>
+
+                  <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">
+                    {{input.up}}-{{input.low}}
+                  </div>
+
+                  <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">
+                    <!--{{model.inputs[currentInputsIndex - 1].result?'เข้า':'ตาย'}}-->
+                    <div *ngIf="model.inputs[currentInputsIndex - 1].result">
+                      <mat-icon class="icon-true">done</mat-icon>
+                    </div>
+                    <div *ngIf="!model.inputs[currentInputsIndex - 1].result">
+                      <mat-icon class="icon-false">clear</mat-icon>
+                    </div>
+                  </div>
+
+                  <div style="font-weight: 500"
+                       *ngIf="model.inputs[currentInputsIndex - 1]?.result == true && model.inputs[currentInputsIndex - 1].resultCount != 0">
+                    ({{model.inputs[currentInputsIndex - 1]?.resultCount}})
+                  </div>
+
+                </div>
+
+              </ng-template>
+
+            </mat-card>
+
+          </ng-template>
+        </div>
       </div>
 
-      <div fxFlex>
-        <ng-template ngFor let-model [ngForOf]="resultModel2" let-currentModelIndex="index">
-
-          <mat-card class="card">
-            <mat-card-header>
-              <mat-card-title>{{model.name}}</mat-card-title>
-            </mat-card-header>
-            <ng-template ngFor let-input [ngForOf]="model.inputs" let-currentInputsIndex="index">
-
-              <div fxLayout="row">
-                <div>{{input.time}}</div>
-                <div *ngIf="currentInputsIndex == (model.inputs.length - 1)">ถัดไป</div>
-                <div *ngIf="currentInputsIndex != 0 " style="margin-left: 0px;margin-right: 0px;">=</div>
-                <div *ngIf="currentInputsIndex != 0">{{model.inputs[currentInputsIndex - 1].value}}</div>
-                <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)"
-                     style="margin-left: 0px;margin-right: 0px;">=
-                </div>
-
-                <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">
-                  {{input.up}}-{{input.low}}
-                </div>
-
-                <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">
-                  <!--{{model.inputs[currentInputsIndex - 1].result?'เข้า':'ตาย'}}-->
-                  <div *ngIf="model.inputs[currentInputsIndex - 1].result">
-                    <mat-icon class="icon-true">done</mat-icon>
-                  </div>
-                  <div *ngIf="!model.inputs[currentInputsIndex - 1].result">
-                    <mat-icon class="icon-false">clear</mat-icon>
-                  </div>
-                </div>
-
-                <div
-                  *ngIf="model.inputs[currentInputsIndex - 1]?.result == true && model.inputs[currentInputsIndex - 1].resultCount != 0">
-                  ({{model.inputs[currentInputsIndex - 1]?.resultCount}})
-                </div>
-
-              </div>
-
-            </ng-template>
-
-          </mat-card>
-
-        </ng-template>
-      </div>
-
-      <div fxFlex>
-        <ng-template ngFor let-model [ngForOf]="resultModel3" let-currentModelIndex="index">
-
-          <mat-card class="card">
-            <mat-card-header>
-              <mat-card-title>{{model.name}}</mat-card-title>
-            </mat-card-header>
-            <ng-template ngFor let-input [ngForOf]="model.inputs" let-currentInputsIndex="index">
-
-              <div fxLayout="row">
-                <div>{{input.time}}</div>
-                <div *ngIf="currentInputsIndex == (model.inputs.length - 1)">ถัดไป</div>
-                <div *ngIf="currentInputsIndex != 0 " style="margin-left: 0px;margin-right: 0px;">=</div>
-                <div *ngIf="currentInputsIndex != 0">{{model.inputs[currentInputsIndex - 1].value}}</div>
-                <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)"
-                     style="margin-left: 0px;margin-right: 0px;">=
-                </div>
-
-                <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">
-                  {{input.up}}-{{input.low}}
-                </div>
-
-                <div *ngIf="currentInputsIndex != 0 && currentInputsIndex != (model.inputs.length - 1)">
-                  <!--{{model.inputs[currentInputsIndex - 1].result?'เข้า':'ตาย'}}-->
-                  <div *ngIf="model.inputs[currentInputsIndex - 1].result">
-                    <mat-icon class="icon-true">done</mat-icon>
-                  </div>
-                  <div *ngIf="!model.inputs[currentInputsIndex - 1].result">
-                    <mat-icon class="icon-false">clear</mat-icon>
-                  </div>
-                </div>
-
-                <div style="font-weight: 500"
-                     *ngIf="model.inputs[currentInputsIndex - 1]?.result == true && model.inputs[currentInputsIndex - 1].resultCount != 0">
-                  ({{model.inputs[currentInputsIndex - 1]?.resultCount}})
-                </div>
-
-              </div>
-
-            </ng-template>
-
-          </mat-card>
-
-        </ng-template>
-      </div>
     </div>
 
   </td-layout-nav>

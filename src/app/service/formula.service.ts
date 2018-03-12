@@ -2,13 +2,15 @@ import {Injectable} from '@angular/core';
 import {InputModel} from '../model/input.model';
 import {ResultModel} from '../model/result.model';
 import {ResultInputModel} from '../model/result_input.model';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class FormulaService {
 
   inputs = [];
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   private static getFormulaName(index: string) {
@@ -31,6 +33,18 @@ export class FormulaService {
       index = '0' + index;
     }
     return 'H' + index;
+  }
+
+  calculatFromServer(inputs: InputModel[]) {
+    return this.http
+      .post(environment.api + '/calLotto',
+        JSON.stringify({
+          inputs: inputs
+        }),
+        {
+          headers: new HttpHeaders().set('Content-Type', 'application/json')
+        })
+      ;
   }
 
   getFormula(index: number) {
@@ -150,10 +164,12 @@ export class FormulaService {
         inputs: this.formula(calType, 'low', 'low', '', 1, 1, 0, '+', '*', '', _i % 10)
       });
     }
-    return resultModel;
+    return new Promise((resolve) => {
+      resolve(resultModel);
+    });
   }
 
-  formulaCalculateHero(inputs: InputModel[], calType: string) {
+  async formulaCalculateHero(inputs: InputModel[], calType: string) {
     this.inputs = inputs;
     const resultModel: ResultModel[] = [];
     // ร้อยบน + สิบบน + หน่วยบน
@@ -283,7 +299,10 @@ export class FormulaService {
         inputs: this.formula(calType, 'up', 'low', 'low', 1, 0, 1, '+', '+', '*', _i % 10)
       });
     }
-    return resultModel;
+
+    return new Promise((resolve) => {
+      resolve(resultModel);
+    });
   }
 
   formula(calType: String,
@@ -316,8 +335,6 @@ export class FormulaService {
       const calValue1 = this.calSingleValue(a, position1, positionOperaion1, value);
       let calValue = String(calValue1);
 
-      console.log('calValue1 ' + calValue1);
-
       if (type2 !== '') {
         let b = '';
         switch (type2) {
@@ -331,18 +348,8 @@ export class FormulaService {
           }
         }
 
-        const calValue2 = this.calSingleValue(b, position2, positionOperaion2, 0);
-
-        switch (positionOperaion1) {
-          case '+': {
-            calValue = String(calValue1 + calValue2);
-            break;
-          }
-          case '*': {
-            calValue = String(calValue1 * calValue2);
-            break;
-          }
-        }
+        const calValue2 = this.calSingleValue(b, position2, positionOperaion2, Number(calValue));
+        calValue = String(calValue2);
 
         if (type3 !== '') {
           let c = '';
@@ -357,18 +364,8 @@ export class FormulaService {
             }
           }
 
-          const calValue3 = this.calSingleValue(c, position3, positionOperaion3, 0);
-
-          switch (positionOperaion2) {
-            case '+': {
-              calValue = String(calValue1 + calValue2 + calValue3);
-              break;
-            }
-            case '*': {
-              calValue = String(calValue1 * calValue2 * calValue3);
-              break;
-            }
-          }
+          const calValue3 = this.calSingleValue(c, position3, positionOperaion3, Number(calValue));
+          calValue = String(calValue3);
         }
       }
 

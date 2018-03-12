@@ -23,6 +23,8 @@ import {TextMaskModule} from 'angular2-text-mask';
 import {StorageService} from './service/storage.service';
 import {FormulaService} from './service/formula.service';
 import {AngularPageVisibilityModule} from 'angular-page-visibility';
+import {HttpClientModule} from '@angular/common/http';
+import {BlockCopyPasteDirective} from './page/data/BlockCopyPasteDirective';
 
 
 const l10nConfig: L10nConfig = {
@@ -57,7 +59,8 @@ const l10nConfig: L10nConfig = {
     AppRoutingModule,
     SharedModule,
     TextMaskModule,
-    AngularPageVisibilityModule
+    AngularPageVisibilityModule,
+    HttpClientModule
   ],
   entryComponents: [
     DataComponent,

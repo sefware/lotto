@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {StorageService} from '../../service/storage.service';
 import {InputModel} from '../../model/input.model';
 import {Router} from '@angular/router';
@@ -9,32 +9,74 @@ import {TdLoadingService} from '@covalent/core';
   templateUrl: './data.component.html',
   styleUrls: ['./data.component.scss']
 })
-export class DataComponent {
+export class DataComponent implements OnInit {
 
+  loading = false;
   data: InputModel[];
   public mask = [/\d/, /\d/, /\d/, ' ', '-', ' ', /\d/, /\d/];
   lists: InputModel[] = [];
+  pasteValet: string;
+
+  async delay(milliseconds: number) {
+    return new Promise<void>(resolve => {
+      setTimeout(resolve, milliseconds);
+    });
+  }
 
   constructor(public _storageService: StorageService,
               private _loadingService: TdLoadingService,
               private _router: Router) {
-    // this._loadingService.register();
-    this.data = this._storageService.getListData();
+  }
 
+  ngOnInit() {
+    this.data = this._storageService.getListData();
+    this.pasteValet = '';
     let lastIndex = 0;
     if (this.data.length > 1) {
       lastIndex = Number(this.data[this.data.length - 1].time);
     }
 
-    this.addEmptyList(lastIndex);
+    this.init().then(() => {
+      this.loading = false;
 
-    this.data.forEach(s => {
-      this.lists[Number(s.time) - 1] = new InputModel({
-        time: s.time,
-        up: s.up + ' - ' + s.low,
-        low: '',
+      this.addEmptyList(lastIndex);
+
+      this.data.forEach((s) => {
+        this.lists[Number(s.time) - 1] = new InputModel({
+          time: s.time,
+          up: s.up + ' - ' + s.low,
+          low: '',
+        });
       });
     });
+
+  }
+
+  onSearchChange(searchValue: string) {
+    console.log(searchValue);
+  }
+
+  @HostListener('paste', ['$event']) blockPaste(e: any) {
+    // e.preventDefault();
+    // console.log('pasteValet : ' + this.pasteValet);
+
+  }
+
+  onPaste(value) {
+    const x = value.split(' ');
+    for (let i = 0; i < x.length; i++) {
+      const y = x[i].replace(' ', '');
+      console.log(Number(y.trim()));
+      console.log(Number(y.trim()));
+    }
+  }
+
+  pasteEvent(event: any) {
+    console.log(event.clipboardData);
+  }
+
+  async init() {
+    await this.delay(100);
   }
 
   addEmptyList(lastIndex: number) {

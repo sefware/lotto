@@ -7,7 +7,6 @@
       </button>
     </div>
 
-    <!--<input #input placeholder="" [(ngModel)]="pasteValet" (ngModelChange)="onPaste(input.value)"/>-->
     <!--<textarea ></textarea>-->
     <!--<input appBlockCopyPaste (paste)="onPaste($event)" type="text"/>-->
       <div class="input-container">
@@ -36,6 +35,7 @@
             เพิ่มแถว
           </button>
         </a>
+
       </div>
 
     <td-layout-footer>
@@ -46,9 +46,11 @@
             รีเซ็ทข้อมูล
           </button>
         </div>
+        <div fxFlex="10px"></div>
+        <input #input style="width: 10px;height: 5px;" placeholder="" [(ngModel)]="pasteValet" (ngModelChange)="onPaste(input)"/>
         <div fxFlex></div>
         <div>
-          <button mat-raised-button color="primary" (click)="saveData()">บันทึก</button>
+          <button mat-raised-button color="primary" (click)="saveData(true)">บันทึก</button>
         </div>
       </div>
     </td-layout-footer>

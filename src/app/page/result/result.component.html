@@ -17,7 +17,7 @@
 
             <mat-card class="card">
               <mat-card-header>
-                <mat-card-title>{{model.name}}</mat-card-title>
+                <mat-card-title>{{model.name}} - {{model.summary}}</mat-card-title>
               </mat-card-header>
               <ng-template ngFor let-input [ngForOf]="model.inputs" let-currentInputsIndex="index">
 
@@ -63,7 +63,7 @@
 
             <mat-card class="card">
               <mat-card-header>
-                <mat-card-title>{{model.name}}</mat-card-title>
+                <mat-card-title>{{model.name}} - {{model.summary}}</mat-card-title>
               </mat-card-header>
               <ng-template ngFor let-input [ngForOf]="model.inputs" let-currentInputsIndex="index">
 
@@ -109,7 +109,7 @@
 
             <mat-card class="card">
               <mat-card-header>
-                <mat-card-title>{{model.name}}</mat-card-title>
+                <mat-card-title>{{model.name}} - {{model.summary}}</mat-card-title>
               </mat-card-header>
               <ng-template ngFor let-input [ngForOf]="model.inputs" let-currentInputsIndex="index">
 

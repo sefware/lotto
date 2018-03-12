@@ -24,7 +24,6 @@ import {StorageService} from './service/storage.service';
 import {FormulaService} from './service/formula.service';
 import {AngularPageVisibilityModule} from 'angular-page-visibility';
 import {HttpClientModule} from '@angular/common/http';
-import {BlockCopyPasteDirective} from './page/data/BlockCopyPasteDirective';
 
 
 const l10nConfig: L10nConfig = {
@@ -49,7 +48,7 @@ const l10nConfig: L10nConfig = {
     MainComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'herolotto-0.05'}),
+    BrowserModule.withServerTransition({appId: 'hero-lotto'}),
     NoopAnimationsModule,
     TranslationModule.forRoot(l10nConfig),
     AngularFireModule.initializeApp(environment.firebase),

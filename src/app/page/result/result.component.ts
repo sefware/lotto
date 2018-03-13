@@ -16,6 +16,7 @@ import {Untils} from '../../shared/untils';
 export class ResultComponent implements OnInit {
   @Language() lang: string;
 
+  resultModel: ResultModel[] = [];
   resultModel1: ResultModel[] = [];
   resultModel2: ResultModel[] = [];
   resultModel3: ResultModel[] = [];
@@ -47,34 +48,100 @@ export class ResultComponent implements OnInit {
     } else {
       this.title = Untils.getCalculateTitle(this.calType);
 
-      this.service.formulaCalculateHero(this.inputs, this.calType).then((s: ResultModel[]) => {
-        this.setRows(s).then(() => {
-           this._loadingService.resolve('result');
+      this.getList(1)
+        .then((s: ResultModel[]) => {
+          this.setRows(s)
+            .then(() => {
+              this._loadingService.resolve('result');
+            });
+          return new Promise((resolve) => {
+            resolve(this.getList(2));
+          });
+        })
+        .then((s: ResultModel[]) => {
+          this.setRows(s);
+          return this.getList(3);
+        })
+        .then((s: ResultModel[]) => {
+          this.setRows(s);
+          return this.getList(4);
+        })
+        .then((s: ResultModel[]) => {
+          this.setRows(s);
+          return this.getList(5);
+        })
+        .then((s: ResultModel[]) => {
+          this.setRows(s);
+          return this.getList(6);
+        })
+        .then((s: ResultModel[]) => {
+          this.setRows(s);
+          return this.getList(7);
+        })
+        .then((s: ResultModel[]) => {
+          this.setRows(s);
+          return this.getList(8);
+        })
+        .then((s: ResultModel[]) => {
+          this.setRows(s);
+          return this.getList(9);
+        })
+        .then((s: ResultModel[]) => {
+          this.setRows(s);
+          return this.getList(10);
+        })
+        .then((s: ResultModel[]) => {
+          this.setRows(s);
+          return this.getList(11);
+        })
+        .then((s: ResultModel[]) => {
+          this.setRows(s);
+          return this.getList(12);
+        })
+        .then((s: ResultModel[]) => {
+          this.setRows(s);
+          return this.getList(13);
+        })
+        .then((s: ResultModel[]) => {
+          this.setRows(s);
+          return this.getList(14);
+        })
+        .then((s: ResultModel[]) => {
+          this.setRows(s);
+          return this.getList(15);
+        })
+        .then((s: ResultModel[]) => {
+          this.setRows(s);
+          return this.getList(16);
+        })
+        .then((s: ResultModel[]) => {
+          this.setRows(s);
+          return this.getList(17);
+        })
+        .then((s: ResultModel[]) => {
+          this.setRows(s);
+          return this.getList(18);
         });
-      });
     }
+  }
+
+
+  getList(index: number) {
+    return this.service.formulaCalculateHero(index, this.inputs, this.calType);
   }
 
   async setRows(s: ResultModel[]) {
 
     await this.delay(500);
 
-    await this.setRow(s, 1).then((s1: ResultModel[]) => {
-      this.resultModel1 = s1;
-    });
+    await this.setRow(s, 1);
 
-    await this.setRow(s, 2).then((s2: ResultModel[]) => {
-      this.resultModel2 = s2;
-    });
+    await this.setRow(s, 2);
 
-    await this.setRow(s, 3).then((s3: ResultModel[]) => {
-      this.resultModel3 = s3;
-    });
+    await this.setRow(s, 3);
   }
 
   async setRow(s: ResultModel[], row: Number) {
-
-    const _resultModel: ResultModel[] = [];
 
     let _index = 0;
 
@@ -82,7 +149,7 @@ export class ResultComponent implements OnInit {
       case 1 : {
         for (const ss of s) {
           if (_index % 3 === 0) {
-            _resultModel.push(ss);
+            this.resultModel1.push(ss);
           }
           _index += 1;
         }
@@ -91,7 +158,7 @@ export class ResultComponent implements OnInit {
       case 2 : {
         for (const ss of s) {
           if (_index % 3 === 1) {
-            _resultModel.push(ss);
+            this.resultModel2.push(ss);
           }
           _index += 1;
         }
@@ -100,17 +167,13 @@ export class ResultComponent implements OnInit {
       case 3 : {
         for (const ss of s) {
           if (_index % 3 === 2) {
-            _resultModel.push(ss);
+            this.resultModel3.push(ss);
           }
           _index += 1;
         }
         break;
       }
     }
-
-    return new Promise((resolve) => {
-      resolve(_resultModel);
-    });
   }
 
   disable() {

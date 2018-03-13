@@ -8,7 +8,7 @@
       </button>
     </div>
 
-    <div *ngIf="resultModel1.length == 0s" style="margin-top: 80px"></div>
+    <div *ngIf="resultModel1.length == 0" style="margin-top: 80px"></div>
     <div *tdLoading="'result'; mode:'indeterminate'; type:'circle'; strategy:'overlay'; color:'accent'">
 
       <div class="content" fxLayout="row">
@@ -17,7 +17,8 @@
 
             <mat-card class="card">
               <mat-card-header>
-                <mat-card-title>{{model.name}} - {{model.summary}}</mat-card-title>
+                <mat-card-title>{{model.name}} - {{model.summary}}:{{(model.inputs.length - 2) - model.summary}}
+                </mat-card-title>
               </mat-card-header>
               <ng-template ngFor let-input [ngForOf]="model.inputs" let-currentInputsIndex="index">
 
@@ -63,7 +64,8 @@
 
             <mat-card class="card">
               <mat-card-header>
-                <mat-card-title>{{model.name}} - {{model.summary}}</mat-card-title>
+                <mat-card-title>{{model.name}} - {{model.summary}}:{{(model.inputs.length - 2) - model.summary}}
+                </mat-card-title>
               </mat-card-header>
               <ng-template ngFor let-input [ngForOf]="model.inputs" let-currentInputsIndex="index">
 
@@ -109,7 +111,8 @@
 
             <mat-card class="card">
               <mat-card-header>
-                <mat-card-title>{{model.name}} - {{model.summary}}</mat-card-title>
+                <mat-card-title>{{model.name}} - {{(model.summary)}}:{{(model.inputs.length - 2) - model.summary}}
+                </mat-card-title>
               </mat-card-header>
               <ng-template ngFor let-input [ngForOf]="model.inputs" let-currentInputsIndex="index">
 

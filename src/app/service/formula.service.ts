@@ -177,7 +177,9 @@ export class FormulaService {
       const _inputs = this.formula(calType, 'up', 'up', 'up', 0, 1, 2, '+', '+', '+', _i % 10);
       let summary = 0;
       _inputs.forEach(s => {
-        summary = summary + s.resultCount;
+        if (s.resultCount > 0) {
+          summary = summary + 1;
+        }
       });
 
       resultModel.push({
@@ -192,7 +194,9 @@ export class FormulaService {
       const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 1, 0, '+', '+', '+', _i % 10);
       let summary = 0;
       _inputs.forEach(s => {
-        summary = summary + s.resultCount;
+        if (s.resultCount > 0) {
+          summary = summary + 1;
+        }
       });
 
       resultModel.push({
@@ -207,7 +211,9 @@ export class FormulaService {
       const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 1, 1, '+', '+', '+', _i % 10);
       let summary = 0;
       _inputs.forEach(s => {
-        summary = summary + s.resultCount;
+        if (s.resultCount > 0) {
+          summary = summary + 1;
+        }
       });
 
       resultModel.push({
@@ -222,7 +228,9 @@ export class FormulaService {
       const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 2, 0, '+', '+', '+', _i % 10);
       let summary = 0;
       _inputs.forEach(s => {
-        summary = summary + s.resultCount;
+        if (s.resultCount > 0) {
+          summary = summary + 1;
+        }
       });
 
       resultModel.push({
@@ -236,7 +244,9 @@ export class FormulaService {
       const _inputs = this.formula(calType, 'up', 'low', 'low', 0, 0, 1, '+', '+', '+', _i % 10);
       let summary = 0;
       _inputs.forEach(s => {
-        summary = summary + s.resultCount;
+        if (s.resultCount > 0) {
+          summary = summary + 1;
+        }
       });
 
       resultModel.push({
@@ -250,7 +260,9 @@ export class FormulaService {
       const _inputs = this.formula(calType, 'up', 'low', 'low', 0, 2, 1, '+', '+', '+', _i % 10);
       let summary = 0;
       _inputs.forEach(s => {
-        summary = summary + s.resultCount;
+        if (s.resultCount > 0) {
+          summary = summary + 1;
+        }
       });
 
       resultModel.push({
@@ -264,7 +276,9 @@ export class FormulaService {
       const _inputs = this.formula(calType, 'up', 'up', 'low', 1, 2, 0, '+', '+', '+', _i % 10);
       let summary = 0;
       _inputs.forEach(s => {
-        summary = summary + s.resultCount;
+        if (s.resultCount > 0) {
+          summary = summary + 1;
+        }
       });
 
       resultModel.push({
@@ -278,7 +292,9 @@ export class FormulaService {
       const _inputs = this.formula(calType, 'up', 'up', 'low', 1, 2, 1, '+', '+', '+', _i % 10);
       let summary = 0;
       _inputs.forEach(s => {
-        summary = summary + s.resultCount;
+        if (s.resultCount > 0) {
+          summary = summary + 1;
+        }
       });
 
       resultModel.push({
@@ -292,7 +308,9 @@ export class FormulaService {
       const _inputs = this.formula(calType, 'up', 'low', 'low', 1, 2, 1, '+', '+', '+', _i % 10);
       let summary = 0;
       _inputs.forEach(s => {
-        summary = summary + s.resultCount;
+        if (s.resultCount > 0) {
+          summary = summary + 1;
+        }
       });
 
       resultModel.push({
@@ -304,10 +322,12 @@ export class FormulaService {
 
     // ร้อยบน + สิบบน + หน่วยบน *
     for (let _i = 90; _i < 100; _i++) {
-      const _inputs = this.formula(calType, 'up', 'up', 'up', 0, 1, 2, '+', '+', '+', _i % 10);
+      const _inputs = this.formula(calType, 'up', 'up', 'up', 0, 1, 2, '+', '+', '*', _i % 10);
       let summary = 0;
       _inputs.forEach(s => {
-        summary = summary + s.resultCount;
+        if (s.resultCount > 0) {
+          summary = summary + 1;
+        }
       });
 
       resultModel.push({
@@ -318,10 +338,12 @@ export class FormulaService {
     }
     // ร้อยบน + สิบบน + สิบล่าง *
     for (let _i = 100; _i < 110; _i++) {
-      const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 1, 0, '+', '+', '+', _i % 10);
+      const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 1, 0, '+', '+', '*', _i % 10);
       let summary = 0;
       _inputs.forEach(s => {
-        summary = summary + s.resultCount;
+        if (s.resultCount > 0) {
+          summary = summary + 1;
+        }
       });
 
       resultModel.push({
@@ -332,10 +354,12 @@ export class FormulaService {
     }
     // ร้อยบน + สิบบน + หน่วยล่าง *
     for (let _i = 110; _i < 120; _i++) {
-      const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 1, 1, '+', '+', '+', _i % 10);
+      const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 1, 1, '+', '+', '*', _i % 10);
       let summary = 0;
       _inputs.forEach(s => {
-        summary = summary + s.resultCount;
+        if (s.resultCount > 0) {
+          summary = summary + 1;
+        }
       });
 
       resultModel.push({
@@ -346,10 +370,12 @@ export class FormulaService {
     }
     // ร้อยบน + หน่วยบน + สิบล่าง *
     for (let _i = 120; _i < 130; _i++) {
-      const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 2, 0, '+', '+', '+', _i % 10);
+      const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 2, 0, '+', '+', '*', _i % 10);
       let summary = 0;
       _inputs.forEach(s => {
-        summary = summary + s.resultCount;
+        if (s.resultCount > 0) {
+          summary = summary + 1;
+        }
       });
 
       resultModel.push({
@@ -360,10 +386,12 @@ export class FormulaService {
     }
     // ร้อยบน + สิบล่าง + หน่วยล่าง *
     for (let _i = 130; _i < 140; _i++) {
-      const _inputs = this.formula(calType, 'up', 'low', 'low', 0, 0, 1, '+', '+', '+', _i % 10);
+      const _inputs = this.formula(calType, 'up', 'low', 'low', 0, 0, 1, '+', '+', '*', _i % 10);
       let summary = 0;
       _inputs.forEach(s => {
-        summary = summary + s.resultCount;
+        if (s.resultCount > 0) {
+          summary = summary + 1;
+        }
       });
 
       resultModel.push({
@@ -374,10 +402,12 @@ export class FormulaService {
     }
     // ร้อยบน + หน่วยบน + หน่วยล่าง *
     for (let _i = 140; _i < 150; _i++) {
-      const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 2, 1, '+', '+', '+', _i % 10);
+      const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 2, 1, '+', '+', '*', _i % 10);
       let summary = 0;
       _inputs.forEach(s => {
-        summary = summary + s.resultCount;
+        if (s.resultCount > 0) {
+          summary = summary + 1;
+        }
       });
 
       resultModel.push({
@@ -388,10 +418,12 @@ export class FormulaService {
     }
     // สิบบน + หน่วยบน + สิบล่าง *
     for (let _i = 150; _i < 160; _i++) {
-      const _inputs = this.formula(calType, 'up', 'up', 'low', 1, 2, 0, '+', '+', '+', _i % 10);
+      const _inputs = this.formula(calType, 'up', 'up', 'low', 1, 2, 0, '+', '+', '*', _i % 10);
       let summary = 0;
       _inputs.forEach(s => {
-        summary = summary + s.resultCount;
+        if (s.resultCount > 0) {
+          summary = summary + 1;
+        }
       });
 
       resultModel.push({
@@ -402,10 +434,12 @@ export class FormulaService {
     }
     // // สิบบน + หน่วยบน + หน่วยล่าง *
     for (let _i = 160; _i < 170; _i++) {
-      const _inputs = this.formula(calType, 'up', 'up', 'low', 1, 2, 1, '+', '+', '+', _i % 10);
+      const _inputs = this.formula(calType, 'up', 'up', 'low', 1, 2, 1, '+', '+', '*', _i % 10);
       let summary = 0;
       _inputs.forEach(s => {
-        summary = summary + s.resultCount;
+        if (s.resultCount > 0) {
+          summary = summary + 1;
+        }
       });
 
       resultModel.push({
@@ -416,17 +450,19 @@ export class FormulaService {
     }
     // สิบบน + สิบล่าง + หน่วยล่าง *
     for (let _i = 170; _i < 180; _i++) {
-      const _inputs = this.formula(calType, 'up', 'low', 'low', 1, 0, 1, '+', '+', '+', _i % 10);
+      const _inputs = this.formula(calType, 'up', 'low', 'low', 1, 0, 1, '+', '+', '*', _i % 10);
       let summary = 0;
       _inputs.forEach(s => {
-        summary = summary + s.resultCount;
+        if (s.resultCount > 0) {
+          summary = summary + 1;
+        }
       });
 
       resultModel.push({
         name: this.getFormulaHero(_i + 1),
-        inputs: this.inputs,
+        inputs: _inputs,
         summary: summary
-    })
+      })
       ;
     }
 

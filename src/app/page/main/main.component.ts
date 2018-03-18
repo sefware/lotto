@@ -6,6 +6,7 @@ import {TdDialogService, TdLoadingService} from '@covalent/core';
 import {InputModel} from '../../model/input.model';
 import {StorageService} from '../../service/storage.service';
 import {Router} from '@angular/router';
+import {environment} from '../../../environments/environment.prod';
 
 @Component({
   selector: 'app-main',
@@ -85,7 +86,8 @@ export class MainComponent implements OnInit {
 
   calculateList(selectedCal: string) {
     this._storageService.saveCalType(selectedCal);
-    this._router.navigateByUrl('/result');
+    // this._router.navigateByUrl('/result');
+    window.open('/result', '_blank');
   }
 
   deleteInput(data: InputModel) {
@@ -98,7 +100,7 @@ export class MainComponent implements OnInit {
     this._locale.setCurrentLanguage(language);
   }
 
-  // @OnPageVisible()
+  // @OnPageVisible() d
   // logWhenPageVisible(): void {
   //   console.log( 'OnPageVisible' );
   //   console.log( 'visible' );

@@ -16,13 +16,13 @@ import {Untils} from '../../shared/untils';
 export class ResultComponent implements OnInit {
   @Language() lang: string;
 
-  resultModel: ResultModel[] = [];
   resultModel1: ResultModel[] = [];
   resultModel2: ResultModel[] = [];
   resultModel3: ResultModel[] = [];
   inputs: InputModel[];
   title: string;
   calType: string;
+  isStop: Boolean = false;
 
   constructor(public _storageService: StorageService,
               public service: FormulaService,
@@ -50,77 +50,84 @@ export class ResultComponent implements OnInit {
 
       this.getList(1)
         .then((s: ResultModel[]) => {
-          this.setRows(s)
+          this.setRows(s, 0)
             .then(() => {
               this._loadingService.resolve('result');
             });
-          return new Promise((resolve) => {
-            resolve(this.getList(2));
+          return new Promise((resolve, ) => {
+            if (this.isStop) {
+              resolve(this.getList(2));
+            } else {
+
+            }
           });
         })
         .then((s: ResultModel[]) => {
-          this.setRows(s);
+          this.setRows(s, 10);
           return this.getList(3);
         })
         .then((s: ResultModel[]) => {
-          this.setRows(s);
+          this.setRows(s, 20);
           return this.getList(4);
         })
         .then((s: ResultModel[]) => {
-          this.setRows(s);
+          this.setRows(s, 30);
           return this.getList(5);
         })
         .then((s: ResultModel[]) => {
-          this.setRows(s);
+          this.setRows(s, 40);
           return this.getList(6);
         })
         .then((s: ResultModel[]) => {
-          this.setRows(s);
+          this.setRows(s, 50);
           return this.getList(7);
         })
         .then((s: ResultModel[]) => {
-          this.setRows(s);
+          this.setRows(s, 60);
           return this.getList(8);
         })
         .then((s: ResultModel[]) => {
-          this.setRows(s);
+          this.setRows(s, 70);
           return this.getList(9);
         })
         .then((s: ResultModel[]) => {
-          this.setRows(s);
+          this.setRows(s, 80);
           return this.getList(10);
         })
         .then((s: ResultModel[]) => {
-          this.setRows(s);
+          this.setRows(s, 90);
           return this.getList(11);
         })
         .then((s: ResultModel[]) => {
-          this.setRows(s);
+          this.setRows(s, 100);
           return this.getList(12);
         })
         .then((s: ResultModel[]) => {
-          this.setRows(s);
+          this.setRows(s, 110);
           return this.getList(13);
         })
         .then((s: ResultModel[]) => {
-          this.setRows(s);
+          this.setRows(s, 120);
           return this.getList(14);
         })
         .then((s: ResultModel[]) => {
-          this.setRows(s);
+          this.setRows(s, 130);
           return this.getList(15);
         })
         .then((s: ResultModel[]) => {
-          this.setRows(s);
+          this.setRows(s, 140);
           return this.getList(16);
         })
         .then((s: ResultModel[]) => {
-          this.setRows(s);
+          this.setRows(s, 150);
           return this.getList(17);
         })
         .then((s: ResultModel[]) => {
-          this.setRows(s);
+          this.setRows(s, 160);
           return this.getList(18);
+        })
+        .then((s: ResultModel[]) => {
+          this.setRows(s, 170);
         });
     }
   }
@@ -130,20 +137,20 @@ export class ResultComponent implements OnInit {
     return this.service.formulaCalculateHero(index, this.inputs, this.calType);
   }
 
-  async setRows(s: ResultModel[]) {
+  async setRows(s: ResultModel[], start: Number) {
 
     await this.delay(500);
 
-    await this.setRow(s, 1);
+    await this.setRow(s, 1, start);
 
-    await this.setRow(s, 2);
+    await this.setRow(s, 2, start);
 
-    await this.setRow(s, 3);
+    await this.setRow(s, 3, start);
   }
 
-  async setRow(s: ResultModel[], row: Number) {
+  async setRow(s: ResultModel[], row: Number, start: any) {
 
-    let _index = 0;
+    let _index = start;
 
     switch (row) {
       case 1 : {
@@ -177,6 +184,7 @@ export class ResultComponent implements OnInit {
   }
 
   disable() {
-    this._router.navigateByUrl('/');
+    // this._router.navigateByUrl('/');
+    window.close();
   }
 }

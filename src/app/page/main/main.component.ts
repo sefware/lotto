@@ -86,8 +86,8 @@ export class MainComponent implements OnInit {
 
   calculateList(selectedCal: string) {
     this._storageService.saveCalType(selectedCal);
-    // this._router.navigateByUrl('/result');
-    window.open('/result', '_blank');
+    this._router.navigateByUrl('/result');
+    // window.open('/result', '_blank');
   }
 
   deleteInput(data: InputModel) {

@@ -987,7 +987,11 @@ export class FormulaService {
         break;
       }
       case '*': {
-        calValue = Number(value) * operationValue;
+        if (Number(value) !== 0) {
+          calValue = Number(value) * operationValue;
+        } else {
+          calValue = operationValue;
+        }
         break;
       }
     }

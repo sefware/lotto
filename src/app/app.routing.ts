@@ -3,33 +3,32 @@ import {RouterModule, Routes} from '@angular/router';
 import {DataComponent} from './page/data/data.component';
 import {ResultComponent} from './page/result/result.component';
 import {MainComponent} from './page/main/main.component';
+import {AppService} from './service/app.service';
+import {LoginService} from './service/login.service';
+import {LoginComponent} from './page/login/login.component';
 
 const routes: Routes = [
   {
     path: '',
-    // canActivate: [AppService],
+    canActivate: [AppService],
     component: MainComponent,
-    children: [
-      // {path: 'data', component: DataComponent},
-      // {path: 'result', component: ResultComponent}
-    ]
   },
   {
     path: 'data',
-    // canActivate: [AppService],
+    canActivate: [AppService],
     component: DataComponent,
   },
   {
     path: 'result',
-    // canActivate: [AppService],
+    canActivate: [AppService],
     component: ResultComponent,
   },
   {
     path: 'login',
-    // canActivate: [LoginService],
-    loadChildren: './page/login/login.module#LoginModule',
+    canActivate: [LoginService],
+    component: LoginComponent
   },
-  {path: '**', redirectTo: '/', pathMatch: 'full'},
+  {path: '**', redirectTo: '/login', pathMatch: 'full'},
 ];
 
 @NgModule({

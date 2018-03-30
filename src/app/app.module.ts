@@ -25,6 +25,7 @@ import {FormulaService} from './service/formula.service';
 import {AngularPageVisibilityModule} from 'angular-page-visibility';
 import {HttpClientModule} from '@angular/common/http';
 import {LongPressModule} from 'ngx-long-press/dist/src';
+import {LoginComponent} from './page/login/login.component';
 
 
 const l10nConfig: L10nConfig = {
@@ -46,6 +47,7 @@ const l10nConfig: L10nConfig = {
     AppComponent,
     DataComponent,
     ResultComponent,
+    LoginComponent,
     MainComponent
   ],
   imports: [
@@ -66,7 +68,8 @@ const l10nConfig: L10nConfig = {
   entryComponents: [
     DataComponent,
     ResultComponent,
-    MainComponent
+    MainComponent,
+    LoginComponent
   ],
   providers: [
     AuthService,

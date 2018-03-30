@@ -17,11 +17,11 @@ export class AppService implements CanActivate {
 
   canActivate(): Observable<boolean> {
     return this._authService.authentication.authState
-      // .do((user) => {
-      //   if (!this._authService.verified(user)) {
-      //     this._router.navigateByUrl('/login');
-      //   }
-      // })
+      .do((user) => {
+        if (!this._authService.verified(user)) {
+          this._router.navigateByUrl('/login');
+        }
+      })
       .map((user) => this._authService.verified(user));
   }
 

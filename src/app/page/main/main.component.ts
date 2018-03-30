@@ -8,6 +8,7 @@ import {StorageService} from '../../service/storage.service';
 import {Router} from '@angular/router';
 import {environment} from '../../../environments/environment.prod';
 import {MatMenuTrigger} from '@angular/material';
+import {AuthService} from '../../service/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -30,6 +31,7 @@ export class MainComponent implements OnInit {
   calculate = Untils.calulate;
 
   constructor(public _storageService: StorageService,
+              public _userService: AuthService,
               private _router: Router,
               private _locale: LocaleService,
               private _dialogService: TdDialogService,
@@ -45,6 +47,12 @@ export class MainComponent implements OnInit {
       // console.log('isBigScreen : ' + this.isBigScreen);
     });
     // this._loadingService.register('main');
+  }
+
+  signOut() {
+    this._userService.authentication.auth.signOut().then(s => {
+      this._router.navigateByUrl('/login');
+    });
   }
 
   someMethod() {

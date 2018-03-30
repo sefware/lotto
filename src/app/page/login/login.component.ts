@@ -45,11 +45,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   login() {
-    console.log('username : ' + this, this.username);
-    console.log('password : ' + this, this.password);
-
     // this.error = false;
     this._loadingService.register();
+    this._authService.authentication.app.auth().languageCode = 'th';
     this._authService.authentication.auth.signInWithEmailAndPassword(this.username + '@herolotto.com', this.password)
       .then((user: firebase.User) => {
         this._loadingService.resolve();

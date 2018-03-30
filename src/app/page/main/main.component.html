@@ -1,20 +1,22 @@
 <td-layout>
-  <!--<td-navigation-drawer flex sidenavTitle="สูตรหวย" name="Firstname Lastname">-->
-  <!--<mat-nav-list>-->
-  <!--<a mat-list-item>-->
-  <!--<mat-icon>home</mat-icon>-->
-  <!--Home</a>-->
-  <!--</mat-nav-list>-->
-  <!--</td-navigation-drawer>-->
+  <td-navigation-drawer flex sidenavTitle="HERO LOTTO" name="Firstname Lastname">
+    <mat-nav-list>
+      <a mat-list-item (click)="signOut()">
+        <mat-icon style="margin-right: 10px">power_settings_new
+        </mat-icon>
+        ออกจากระบบ</a>
+    </mat-nav-list>
+    <!--<div style="height: 1px;background: #ddd"></div>-->
+  </td-navigation-drawer>
   <td-layout-nav toolbarTitle="HERO LOTTO" navigationRoute="/">
 
-    <!--<button mat-icon-button td-menu-button tdLayoutToggle>-->
-    <!--<mat-icon>menu</mat-icon>-->
-    <!--</button>-->
+    <button mat-icon-button td-menu-button tdLayoutToggle>
+      <mat-icon>menu</mat-icon>
+    </button>
 
     <div td-toolbar-content layout="row" layout-align="start center" fxFlex="true">
       <!--<mat-icon [routerLink]="['/']" class="mat-icon-logo cursor-pointer" svgIcon="assets:teradata"></mat-icon>-->
-      <div class="version">version 1.17</div>
+      <div class="version">version 1.18</div>
       <span fxFlex="true"></span>
 
       <!--<button class="overflow-visible" mat-icon-button [matMenuTriggerFor]="notificationsMenu">-->
@@ -186,29 +188,30 @@
                 </div>
 
                 <!--<div fxLayout="row" fxLayoutAlign="center" style="margin-top: 10px">-->
-                  <!--<button fxFlex mat-raised-button color="primary" (click)="calculateList('4')">-->
-                    <!--{{calculate[11].viewValue}}-->
-                  <!--</button>-->
-                  <!--<button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary"-->
-                          <!--(click)="calculateList('5')">-->
-                    <!--{{calculate[12].viewValue}}-->
-                  <!--</button>-->
-                  <!--<button-->
-                    <!--[longPress]="5000"-->
-                    <!--(onRelease)="someMethod()"-->
-                    <!--class="disable-button"-->
-                    <!--fxFlex mat-raised-button [disabled]="false">-->
-                    <!--สูตรอื่นๆ-->
-                  <!--</button>-->
+                <!--<button fxFlex mat-raised-button color="primary" (click)="calculateList('4')">-->
+                <!--{{calculate[11].viewValue}}-->
+                <!--</button>-->
+                <!--<button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary"-->
+                <!--(click)="calculateList('5')">-->
+                <!--{{calculate[12].viewValue}}-->
+                <!--</button>-->
+                <!--<button-->
+                <!--[longPress]="5000"-->
+                <!--(onRelease)="someMethod()"-->
+                <!--class="disable-button"-->
+                <!--fxFlex mat-raised-button [disabled]="false">-->
+                <!--สูตรอื่นๆ-->
+                <!--</button>-->
 
-                  <!---->
+                <!---->
                 <!--</div>-->
 
                 <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 10px">
                   <button fxFlex mat-raised-button color="primary" (click)="calculateList('4')">
                     {{calculate[11].viewValue}}
                   </button>
-                  <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary" (click)="calculateList('5')">
+                  <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary"
+                          (click)="calculateList('5')">
                     {{calculate[12].viewValue}}
                   </button>
                   <button fxFlex mat-raised-button color="primary" (click)="calculateList('14')">
@@ -220,7 +223,8 @@
                   <button fxFlex mat-raised-button color="primary" (click)="calculateList('15')">
                     {{calculate[14].viewValue}}
                   </button>
-                  <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary" (click)="calculateList('16')">
+                  <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary"
+                          (click)="calculateList('16')">
                     {{calculate[15].viewValue}}
                   </button>
                   <button fxFlex mat-raised-button color="primary" [disabled]="true">

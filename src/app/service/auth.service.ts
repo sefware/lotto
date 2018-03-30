@@ -93,18 +93,17 @@ export class AuthService {
   // }
 
   // signOut(): void {
-  //   if (this.currentUser) {
-  //     firebase.database().ref('status/' + this.currentUser.uid).set(
-  //       new UserStatus({
-  //         uid: this.currentUser.uid,
-  //         state: 'offline',
-  //         last_changed: firebase.database.ServerValue.TIMESTAMP
-  //       })
-  //     );
-  //   }
-  //   this.currentProperty = null;
-  //   this.authentication.auth.signOut();
-  //   this._router.navigateByUrl('/login');
+    // if (this.currentUser) {
+    //   firebase.database().ref('status/' + this.currentUser.uid).set(
+    //     new UserStatus({
+    //       uid: this.currentUser.uid,
+    //       state: 'offline',
+    //       last_changed: firebase.database.ServerValue.TIMESTAMP
+    //     })
+    //   );
+    // }
+    // this.authentication.auth.signOut();
+    // this._router.navigateByUrl('/login');
   // }
 
 }

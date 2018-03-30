@@ -3,7 +3,107 @@
 :host /deep/ {
 
   .body {
-    background: $default-primary-color;
+    background: #2F4359;
+  }
+
+  .well-come-title {
+    color: #ffffff;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin-top: 20px;
+  }
+
+  .well-come-back {
+    color: #02AEF0;
+    font-size: large;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+  .button {
+    background-color: #0091DE;
+    border-radius: 20px;
+  }
+
+  .forgot {
+    margin: auto;
+    padding-top: 10px;
+    color: #ffffff;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .forgot:hover {
+    color: #02AEF0;
+  }
+
+  /deep/ .mat-form-field {
+    margin-right: 40px;
+  }
+
+  /deep/ .mat-form-field-flex {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    border: 2px solid #0091DE;
+    border-radius: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /deep/ .mat-form-field-underline {
+    background-color: transparent;
+  }
+
+  /deep/ .mat-form-field-ripple {
+    background-color: transparent;
+  }
+
+  /deep/ .mat-form-field-prefix {
+    margin-right: 20px;
+  }
+
+  /deep/ .mat-form-field-infix {
+    padding: 0.35em 0;
+    border-top: 0;
+    line-height: 28px;
+  }
+
+  /deep/ .mat-form-field-wrapper {
+    padding-bottom: 0.7em;
+  }
+
+  /deep/ .mat-input-element {
+    caret-color: #0091DE;
+  }
+
+  /deep/ .mat-form-field-label {
+    color: #fff !important;
+  }
+
+  /deep/ .mat-input-element {
+    font: inherit;
+    background: 0 0;
+    color: #ffffff;
+    border: none;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    vertical-align: bottom;
+    text-align: inherit;
+  }
+
+  .input-box {
+    width: 300px;
+    padding: 10px;
+    margin: auto;
+  }
+
+  .input {
+    //max-width: 300px;
   }
 
   .card {
@@ -135,5 +235,5 @@
   width: 100%;
   overflow: auto;
   text-align: center;
-  background: $card-background;
+  background: #2F4359;
 }

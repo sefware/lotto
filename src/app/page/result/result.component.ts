@@ -54,77 +54,107 @@ export class ResultComponent implements OnInit {
             .then(() => {
               this._loadingService.resolve('result');
             });
-          return new Promise((resolve, ) => {
-            if (this.isStop) {
+          return new Promise((resolve,) => {
+            if (!this.isStop) {
               resolve(this.getList(2));
-            } else {
-
             }
           });
         })
         .then((s: ResultModel[]) => {
           this.setRows(s, 10);
-          return this.getList(3);
+          if (!this.isStop) {
+            return this.getList(3);
+          }
         })
         .then((s: ResultModel[]) => {
           this.setRows(s, 20);
-          return this.getList(4);
+          if (!this.isStop) {
+            return this.getList(4);
+          }
         })
         .then((s: ResultModel[]) => {
           this.setRows(s, 30);
-          return this.getList(5);
+          if (!this.isStop) {
+            return this.getList(5);
+          }
         })
         .then((s: ResultModel[]) => {
           this.setRows(s, 40);
-          return this.getList(6);
+          if (!this.isStop) {
+            return this.getList(6);
+          }
         })
         .then((s: ResultModel[]) => {
           this.setRows(s, 50);
-          return this.getList(7);
+          if (!this.isStop) {
+            return this.getList(7);
+          }
         })
         .then((s: ResultModel[]) => {
           this.setRows(s, 60);
-          return this.getList(8);
+          if (!this.isStop) {
+            return this.getList(8);
+          }
         })
         .then((s: ResultModel[]) => {
           this.setRows(s, 70);
-          return this.getList(9);
+          if (!this.isStop) {
+            return this.getList(9);
+          }
         })
         .then((s: ResultModel[]) => {
           this.setRows(s, 80);
-          return this.getList(10);
+          if (!this.isStop) {
+            return this.getList(10);
+          }
         })
         .then((s: ResultModel[]) => {
           this.setRows(s, 90);
-          return this.getList(11);
+          if (!this.isStop) {
+            return this.getList(11);
+          }
         })
         .then((s: ResultModel[]) => {
           this.setRows(s, 100);
-          return this.getList(12);
+          if (!this.isStop) {
+            return this.getList(12);
+          }
         })
         .then((s: ResultModel[]) => {
           this.setRows(s, 110);
-          return this.getList(13);
+          if (!this.isStop) {
+            return this.getList(13);
+          }
         })
         .then((s: ResultModel[]) => {
           this.setRows(s, 120);
-          return this.getList(14);
+          if (!this.isStop) {
+            return this.getList(14);
+          }
         })
         .then((s: ResultModel[]) => {
           this.setRows(s, 130);
-          return this.getList(15);
+          if (!this.isStop) {
+            return this.getList(15);
+          }
         })
         .then((s: ResultModel[]) => {
           this.setRows(s, 140);
-          return this.getList(16);
+          if (!this.isStop) {
+            return this.getList(16);
+          }
         })
         .then((s: ResultModel[]) => {
           this.setRows(s, 150);
-          return this.getList(17);
+          if (!this.isStop) {
+            return this.getList(17);
+          }
         })
         .then((s: ResultModel[]) => {
           this.setRows(s, 160);
-          return this.getList(18);
+          if (!this.isStop) {
+            return this.getList(18);
+          }
         })
         .then((s: ResultModel[]) => {
           this.setRows(s, 170);
@@ -184,7 +214,8 @@ export class ResultComponent implements OnInit {
   }
 
   disable() {
-    // this._router.navigateByUrl('/');
-    window.close();
+    this.isStop = true;
+    this._router.navigateByUrl('/');
+    // window.close();
   }
 }

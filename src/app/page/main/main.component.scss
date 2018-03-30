@@ -41,6 +41,11 @@
   background: $default-primary-color;
 }
 
+.disable-button{
+  color: #AAAAAA;
+  background-color:#EEEEEE;
+}
+
 /deep/ .mat-tab-label {
   display: none !important;
 }

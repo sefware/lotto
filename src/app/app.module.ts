@@ -24,6 +24,7 @@ import {StorageService} from './service/storage.service';
 import {FormulaService} from './service/formula.service';
 import {AngularPageVisibilityModule} from 'angular-page-visibility';
 import {HttpClientModule} from '@angular/common/http';
+import {LongPressModule} from 'ngx-long-press/dist/src';
 
 
 const l10nConfig: L10nConfig = {
@@ -59,7 +60,8 @@ const l10nConfig: L10nConfig = {
     SharedModule,
     TextMaskModule,
     AngularPageVisibilityModule,
-    HttpClientModule
+    HttpClientModule,
+    LongPressModule
   ],
   entryComponents: [
     DataComponent,

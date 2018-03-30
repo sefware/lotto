@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {Language, LocaleService} from 'angular-l10n';
 import {BreakpointObserver} from '@angular/cdk/layout';
 import {Untils} from '../../shared/untils';
@@ -7,6 +7,7 @@ import {InputModel} from '../../model/input.model';
 import {StorageService} from '../../service/storage.service';
 import {Router} from '@angular/router';
 import {environment} from '../../../environments/environment.prod';
+import {MatMenuTrigger} from '@angular/material';
 
 @Component({
   selector: 'app-main',
@@ -16,6 +17,7 @@ import {environment} from '../../../environments/environment.prod';
 export class MainComponent implements OnInit {
 
   @Language() lang: string;
+  @ViewChild('menu') trigger: MatMenuTrigger;
 
   isSmallScreen = false;
   isBigScreen = false;
@@ -43,6 +45,10 @@ export class MainComponent implements OnInit {
       // console.log('isBigScreen : ' + this.isBigScreen);
     });
     // this._loadingService.register('main');
+  }
+
+  someMethod() {
+    this.trigger.openMenu();
   }
 
   async delay(milliseconds: number) {

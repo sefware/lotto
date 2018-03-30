@@ -53,6 +53,7 @@
     "font-awesome": "^4.7.0",
     "fs": "0.0.1-security",
     "hammerjs": "^2.0.8",
+    "ngx-long-press": "0.0.1",
     "ngx-store": "^1.4.1",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^5.5.7",
@@ -60,13 +61,10 @@
     "zone.js": "^0.8.20"
   },
   "devDependencies": {
-    "@angular/cli": "1.7.2",
-    "@angular/compiler-cli": "^5.2.7",
-    "@angular/language-service": "^5.2.7",
-    "@types/google.analytics": "0.0.38",
     "@angular/cli": "1.7.3",
     "@angular/compiler-cli": "^5.2.9",
     "@angular/language-service": "^5.2.9",
+    "@types/google.analytics": "0.0.38",
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^9.4.7",

@@ -35,16 +35,23 @@ export class FormulaService {
     return 'H' + index;
   }
 
-  calculatFromServer(inputs: InputModel[]) {
-    return this.http
-      .post(environment.api + '/calLotto',
-        JSON.stringify({
-          inputs: inputs
-        }),
-        {
-          headers: new HttpHeaders().set('Content-Type', 'application/json')
-        })
-      ;
+  swapInput(inputs: InputModel[], calType: string) {
+
+    if (calType === '8' || calType === '9' || calType === '10' || calType === '11' || calType === '12' || calType === '13') {
+      return inputs;
+    } else {
+      const _input = [];
+      inputs.forEach(s => {
+        const _up = s.low + s.up.substr(0, 1);
+        const _low = s.up.substr(1, 2);
+        _input.push({
+          time: s.time,
+          up: _up,
+          low: _low
+        });
+      });
+      return _input;
+    }
   }
 
   getFormula(index: number) {
@@ -170,7 +177,8 @@ export class FormulaService {
   }
 
   async formulaCalculateHero(index: number, inputs: InputModel[], calType: string) {
-    this.inputs = inputs;
+    this.inputs = this.swapInput(inputs, calType);
+    // this.inputs = inputs;
     const resultModel: ResultModel[] = [];
 
     switch (index) {
@@ -933,6 +941,90 @@ export class FormulaService {
           }
           break;
         }
+        case '14': {
+          _calValueFinal = calValueFinal;
+          for (let _i = 1; _i < 5; _i++) {
+            let next = String(Number(_calValueFinal) + _i);
+            if (String(next).length > 1) {
+              const _calValue = String(next).substring(String(next).length - 1, String(next).length);
+              next = _calValue;
+            }
+            calValueFinal = calValueFinal + next;
+          }
+          calValue = calValueFinal;
+
+          if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
+            const valueResult0 = this.inputs[this.inputs.indexOf(s) + 1].up[0];
+            const valueResult1 = this.inputs[this.inputs.indexOf(s) + 1].up[1];
+            const valueResult2 = this.inputs[this.inputs.indexOf(s) + 1].up[2];
+
+            const checkValue0 = calValue.match(new RegExp(valueResult0, 'g'));
+            const checkValue1 = calValue.match(new RegExp(valueResult1, 'g'));
+            const checkValue2 = calValue.match(new RegExp(valueResult2, 'g'));
+
+            if (checkValue0 && checkValue1 && checkValue2 && checkValue0.length > 0 && checkValue1.length > 0 && checkValue2.length > 0) {
+              sumResult = true;
+              SumresultCount = 0;
+            }
+          }
+          break;
+        }
+        case '15': {
+          _calValueFinal = calValueFinal;
+          for (let _i = 1; _i < 6; _i++) {
+            let next = String(Number(_calValueFinal) + _i);
+            if (String(next).length > 1) {
+              const _calValue = String(next).substring(String(next).length - 1, String(next).length);
+              next = _calValue;
+            }
+            calValueFinal = calValueFinal + next;
+          }
+          calValue = calValueFinal;
+
+          if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
+            const valueResult0 = this.inputs[this.inputs.indexOf(s) + 1].up[0];
+            const valueResult1 = this.inputs[this.inputs.indexOf(s) + 1].up[1];
+            const valueResult2 = this.inputs[this.inputs.indexOf(s) + 1].up[2];
+
+            const checkValue0 = calValue.match(new RegExp(valueResult0, 'g'));
+            const checkValue1 = calValue.match(new RegExp(valueResult1, 'g'));
+            const checkValue2 = calValue.match(new RegExp(valueResult2, 'g'));
+
+            if (checkValue0 && checkValue1 && checkValue2 && checkValue0.length > 0 && checkValue1.length > 0 && checkValue2.length > 0) {
+              sumResult = true;
+              SumresultCount = 0;
+            }
+          }
+          break;
+        }
+        case '16': {
+          _calValueFinal = calValueFinal;
+          for (let _i = 1; _i < 7; _i++) {
+            let next = String(Number(_calValueFinal) + _i);
+            if (String(next).length > 1) {
+              const _calValue = String(next).substring(String(next).length - 1, String(next).length);
+              next = _calValue;
+            }
+            calValueFinal = calValueFinal + next;
+          }
+          calValue = calValueFinal;
+
+          if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
+            const valueResult0 = this.inputs[this.inputs.indexOf(s) + 1].up[0];
+            const valueResult1 = this.inputs[this.inputs.indexOf(s) + 1].up[1];
+            const valueResult2 = this.inputs[this.inputs.indexOf(s) + 1].up[2];
+
+            const checkValue0 = calValue.match(new RegExp(valueResult0, 'g'));
+            const checkValue1 = calValue.match(new RegExp(valueResult1, 'g'));
+            const checkValue2 = calValue.match(new RegExp(valueResult2, 'g'));
+
+            if (checkValue0 && checkValue1 && checkValue2 && checkValue0.length > 0 && checkValue1.length > 0 && checkValue2.length > 0) {
+              sumResult = true;
+              SumresultCount = 0;
+            }
+          }
+          break;
+        }
       }
 
 
@@ -995,7 +1087,6 @@ export class FormulaService {
         break;
       }
     }
-
     return calValue;
   }
 }

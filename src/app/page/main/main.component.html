@@ -14,7 +14,7 @@
 
     <div td-toolbar-content layout="row" layout-align="start center" fxFlex="true">
       <!--<mat-icon [routerLink]="['/']" class="mat-icon-logo cursor-pointer" svgIcon="assets:teradata"></mat-icon>-->
-      <div class="version">version 1.13</div>
+      <div class="version">version 1.17</div>
       <span fxFlex="true"></span>
 
       <!--<button class="overflow-visible" mat-icon-button [matMenuTriggerFor]="notificationsMenu">-->
@@ -152,7 +152,8 @@
                     {{calculate[0].viewValue}}
                   </button>
                   <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary"
-                          (click)="calculateList('6')">{{calculate[1].viewValue}}
+                          (click)="calculateList('6')">
+                    {{calculate[1].viewValue}}
                   </button>
                   <button fxFlex mat-raised-button color="primary" (click)="calculateList('7')">
                     {{calculate[2].viewValue}}
@@ -160,15 +161,15 @@
                 </div>
 
                 <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 10px">
-                  <button fxFlex mat-raised-button color="primary"
-                          (click)="calculateList('9')">{{calculate[4].viewValue}}
+                  <button fxFlex mat-raised-button color="primary" (click)="calculateList('9')">
+                    {{calculate[4].viewValue}}
                   </button>
                   <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary"
                           (click)="calculateList('10')">
                     {{calculate[5].viewValue}}
                   </button>
-                  <button fxFlex mat-raised-button color="primary"
-                          (click)="calculateList('12')">{{calculate[7].viewValue}}
+                  <button fxFlex mat-raised-button color="primary" (click)="calculateList('12')">
+                    {{calculate[7].viewValue}}
                   </button>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 10px">
@@ -179,26 +180,69 @@
                           (click)="calculateList('2')">
                     {{calculate[9].viewValue}}
                   </button>
-                  <button fxFlex mat-raised-button color="primary"
-                          (click)="calculateList('3')">{{calculate[10].viewValue}}
+                  <button fxFlex mat-raised-button color="primary" (click)="calculateList('3')">
+                    {{calculate[10].viewValue}}
+                  </button>
+                </div>
+
+                <!--<div fxLayout="row" fxLayoutAlign="center" style="margin-top: 10px">-->
+                  <!--<button fxFlex mat-raised-button color="primary" (click)="calculateList('4')">-->
+                    <!--{{calculate[11].viewValue}}-->
+                  <!--</button>-->
+                  <!--<button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary"-->
+                          <!--(click)="calculateList('5')">-->
+                    <!--{{calculate[12].viewValue}}-->
+                  <!--</button>-->
+                  <!--<button-->
+                    <!--[longPress]="5000"-->
+                    <!--(onRelease)="someMethod()"-->
+                    <!--class="disable-button"-->
+                    <!--fxFlex mat-raised-button [disabled]="false">-->
+                    <!--สูตรอื่นๆ-->
+                  <!--</button>-->
+
+                  <!---->
+                <!--</div>-->
+
+                <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 10px">
+                  <button fxFlex mat-raised-button color="primary" (click)="calculateList('4')">
+                    {{calculate[11].viewValue}}
+                  </button>
+                  <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary" (click)="calculateList('5')">
+                    {{calculate[12].viewValue}}
+                  </button>
+                  <button fxFlex mat-raised-button color="primary" (click)="calculateList('14')">
+                    {{calculate[13].viewValue}}
                   </button>
                 </div>
 
                 <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 10px">
-
-                  <button fxFlex mat-raised-button color="primary" (click)="calculateList('4')">
-                    {{calculate[11].viewValue}}
+                  <button fxFlex mat-raised-button color="primary" (click)="calculateList('15')">
+                    {{calculate[14].viewValue}}
                   </button>
-                  <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary"
-                          (click)="calculateList('5')">
-                    {{calculate[12].viewValue}}
+                  <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button color="primary" (click)="calculateList('16')">
+                    {{calculate[15].viewValue}}
                   </button>
-                  <button fxFlex mat-raised-button color="primary"
-                          [disabled]="true" (click)="calculateList('5')">สูตรอื่นๆ
+                  <button fxFlex mat-raised-button color="primary" [disabled]="true">
+                    สูตรอื่นๆ
                   </button>
                 </div>
 
               </div>
+
+
+              <button
+                #menu="matMenuTrigger"
+                [matMenuTriggerFor]="appMenu"
+                style="display: none">
+                สูตรอื่นๆ
+              </button>
+
+              <mat-menu #appMenu="matMenu">
+                <button mat-menu-item (click)="calculateList('14')">{{calculate[13].viewValue}}</button>
+                <button mat-menu-item (click)="calculateList('15')">{{calculate[14].viewValue}}</button>
+                <button mat-menu-item (click)="calculateList('16')">{{calculate[15].viewValue}}</button>
+              </mat-menu>
 
             </mat-card>
 

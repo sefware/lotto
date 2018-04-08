@@ -104,6 +104,18 @@ export class MainComponent implements OnInit {
     // window.open('/result', '_blank');
   }
 
+  calculateTList(selectedCal: string) {
+    this._storageService.saveCalType(selectedCal);1
+    this._router.navigateByUrl('/resultT');
+    // window.open('/result', '_blank');
+  }
+
+  calculateT2List(selectedCal: string) {
+    this._storageService.saveCalType(selectedCal);1
+    this._router.navigateByUrl('/resultT2');
+    // window.open('/result', '_blank');
+  }
+
   deleteInput(data: InputModel) {
     this._storageService.removeData(data.time);
     this.inputs = this._storageService.getListData();
@@ -113,26 +125,4 @@ export class MainComponent implements OnInit {
   selectLanguage(language: string): void {
     this._locale.setCurrentLanguage(language);
   }
-
-  // @OnPageVisible() d
-  // logWhenPageVisible(): void {
-  //   console.log( 'OnPageVisible' );
-  //   console.log( 'visible' );
-  // }
-  //
-  // @OnPageHidden()
-  // logWhenPageHidden(): void {
-  //   console.log( 'OnPageHidden' );
-  //   console.log( 'hidden' );
-  // }
-  //
-  // @OnPageVisibilityChange()
-  // logWhenPageVisibilityChange( isPageVisible: boolean ): void {
-  //   console.log( 'OnPageVisibilityChange' );
-  //   if ( isPageVisible ) {
-  //     console.log( 'visible' );
-  //   } else {
-  //     console.log( 'hidden' );
-  //   }
-  // }
 }

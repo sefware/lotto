@@ -26,6 +26,7 @@ import {
   CovalentLoadingModule,
   CovalentMediaModule,
   CovalentNotificationsModule,
+  CovalentDialogsModule,
   TdDialogService
 } from '@covalent/core';
 import {InputDialogComponent} from '../dialog/input/input_dialog.component';
@@ -53,7 +54,8 @@ const COVALENT_MODULES: any[] = [
   CovalentMediaModule,
   CovalentLayoutModule,
   CovalentNotificationsModule,
-  CovalentLoadingModule
+  CovalentLoadingModule,
+  CovalentDialogsModule
 ];
 
 const ANGULAR_MODULES: any[] = [

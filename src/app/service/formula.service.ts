@@ -2,11 +2,13 @@ import {Injectable} from '@angular/core';
 import {InputModel} from '../model/input.model';
 import {ResultModel} from '../model/result.model';
 import {ResultInputModel} from '../model/result_input.model';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {environment} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {ResultPredictModel} from '../model/result_predict.model';
 
 @Injectable()
 export class FormulaService {
+
+  predict: ResultPredictModel;
 
   inputs = [];
 
@@ -998,6 +1000,35 @@ export class FormulaService {
           break;
         }
         case '16': {
+          _calValueFinal = calValueFinal;
+          for (let _i = 1; _i < 7; _i++) {
+            let next = String(Number(_calValueFinal) + _i);
+            if (String(next).length > 1) {
+              const _calValue = String(next).substring(String(next).length - 1, String(next).length);
+              next = _calValue;
+            }
+            calValueFinal = calValueFinal + next;
+          }
+          calValue = calValueFinal;
+
+          if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
+            const valueResult0 = this.inputs[this.inputs.indexOf(s) + 1].up[0];
+            const valueResult1 = this.inputs[this.inputs.indexOf(s) + 1].up[1];
+            const valueResult2 = this.inputs[this.inputs.indexOf(s) + 1].up[2];
+
+            const checkValue0 = calValue.match(new RegExp(valueResult0, 'g'));
+            const checkValue1 = calValue.match(new RegExp(valueResult1, 'g'));
+            const checkValue2 = calValue.match(new RegExp(valueResult2, 'g'));
+
+            if (checkValue0 && checkValue1 && checkValue2 && checkValue0.length > 0 && checkValue1.length > 0 && checkValue2.length > 0) {
+              sumResult = true;
+              SumresultCount = 0;
+            }
+          }
+          break;
+        }
+
+        case '17': {
           _calValueFinal = calValueFinal;
           for (let _i = 1; _i < 7; _i++) {
             let next = String(Number(_calValueFinal) + _i);

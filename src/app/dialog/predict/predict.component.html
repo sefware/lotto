@@ -1,0 +1,35 @@
+<div class="form">
+
+  <mat-dialog-content>
+    <div fxLayout="column" class="data-list">
+      <div class="data-title">ผลรวม</div>
+      <div *ngFor="let result of datas.result; let i = index">
+        เลข {{ i }} = {{ result }}
+      </div>
+    </div>
+
+    <div fxLayout="column" class="data-list">
+      <div class="data-title">สถิติย้อนหลังเข้า 1 รอบ</div>
+      <div *ngFor="let result of datas.resultPredict1; let i = index">
+        เลข {{ i }} = {{ result }} ({{((datas.resultPredict1[i] * 100) / datas.result[i]).toFixed(2)}}%)
+      </div>
+    </div>
+
+    <div fxLayout="column" class="data-list">
+      <div class="data-title">สถิติย้อนหลังเข้า 2 รอบ</div>
+      <div *ngFor="let result of datas.resultPredict2; let i = index">
+        เลข {{ i }} = {{ result }} ({{((datas.resultPredict2[i] * 100) / datas.result[i]).toFixed(2)}}%)
+      </div>
+    </div>
+
+    <div fxLayout="column" class="data-list">
+      <div class="data-title">สถิติย้อนหลังเข้า 3 รอบ</div>
+      <div *ngFor="let result of datas.resultPredict3; let i = index">
+        เลข {{ i }} = {{ result }} ({{((datas.resultPredict3[i] * 100) / datas.result[i]).toFixed(2)}}%)
+      </div>
+    </div>
+
+  </mat-dialog-content>
+
+</div>
+

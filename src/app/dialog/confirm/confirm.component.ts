@@ -16,7 +16,6 @@ export class ConfirmComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public mdData: DialogModel) {
     this.data = mdData;
   }
-
 }
 
 export class DialogModel {

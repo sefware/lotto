@@ -26,6 +26,11 @@ import {AngularPageVisibilityModule} from 'angular-page-visibility';
 import {HttpClientModule} from '@angular/common/http';
 import {LongPressModule} from 'ngx-long-press/dist/src';
 import {LoginComponent} from './page/login/login.component';
+import {PredictComponent} from './dialog/predict/predict.component';
+import {ResultTComponent} from './page/resultT/resultT.component';
+import {FormulaTService} from './service/formulaT.service';
+import {ResultT2Component} from './page/resultT2/resultT2.component';
+import {FormulaT2Service} from './service/formulaT2.service';
 
 
 const l10nConfig: L10nConfig = {
@@ -47,8 +52,11 @@ const l10nConfig: L10nConfig = {
     AppComponent,
     DataComponent,
     ResultComponent,
+    ResultTComponent,
+    ResultT2Component,
     LoginComponent,
-    MainComponent
+    MainComponent,
+    PredictComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'hero-lotto'}),
@@ -68,15 +76,20 @@ const l10nConfig: L10nConfig = {
   entryComponents: [
     DataComponent,
     ResultComponent,
+    ResultTComponent,
+    ResultT2Component,
     MainComponent,
-    LoginComponent
+    LoginComponent,
+    PredictComponent
   ],
   providers: [
     AuthService,
     LoginService,
     AppService,
     StorageService,
-    FormulaService
+    FormulaService,
+    FormulaTService,
+    FormulaT2Service
   ],
   bootstrap: [AppComponent]
 })

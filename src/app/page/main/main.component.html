@@ -16,7 +16,7 @@
 
     <div td-toolbar-content layout="row" layout-align="start center" fxFlex="true">
       <!--<mat-icon [routerLink]="['/']" class="mat-icon-logo cursor-pointer" svgIcon="assets:teradata"></mat-icon>-->
-      <div class="version">version 1.18</div>
+      <div class="version">version 1.26</div>
       <span fxFlex="true"></span>
 
       <!--<button class="overflow-visible" mat-icon-button [matMenuTriggerFor]="notificationsMenu">-->
@@ -227,13 +227,25 @@
                           (click)="calculateList('16')">
                     {{calculate[15].viewValue}}
                   </button>
-                  <button fxFlex mat-raised-button color="primary" [disabled]="true">
+                  <button fxFlex mat-raised-button color="primary"
+                          (click)="calculateTList('17')">
+                    {{calculate[16].viewValue}}
+                  </button>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 10px">
+                  <button fxFlex mat-raised-button color="primary" (click)="calculateT2List('18')">
+                    {{calculate[17].viewValue}}
+                  </button>
+                  <button style="margin-left: 10px;margin-right: 10px;" fxFlex mat-raised-button [disabled]="true">
+                    สูตรอื่นๆ
+                  </button>
+                  <button fxFlex mat-raised-button color="primary" mat-raised-button [disabled]="true">
                     สูตรอื่นๆ
                   </button>
                 </div>
 
               </div>
-
 
               <button
                 #menu="matMenuTrigger"

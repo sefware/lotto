@@ -8,6 +8,7 @@ import {LoginService} from './service/login.service';
 import {LoginComponent} from './page/login/login.component';
 import {ResultTComponent} from './page/resultT/resultT.component';
 import {ResultT2Component} from './page/resultT2/resultT2.component';
+import {ResultT3Component} from './page/resultT3/resultT3.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,11 @@ const routes: Routes = [
     path: 'resultT2',
     canActivate: [AppService],
     component: ResultT2Component,
+  },
+  {
+    path: 'resultT3',
+    canActivate: [AppService],
+    component: ResultT3Component,
   },
   {
     path: 'login',

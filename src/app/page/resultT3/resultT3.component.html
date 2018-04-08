@@ -15,7 +15,7 @@
         <div fxFlex>
           <ng-template ngFor let-model [ngForOf]="resultModel1" let-currentModelIndex="index">
 
-            <mat-card class="card">
+            <mat-card class="card" *ngIf="model.name == 'A-010'">
               <mat-card-header>
                 <mat-card-title>{{model.name}} - {{model.summary}}:{{(model.inputs.length - 2) - model.summary}}
                 </mat-card-title>
@@ -62,7 +62,7 @@
         <div fxFlex>
           <ng-template ngFor let-model [ngForOf]="resultModel2" let-currentModelIndex="index">
 
-            <mat-card class="card">
+            <mat-card class="card" *ngIf="model.name == 'B-015'">
               <mat-card-header>
                 <mat-card-title>{{model.name}} - {{model.summary}}:{{(model.inputs.length - 2) - model.summary}}
                 </mat-card-title>

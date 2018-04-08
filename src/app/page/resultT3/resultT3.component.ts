@@ -7,13 +7,14 @@ import {Router} from '@angular/router';
 import {TdLoadingService} from '@covalent/core';
 import {Untils} from '../../shared/untils';
 import {FormulaT2Service} from '../../service/formulaT2.service';
+import {FormulaTService} from '../../service/formulaT.service';
 
 @Component({
-  selector: 'app-resultT2',
-  templateUrl: './resultT2.component.html',
-  styleUrls: ['./resultT2.component.scss']
+  selector: 'app-resultT3',
+  templateUrl: './resultT3.component.html',
+  styleUrls: ['./resultT3.component.scss']
 })
-export class ResultT2Component implements OnInit {
+export class ResultT3Component implements OnInit {
   @Language() lang: string;
 
   resultModel1: ResultModel[] = [];
@@ -24,7 +25,8 @@ export class ResultT2Component implements OnInit {
   isStop: Boolean = false;
 
   constructor(public _storageService: StorageService,
-              public service: FormulaT2Service,
+              public service1: FormulaTService,
+              public service2: FormulaT2Service,
               private _loadingService: TdLoadingService,
               private _router: Router) {
 
@@ -46,12 +48,12 @@ export class ResultT2Component implements OnInit {
       this.disable();
     } else {
       this.title = Untils.getCalculateTitle(this.calType);
-      this.getListA()
+      this.getList1()
         .then((s: ResultModel[]) => {
           this.setRows(s, 0)
             .then(() => {
               this._loadingService.resolve('result');
-              this.getListB().then((s: ResultModel[]) => {
+              this.getList2().then((s: ResultModel[]) => {
                 this.setRows(s, 0);
               });
             });
@@ -59,12 +61,12 @@ export class ResultT2Component implements OnInit {
     }
   }
 
-  getListA() {
-    return this.service.formulaCalculateA(this.inputs);
+  getList1() {
+    return this.service1.formulaCalculateA(this.inputs);
   }
 
-  getListB() {
-    return this.service.formulaCalculateB(this.inputs);
+  getList2() {
+    return this.service2.formulaCalculateB(this.inputs);
   }
 
   async setRows(s: ResultModel[], start: Number) {

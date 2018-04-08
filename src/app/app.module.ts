@@ -31,6 +31,7 @@ import {ResultTComponent} from './page/resultT/resultT.component';
 import {FormulaTService} from './service/formulaT.service';
 import {ResultT2Component} from './page/resultT2/resultT2.component';
 import {FormulaT2Service} from './service/formulaT2.service';
+import {ResultT3Component} from './page/resultT3/resultT3.component';
 
 
 const l10nConfig: L10nConfig = {
@@ -54,6 +55,7 @@ const l10nConfig: L10nConfig = {
     ResultComponent,
     ResultTComponent,
     ResultT2Component,
+    ResultT3Component,
     LoginComponent,
     MainComponent,
     PredictComponent
@@ -78,6 +80,7 @@ const l10nConfig: L10nConfig = {
     ResultComponent,
     ResultTComponent,
     ResultT2Component,
+    ResultT3Component,
     MainComponent,
     LoginComponent,
     PredictComponent

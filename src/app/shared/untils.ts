@@ -48,6 +48,7 @@ export class Untils {
 
     {value: '17', viewValue: 'หัวท้าย 6 ตัว', enable: true},
     {value: '18', viewValue: 'หัวท้าย 4 ตัว', enable: true},
+    {value: '19', viewValue: 'เทียบสูตร', enable: true},
   ];
 
   public static getCalculateTitle(value: string) {

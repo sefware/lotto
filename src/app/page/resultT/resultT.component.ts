@@ -28,7 +28,7 @@ export class ResultTComponent implements OnInit {
               private _loadingService: TdLoadingService,
               private _router: Router) {
 
-    this._loadingService.register('resultT');
+    this._loadingService.register('result');
   }
 
   async delay(milliseconds: number) {
@@ -48,9 +48,9 @@ export class ResultTComponent implements OnInit {
       this.title = Untils.getCalculateTitle(this.calType);
       this.getListA()
         .then((s: ResultModel[]) => {
-          this._loadingService.resolve('resultT');
           this.setRows(s, 0)
             .then(() => {
+              this._loadingService.resolve('result');
               this.getListB().then((s: ResultModel[]) => {
                 this.setRows(s, 0);
               });

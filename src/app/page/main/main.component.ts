@@ -116,6 +116,12 @@ export class MainComponent implements OnInit {
     // window.open('/result', '_blank');
   }
 
+  calculateT3List(selectedCal: string) {
+    this._storageService.saveCalType(selectedCal);1
+    this._router.navigateByUrl('/resultT3');
+    // window.open('/result', '_blank');
+  }
+
   deleteInput(data: InputModel) {
     this._storageService.removeData(data.time);
     this.inputs = this._storageService.getListData();

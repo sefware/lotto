@@ -77,6 +77,7 @@ export class FormulaT2Service {
     const resultList: ResultInputModel[] = [];
     this.inputs.forEach(s => {
       let value = s.up + s.low;
+
       let sumInput = Number(value) * Number(value);
 
       switch (type) {
@@ -145,7 +146,6 @@ export class FormulaT2Service {
           break;
         }
       }
-      sumInput = sumInput * Number(value);
 
       let checking = false;
       let resultCount = 0;
@@ -288,8 +288,6 @@ export class FormulaT2Service {
           break;
         }
       }
-
-      sumInput = sumInput * Number(value);
 
       let resultCount = 0;
       let checking = false;

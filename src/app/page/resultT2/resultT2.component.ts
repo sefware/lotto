@@ -48,7 +48,7 @@ export class ResultT2Component implements OnInit {
       this.title = Untils.getCalculateTitle(this.calType);
       this.getListA()
         .then((s: ResultModel[]) => {
-          // this._loadingService.resolve('resultT');
+          this._loadingService.resolve('resultT2');
           this.setRows(s, 0)
             .then(() => {
               this.getListB().then((s: ResultModel[]) => {

@@ -650,7 +650,7 @@ export class FormulaService {
             const checkValue = calValue.match(new RegExp(valueResultUp, 'g'));
             if (checkValue && checkValue.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -673,7 +673,7 @@ export class FormulaService {
             const checkValue = calValue.match(new RegExp(valueResultUp, 'g'));
             if (checkValue && checkValue.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -697,7 +697,7 @@ export class FormulaService {
             const checkValue = calValue.match(new RegExp(valueResultUp, 'g'));
             if (checkValue && checkValue.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -720,7 +720,7 @@ export class FormulaService {
             const checkValue = calValue.match(new RegExp(valueResultUp, 'g'));
             if (checkValue && checkValue.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -808,7 +808,7 @@ export class FormulaService {
 
             if (checkValue1 && checkValue2 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -834,7 +834,7 @@ export class FormulaService {
 
             if (checkValue1 && checkValue2 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -860,7 +860,7 @@ export class FormulaService {
 
             if (checkValue1 && checkValue2 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -886,7 +886,7 @@ export class FormulaService {
 
             if (checkValue1 && checkValue2 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -912,7 +912,7 @@ export class FormulaService {
 
             if (checkValue1 && checkValue2 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -938,7 +938,7 @@ export class FormulaService {
 
             if (checkValue1 && checkValue2 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -966,7 +966,7 @@ export class FormulaService {
 
             if (checkValue0 && checkValue1 && checkValue2 && checkValue0.length > 0 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -994,7 +994,7 @@ export class FormulaService {
 
             if (checkValue0 && checkValue1 && checkValue2 && checkValue0.length > 0 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -1022,7 +1022,7 @@ export class FormulaService {
 
             if (checkValue0 && checkValue1 && checkValue2 && checkValue0.length > 0 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -1051,7 +1051,7 @@ export class FormulaService {
 
             if (checkValue0 && checkValue1 && checkValue2 && checkValue0.length > 0 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;

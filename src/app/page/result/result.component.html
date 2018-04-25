@@ -46,7 +46,7 @@
                   </div>
 
                   <div
-                    *ngIf="model.inputs[currentInputsIndex - 1]?.result == true && model.inputs[currentInputsIndex - 1].resultCount != 0">
+                    *ngIf="model.inputs[currentInputsIndex - 1]?.result == true && model.inputs[currentInputsIndex - 1].resultCount > 1">
                     ({{model.inputs[currentInputsIndex - 1]?.resultCount}})
                   </div>
 
@@ -93,7 +93,7 @@
                   </div>
 
                   <div
-                    *ngIf="model.inputs[currentInputsIndex - 1]?.result == true && model.inputs[currentInputsIndex - 1].resultCount != 0">
+                    *ngIf="model.inputs[currentInputsIndex - 1]?.result == true && model.inputs[currentInputsIndex - 1].resultCount > 1">
                     ({{model.inputs[currentInputsIndex - 1]?.resultCount}})
                   </div>
 
@@ -140,7 +140,7 @@
                   </div>
 
                   <div style="font-weight: 500"
-                       *ngIf="model.inputs[currentInputsIndex - 1]?.result == true && model.inputs[currentInputsIndex - 1].resultCount != 0">
+                       *ngIf="model.inputs[currentInputsIndex - 1]?.result == true && model.inputs[currentInputsIndex - 1].resultCount > 1">
                     ({{model.inputs[currentInputsIndex - 1]?.resultCount}})
                   </div>
 

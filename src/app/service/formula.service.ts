@@ -8,22 +8,9 @@ import {ResultPredictModel} from '../model/result_predict.model';
 @Injectable()
 export class FormulaService {
 
-  predict: ResultPredictModel;
-
   inputs = [];
 
   constructor(private http: HttpClient) {
-  }
-
-  private static getFormulaName(index: string) {
-    if (index.length < 2) {
-      index = '00' + index;
-    }
-
-    if (index.length < 3) {
-      index = '0' + index;
-    }
-    return 'R' + index;
   }
 
   private static getFormulaNameHero(index: string) {
@@ -37,145 +24,8 @@ export class FormulaService {
     return 'H' + index;
   }
 
-  swapInput(inputs: InputModel[], calType: string) {
-
-    if (calType === '8' || calType === '9' || calType === '10' || calType === '11' || calType === '12' || calType === '13') {
-      return inputs;
-    } else {
-      const _input = [];
-      inputs.forEach(s => {
-        const _up = s.low + s.up.substr(0, 1);
-        const _low = s.up.substr(1, 2);
-        _input.push({
-          time: s.time,
-          up: _up,
-          low: _low
-        });
-      });
-      return _input;
-    }
-  }
-
-  getFormula(index: number) {
-    return FormulaService.getFormulaName(String(index));
-  }
-
   getFormulaHero(index: number) {
     return FormulaService.getFormulaNameHero(String(index));
-  }
-
-  formulaCalculate(inputs: InputModel[], calType: string) {
-    const resultModel: ResultModel[] = [];
-    this.inputs = inputs;
-
-    // // ร้อยบน
-    // for (let _i = 0; _i < 10; _i++) {
-    //   resultModel.push({
-    //     name: this.getFormula(_i + 1),
-    //     inputs: this.formula(calType, 'up', '', '', 0, 0, 0, '+', '', '', _i % 10)
-    //   });
-    // }
-    // // สิบบน
-    // for (let _i = 10; _i < 20; _i++) {
-    //   resultModel.push({
-    //     name: this.getFormula(_i + 1),
-    //     inputs: this.formula(calType, 'up', '', '', 1, 0, 0, '+', '*', '*', _i % 10)
-    //   });
-    // }
-    // // หน่วยบน
-    // for (let _i = 20; _i < 30; _i++) {
-    //   resultModel.push({
-    //     name: this.getFormula(_i + 1),
-    //     inputs: this.formula(calType, 'up', '', '', 2, 0, 0, '+', '*', '*', _i % 10)
-    //   });
-    // }
-    // // สิบล่าง
-    // for (let _i = 30; _i < 40; _i++) {
-    //   resultModel.push({
-    //     name: this.getFormula(_i + 1),
-    //     inputs: this.formula(calType, 'low', '', '', 0, 0, 0, '+', '*', '*', _i % 10)
-    //   });
-    // }
-    // // หน่วยล่าง
-    // for (let _i = 40; _i < 50; _i++) {
-    //   resultModel.push({
-    //     name: this.getFormula(_i + 1),
-    //     inputs: this.formula(calType, 'low', '', '', 1, 0, 0, '+', '*', '*', _i % 10)
-    //   });
-    // }
-    // // ร้อย + สิบบน
-    // for (let _i = 50; _i < 60; _i++) {
-    //   resultModel.push({
-    //     name: this.getFormula(_i + 1),
-    //     inputs: this.formula(calType, 'up', 'up', '', 0, 1, 0, '+', '*', '*', _i % 10)
-    //   });
-    // }
-    // // ร้อย + หน่วยบน
-    // for (let _i = 60; _i < 70; _i++) {
-    //   resultModel.push({
-    //     name: this.getFormula(_i + 1),
-    //     inputs: this.formula(calType, 'up', 'up', '', 0, 2, 0, '+', '*', '', _i % 10)
-    //   });
-    // }
-    // // ร้อย + สิบล่าง
-    // for (let _i = 70; _i < 80; _i++) {
-    //   resultModel.push({
-    //     name: this.getFormula(_i + 1),
-    //     inputs: this.formula(calType, 'up', 'low', '', 0, 1, 0, '+', '*', '', _i % 10)
-    //   });
-    // }
-    // // ร้อย + หน่วยล่าง
-    // for (let _i = 80; _i < 90; _i++) {
-    //   resultModel.push({
-    //     name: this.getFormula(_i + 1),
-    //     inputs: this.formula(calType, 'up', 'low', '', 0, 1, 0, '+', '*', '', _i % 10)
-    //   });
-    // }
-    // // สิบบน + หน่วยบน
-    // for (let _i = 90; _i < 100; _i++) {
-    //   resultModel.push({
-    //     name: this.getFormula(_i + 1),
-    //     inputs: this.formula(calType, 'up', 'up', '', 1, 2, 0, '+', '*', '', _i % 10)
-    //   });
-    // }
-    // // สิบบน + สิบล่าง
-    // for (let _i = 100; _i < 110; _i++) {
-    //   resultModel.push({
-    //     name: this.getFormula(_i + 1),
-    //     inputs: this.formula(calType, 'up', 'low', '', 1, 0, 0, '+', '*', '', _i % 10)
-    //   });
-    // }
-    // // สิบบน + หน่วยล่าง
-    // for (let _i = 110; _i < 120; _i++) {
-    //   resultModel.push({
-    //     name: this.getFormula(_i + 1),
-    //     inputs: this.formula(calType, 'up', 'low', '', 1, 1, 0, '+', '*', '', _i % 10)
-    //   });
-    // }
-    // // หน่วยบน + สิบล่าง
-    // for (let _i = 120; _i < 130; _i++) {
-    //   resultModel.push({
-    //     name: this.getFormula(_i + 1),
-    //     inputs: this.formula(calType, 'up', 'low', '', 2, 0, 0, '+', '*', '', _i % 10)
-    //   });
-    // }
-    // // หน่วยบน + หน่วยล่าง
-    // for (let _i = 130; _i < 140; _i++) {
-    //   resultModel.push({
-    //     name: this.getFormula(_i + 1),
-    //     inputs: this.formula(calType, 'up', 'low', '', 2, 1, 0, '+', '*', '', _i % 10)
-    //   });
-    // }
-    // // สิบล่าง + หน่วยล่าง
-    // for (let _i = 140; _i < 150; _i++) {
-    //   resultModel.push({
-    //     name: this.getFormula(_i + 1),
-    //     inputs: this.formula(calType, 'low', 'low', '', 1, 1, 0, '+', '*', '', _i % 10)
-    //   });
-    // }
-    return new Promise((resolve) => {
-      resolve(resultModel);
-    });
   }
 
   async formulaCalculateHero(index: number, inputs: InputModel[], calType: string) {
@@ -187,7 +37,7 @@ export class FormulaService {
       case 1: {
         // ร้อยบน + สิบบน + หน่วยบน
         for (let _i = 0; _i < 10; _i++) {
-          const _inputs = this.formula(calType, 'up', 'up', 'up', 0, 1, 2, '+', '+', '+', _i % 10);
+          const _inputs = this.formula(calType, 'up', '', '', 0, 0, 0, '+', '', '', _i % 10);
           let summary = 0;
           _inputs.forEach(s => {
             if (s.resultCount > 0) {
@@ -207,7 +57,7 @@ export class FormulaService {
         // ร้อยบน + สิบบน + สิบล่าง
         for (let _i = 10; _i < 20; _i++) {
 
-          const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 1, 0, '+', '+', '+', _i % 10);
+          const _inputs = this.formula(calType, 'up', '', '', 1, 0, 0, '+', '+', '+', _i % 10);
           let summary = 0;
           _inputs.forEach(s => {
             if (s.resultCount > 0) {
@@ -227,7 +77,7 @@ export class FormulaService {
         // ร้อยบน + สิบบน + หน่วยล่าง
         for (let _i = 20; _i < 30; _i++) {
 
-          const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 1, 1, '+', '+', '+', _i % 10);
+          const _inputs = this.formula(calType, 'up', '', '', 2, 0, 0, '+', '+', '+', _i % 10);
           let summary = 0;
           _inputs.forEach(s => {
             if (s.resultCount > 0) {
@@ -246,8 +96,7 @@ export class FormulaService {
       case 4: {
         // ร้อยบน + หน่วยบน + สิบล่าง
         for (let _i = 30; _i < 40; _i++) {
-
-          const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 2, 0, '+', '+', '+', _i % 10);
+          const _inputs = this.formula(calType, 'low', '', '', 0, 0, 0, '+', '+', '+', _i % 10);
           let summary = 0;
           _inputs.forEach(s => {
             if (s.resultCount > 0) {
@@ -267,7 +116,7 @@ export class FormulaService {
         // ร้อยบน + สิบล่าง + หน่วยล่าง
         for (let _i = 40; _i < 50; _i++) {
 
-          const _inputs = this.formula(calType, 'up', 'low', 'low', 0, 0, 1, '+', '+', '+', _i % 10);
+          const _inputs = this.formula(calType, 'low', '', '', 1, 0, 0, '+', '+', '+', _i % 10);
           let summary = 0;
           _inputs.forEach(s => {
             if (s.resultCount > 0) {
@@ -286,7 +135,7 @@ export class FormulaService {
       case 6: {
         // ร้อยบน + หน่วยบน + หน่วยล่าง
         for (let _i = 50; _i < 60; _i++) {
-          const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 2, 1, '+', '+', '+', _i % 10);
+          const _inputs = this.formula(calType, 'up', 'up', '', 0, 1, 0, '+', '+', '', _i % 10);
           let summary = 0;
           _inputs.forEach(s => {
             if (s.resultCount > 0) {
@@ -305,7 +154,7 @@ export class FormulaService {
       case 7: {
         // สิบบน + หน่วยบน + สิบล่าง
         for (let _i = 60; _i < 70; _i++) {
-          const _inputs = this.formula(calType, 'up', 'up', 'low', 1, 2, 0, '+', '+', '+', _i % 10);
+          const _inputs = this.formula(calType, 'up', 'up', '', 0, 2, 0, '+', '+', '', _i % 10);
           let summary = 0;
           _inputs.forEach(s => {
             if (s.resultCount > 0) {
@@ -324,7 +173,7 @@ export class FormulaService {
       case 8: {
         // สิบบน + หน่วยบน + หน่วยล่าง
         for (let _i = 70; _i < 80; _i++) {
-          const _inputs = this.formula(calType, 'up', 'up', 'low', 1, 2, 1, '+', '+', '+', _i % 10);
+          const _inputs = this.formula(calType, 'up', 'low', '', 0, 1, 0, '+', '+', '', _i % 10);
           let summary = 0;
           _inputs.forEach(s => {
             if (s.resultCount > 0) {
@@ -343,7 +192,7 @@ export class FormulaService {
       case 9: {
         // สิบบน + สิบล่าง + หน่วยล่าง
         for (let _i = 80; _i < 90; _i++) {
-          const _inputs = this.formula(calType, 'up', 'low', 'low', 1, 2, 1, '+', '+', '+', _i % 10);
+          const _inputs = this.formula(calType, 'up', 'low', '', 0, 1, 0, '+', '+', '', _i % 10);
           let summary = 0;
           _inputs.forEach(s => {
             if (s.resultCount > 0) {
@@ -362,7 +211,7 @@ export class FormulaService {
       case 10: {
         // ร้อยบน + สิบบน + หน่วยบน *
         for (let _i = 90; _i < 100; _i++) {
-          const _inputs = this.formula(calType, 'up', 'up', 'up', 0, 1, 2, '+', '+', '*', _i % 10);
+          const _inputs = this.formula(calType, 'up', 'up', '', 1, 2, 0, '+', '+', '', _i % 10);
           let summary = 0;
           _inputs.forEach(s => {
             if (s.resultCount > 0) {
@@ -381,7 +230,7 @@ export class FormulaService {
       case 11: {
         // ร้อยบน + สิบบน + สิบล่าง *
         for (let _i = 100; _i < 110; _i++) {
-          const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 1, 0, '+', '+', '*', _i % 10);
+          const _inputs = this.formula(calType, 'up', 'low', '', 1, 0, 0, '+', '+', '', _i % 10);
           let summary = 0;
           _inputs.forEach(s => {
             if (s.resultCount > 0) {
@@ -400,7 +249,7 @@ export class FormulaService {
       case 12: {
         // ร้อยบน + สิบบน + หน่วยล่าง *
         for (let _i = 110; _i < 120; _i++) {
-          const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 1, 1, '+', '+', '*', _i % 10);
+          const _inputs = this.formula(calType, 'up', 'low', '', 1, 1, 0, '+', '+', '', _i % 10);
           let summary = 0;
           _inputs.forEach(s => {
             if (s.resultCount > 0) {
@@ -419,7 +268,7 @@ export class FormulaService {
       case 13: {
         // ร้อยบน + หน่วยบน + สิบล่าง *
         for (let _i = 120; _i < 130; _i++) {
-          const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 2, 0, '+', '+', '*', _i % 10);
+          const _inputs = this.formula(calType, 'up', 'low', '', 2, 0, 0, '+', '+', '', _i % 10);
           let summary = 0;
           _inputs.forEach(s => {
             if (s.resultCount > 0) {
@@ -438,7 +287,7 @@ export class FormulaService {
       case 14: {
         // ร้อยบน + สิบล่าง + หน่วยล่าง *
         for (let _i = 130; _i < 140; _i++) {
-          const _inputs = this.formula(calType, 'up', 'low', 'low', 0, 0, 1, '+', '+', '*', _i % 10);
+          const _inputs = this.formula(calType, 'up', 'low', '', 2, 1, 0, '+', '+', '', _i % 10);
           let summary = 0;
           _inputs.forEach(s => {
             if (s.resultCount > 0) {
@@ -457,7 +306,7 @@ export class FormulaService {
       case 15: {
         // ร้อยบน + หน่วยบน + หน่วยล่าง *
         for (let _i = 140; _i < 150; _i++) {
-          const _inputs = this.formula(calType, 'up', 'up', 'low', 0, 2, 1, '+', '+', '*', _i % 10);
+          const _inputs = this.formula(calType, 'low', 'low', '', 1, 1, 0, '+', '+', '', _i % 10);
           let summary = 0;
           _inputs.forEach(s => {
             if (s.resultCount > 0) {
@@ -470,64 +319,6 @@ export class FormulaService {
             inputs: _inputs,
             summary: summary
           });
-        }
-        break;
-      }
-      case 16: {
-        // สิบบน + หน่วยบน + สิบล่าง *
-        for (let _i = 150; _i < 160; _i++) {
-          const _inputs = this.formula(calType, 'up', 'up', 'low', 1, 2, 0, '+', '+', '*', _i % 10);
-          let summary = 0;
-          _inputs.forEach(s => {
-            if (s.resultCount > 0) {
-              summary = summary + 1;
-            }
-          });
-
-          resultModel.push({
-            name: this.getFormulaHero(_i + 1),
-            inputs: _inputs,
-            summary: summary
-          });
-        }
-        break;
-      }
-      case 17: {
-        // สิบบน + หน่วยบน + หน่วยล่าง *
-        for (let _i = 160; _i < 170; _i++) {
-          const _inputs = this.formula(calType, 'up', 'up', 'low', 1, 2, 1, '+', '+', '*', _i % 10);
-          let summary = 0;
-          _inputs.forEach(s => {
-            if (s.resultCount > 0) {
-              summary = summary + 1;
-            }
-          });
-
-          resultModel.push({
-            name: this.getFormulaHero(_i + 1),
-            inputs: _inputs,
-            summary: summary
-          });
-        }
-        break;
-      }
-      case 18: {
-        // สิบบน + สิบล่าง + หน่วยล่าง *
-        for (let _i = 170; _i < 180; _i++) {
-          const _inputs = this.formula(calType, 'up', 'low', 'low', 1, 0, 1, '+', '+', '*', _i % 10);
-          let summary = 0;
-          _inputs.forEach(s => {
-            if (s.resultCount > 0) {
-              summary = summary + 1;
-            }
-          });
-
-          resultModel.push({
-            name: this.getFormulaHero(_i + 1),
-            inputs: _inputs,
-            summary: summary
-          })
-          ;
         }
         break;
       }
@@ -650,7 +441,7 @@ export class FormulaService {
             const checkValue = calValue.match(new RegExp(valueResultUp, 'g'));
             if (checkValue && checkValue.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -673,7 +464,7 @@ export class FormulaService {
             const checkValue = calValue.match(new RegExp(valueResultUp, 'g'));
             if (checkValue && checkValue.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -697,7 +488,7 @@ export class FormulaService {
             const checkValue = calValue.match(new RegExp(valueResultUp, 'g'));
             if (checkValue && checkValue.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -720,7 +511,7 @@ export class FormulaService {
             const checkValue = calValue.match(new RegExp(valueResultUp, 'g'));
             if (checkValue && checkValue.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -808,7 +599,7 @@ export class FormulaService {
 
             if (checkValue1 && checkValue2 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -834,7 +625,7 @@ export class FormulaService {
 
             if (checkValue1 && checkValue2 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -860,7 +651,7 @@ export class FormulaService {
 
             if (checkValue1 && checkValue2 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -886,7 +677,7 @@ export class FormulaService {
 
             if (checkValue1 && checkValue2 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -912,7 +703,7 @@ export class FormulaService {
 
             if (checkValue1 && checkValue2 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -938,7 +729,7 @@ export class FormulaService {
 
             if (checkValue1 && checkValue2 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -966,7 +757,7 @@ export class FormulaService {
 
             if (checkValue0 && checkValue1 && checkValue2 && checkValue0.length > 0 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -994,7 +785,7 @@ export class FormulaService {
 
             if (checkValue0 && checkValue1 && checkValue2 && checkValue0.length > 0 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -1022,7 +813,7 @@ export class FormulaService {
 
             if (checkValue0 && checkValue1 && checkValue2 && checkValue0.length > 0 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;
@@ -1051,7 +842,7 @@ export class FormulaService {
 
             if (checkValue0 && checkValue1 && checkValue2 && checkValue0.length > 0 && checkValue1.length > 0 && checkValue2.length > 0) {
               sumResult = true;
-              SumresultCount = 0;
+              SumresultCount = SumresultCount + 1;
             }
           }
           break;

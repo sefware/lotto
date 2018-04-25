@@ -13,40 +13,33 @@ import {ResultT3Component} from './page/resultT3/resultT3.component';
 const routes: Routes = [
   {
     path: '',
-    canActivate: [AppService],
     component: MainComponent,
   },
   {
     path: 'data',
-    canActivate: [AppService],
     component: DataComponent,
   },
   {
     path: 'result',
-    canActivate: [AppService],
     component: ResultComponent,
   },
   {
     path: 'resultT',
-    canActivate: [AppService],
     component: ResultTComponent,
   },
   {
     path: 'resultT2',
-    canActivate: [AppService],
     component: ResultT2Component,
   },
   {
     path: 'resultT3',
-    canActivate: [AppService],
     component: ResultT3Component,
   },
   {
     path: 'login',
-    canActivate: [LoginService],
     component: LoginComponent
   },
-  {path: '**', redirectTo: '/login', pathMatch: 'full'},
+  {path: '**', redirectTo: '', pathMatch: 'full'},
 ];
 
 @NgModule({

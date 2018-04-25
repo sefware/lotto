@@ -179,8 +179,8 @@ export class FormulaService {
   }
 
   async formulaCalculateHero(index: number, inputs: InputModel[], calType: string) {
-    // this.inputs = this.swapInput(inputs, calType);
-    this.inputs = inputs;
+    this.inputs = this.swapInput(inputs, calType);
+    // this.inputs = inputs;
     const resultModel: ResultModel[] = [];
 
     switch (index) {

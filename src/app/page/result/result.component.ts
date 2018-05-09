@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import {Language} from 'angular-l10n';
 import {StorageService} from '../../service/storage.service';
 import {FormulaService} from '../../service/formula.service';
@@ -8,9 +8,8 @@ import {Router} from '@angular/router';
 import {TdLoadingService} from '@covalent/core';
 import {Untils} from '../../shared/untils';
 import {ResultPredictModel} from '../../model/result_predict.model';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {PredictComponent} from '../../dialog/predict/predict.component';
-import {ConfirmComponent, DialogModel} from '../../dialog/confirm/confirm.component';
 
 @Component({
   selector: 'app-result',
@@ -20,16 +19,31 @@ import {ConfirmComponent, DialogModel} from '../../dialog/confirm/confirm.compon
 export class ResultComponent implements OnInit {
   @Language() lang: string;
 
+  preCopy = true;
+
+  copyText = '';
+
   predict: ResultPredictModel;
   resultModel1: ResultModel[] = [];
   resultModel2: ResultModel[] = [];
   resultModel3: ResultModel[] = [];
+
+  resultSmallModel1: ResultModel[] = [];
+  resultSmallModel2: ResultModel[] = [];
+  resultSmallModel3: ResultModel[] = [];
+  resultSmallModel4: ResultModel[] = [];
+  resultSmallModel5: ResultModel[] = [];
+
   inputs: InputModel[];
   title: string;
   calType: string;
-  isStop: Boolean = false;
+  isSmallMode = false;
+  index = 1;
+  indexStart = 0;
 
   constructor(public mDaialog: MatDialog,
+              private _ngZone: NgZone,
+              public snackBar: MatSnackBar,
               public _storageService: StorageService,
               public service: FormulaService,
               private _loadingService: TdLoadingService,
@@ -38,9 +52,58 @@ export class ResultComponent implements OnInit {
     this._loadingService.register('result');
   }
 
+  showMessage(text: string) {
+    this.snackBar.open(text, 'ปิด', {
+      duration: 3000
+    });
+    this.preCopy = true;
+  }
+
+  copy(model: ResultModel) {
+    this.copyText = model.name + ' - ' + model.summary + ' : ' + ((model.inputs.length - 2) - model.summary) + '\n';
+    model.inputs.forEach(s => {
+      if (model.inputs.indexOf(s) === model.inputs.length - 1) {
+        this.copyText = this.copyText + 'ถัดไป = ' + model.inputs[model.inputs.indexOf(s) - 1].value + '\n';
+      } else {
+        if (model.inputs.indexOf(s) !== 0) {
+          let sOld = model.inputs[model.inputs.indexOf(s) - 1];
+          if (sOld.result) {
+            this.copyText = this.copyText + s.time + ' = ' + sOld.value + ' = ' + s.up + '-' + s.low + ' เด้ง \n';
+          } else {
+            this.copyText = this.copyText + s.time + ' = ' + sOld.value + ' = ' + s.up + '-' + s.low + '\n';
+          }
+        } else {
+          this.copyText = this.copyText + s.time + '\n';
+        }
+      }
+    });
+    this.preCopy = false;
+  }
+
   async delay(milliseconds: number) {
     return new Promise<void>(resolve => {
       setTimeout(resolve, milliseconds);
+    });
+  }
+
+  callData() {
+    console.log('callData!!');
+    this._loadingService.register('resultMore');
+    this.getList(this.index).then((s: ResultModel[]) => {
+      this.setRows(s, this.indexStart);
+      this.index += 1;
+      this.indexStart += 10;
+      this._loadingService.resolve('result');
+      if (this.index === 2) {
+        this._loadingService.register('resultMore');
+        this.getList(this.index).then((s: ResultModel[]) => {
+          this.setRows(s, this.indexStart);
+          this.index += 1;
+          this.indexStart += 10;
+        });
+      }
+      ;
+
     });
   }
 
@@ -53,118 +116,7 @@ export class ResultComponent implements OnInit {
       this.disable();
     } else {
       this.title = Untils.getCalculateTitle(this.calType);
-
-      this.getList(1)
-        .then((s: ResultModel[]) => {
-          this.setRows(s, 0)
-            .then(() => {
-              this._loadingService.resolve('result');
-            });
-          return new Promise((resolve,) => {
-            if (!this.isStop) {
-              resolve(this.getList(2));
-            }
-          });
-        })
-        .then((s: ResultModel[]) => {
-          this.setRows(s, 10);
-          if (!this.isStop) {
-            return this.getList(3);
-          }
-        })
-        .then((s: ResultModel[]) => {
-          this.setRows(s, 20);
-          if (!this.isStop) {
-            return this.getList(4);
-          }
-        })
-        .then((s: ResultModel[]) => {
-          this.setRows(s, 30);
-          if (!this.isStop) {
-            return this.getList(5);
-          }
-        })
-        .then((s: ResultModel[]) => {
-          this.setRows(s, 40);
-          if (!this.isStop) {
-            return this.getList(6);
-          }
-        })
-        .then((s: ResultModel[]) => {
-          this.setRows(s, 50);
-          if (!this.isStop) {
-            return this.getList(7);
-          }
-        })
-        .then((s: ResultModel[]) => {
-          this.setRows(s, 60);
-          if (!this.isStop) {
-            return this.getList(8);
-          }
-        })
-        .then((s: ResultModel[]) => {
-          this.setRows(s, 70);
-          if (!this.isStop) {
-            return this.getList(9);
-          }
-        })
-        .then((s: ResultModel[]) => {
-          this.setRows(s, 80);
-          if (!this.isStop) {
-            return this.getList(10);
-          }
-        })
-        .then((s: ResultModel[]) => {
-          this.setRows(s, 90);
-          if (!this.isStop) {
-            return this.getList(11);
-          }
-        })
-        .then((s: ResultModel[]) => {
-          this.setRows(s, 100);
-          if (!this.isStop) {
-            return this.getList(12);
-          }
-        })
-        .then((s: ResultModel[]) => {
-          this.setRows(s, 110);
-          if (!this.isStop) {
-            return this.getList(13);
-          }
-        })
-        .then((s: ResultModel[]) => {
-          this.setRows(s, 120);
-          if (!this.isStop) {
-            return this.getList(14);
-          }
-        })
-        .then((s: ResultModel[]) => {
-          this.setRows(s, 130);
-          if (!this.isStop) {
-            return this.getList(15);
-          }
-        })
-        .then((s: ResultModel[]) => {
-          this.setRows(s, 140);
-          if (!this.isStop) {
-            return this.getList(16);
-          }
-        })
-        .then((s: ResultModel[]) => {
-          this.setRows(s, 150);
-          if (!this.isStop) {
-            return this.getList(17);
-          }
-        })
-        .then((s: ResultModel[]) => {
-          this.setRows(s, 160);
-          if (!this.isStop) {
-            return this.getList(18);
-          }
-        })
-        .then((s: ResultModel[]) => {
-          this.setRows(s, 170);
-        });
+      this.callData();
     }
   }
 
@@ -183,8 +135,39 @@ export class ResultComponent implements OnInit {
 
     await this.setRow(s, 3, start);
 
+    this.smallResult(s, start);
+
     if (start == 170) {
       this.predic();
+    }
+    this._loadingService.resolve('resultMore');
+  }
+
+  smallResult(s: ResultModel[], start: any) {
+
+    let _index = start;
+    for (const ss of s) {
+      if (_index > -1 && _index < 36) {
+        this.resultSmallModel1.push(ss);
+      }
+
+      if (_index > 35 && _index < 72) {
+        this.resultSmallModel2.push(ss);
+      }
+
+      if (_index > 71 && _index < 108) {
+        this.resultSmallModel3.push(ss);
+      }
+
+      if (_index > 107 && _index < 144) {
+        this.resultSmallModel4.push(ss);
+      }
+
+      if (_index > 143 && _index < 180) {
+        this.resultSmallModel5.push(ss);
+      }
+
+      _index = _index + 1;
     }
   }
 
@@ -198,6 +181,7 @@ export class ResultComponent implements OnInit {
           if (_index % 3 === 0) {
             this.resultModel1.push(ss);
           }
+
           _index += 1;
         }
         break;
@@ -836,7 +820,7 @@ export class ResultComponent implements OnInit {
   }
 
   openDialogPredict() {
-    if(this.predict.result.length > 0){
+    if (this.predict.result.length > 0) {
       this.mDaialog.open(PredictComponent, {
           data: this.predict,
           height: 'auto',
@@ -850,8 +834,8 @@ export class ResultComponent implements OnInit {
   }
 
   disable() {
-    this.isStop = true;
-    this._router.navigateByUrl('/');
-    // window.close();
+    this._ngZone.run(() => {
+      this._router.navigateByUrl('/');
+    });
   }
 }

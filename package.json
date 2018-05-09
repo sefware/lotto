@@ -53,6 +53,8 @@
     "font-awesome": "^4.7.0",
     "fs": "0.0.1-security",
     "hammerjs": "^2.0.8",
+    "ngx-clipboard": "^11.0.0",
+    "ngx-infinite-scroll": "^0.8.4",
     "ngx-long-press": "0.0.1",
     "ngx-store": "^1.4.1",
     "reflect-metadata": "^0.1.12",

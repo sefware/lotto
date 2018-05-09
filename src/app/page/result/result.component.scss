@@ -1,6 +1,16 @@
 @import "../../../styles/variable";
 
-:host /deep/{
+:host /deep/ {
+
+  .row-small {
+    line-height: 14px;
+  }
+
+  .search-results {
+    height: calc(100vh - 56px);
+    overflow: scroll;
+  }
+
   .card {
     margin: 5px;
     font-size: 8px;
@@ -17,14 +27,14 @@
     margin-bottom: 0px;
   }
 
-  .icon-true{
+  .icon-true {
     font-size: 12px;
     width: 12px;
     height: 12px;
     color: #00C853;
   }
 
-  .icon-false{
+  .icon-false {
     font-size: 12px;
     width: 12px;
     height: 12px;

@@ -32,6 +32,9 @@ import {FormulaTService} from './service/formulaT.service';
 import {ResultT2Component} from './page/resultT2/resultT2.component';
 import {FormulaT2Service} from './service/formulaT2.service';
 import {ResultT3Component} from './page/resultT3/resultT3.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {ClipboardModule} from 'ngx-clipboard';
+import {MatSnackBarModule} from '@angular/material';
 
 
 const l10nConfig: L10nConfig = {
@@ -73,7 +76,11 @@ const l10nConfig: L10nConfig = {
     TextMaskModule,
     AngularPageVisibilityModule,
     HttpClientModule,
-    LongPressModule
+    LongPressModule,
+    InfiniteScrollModule,
+    ClipboardModule,
+    MatSnackBarModule
+
   ],
   entryComponents: [
     DataComponent,

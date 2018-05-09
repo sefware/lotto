@@ -19,6 +19,23 @@
               <mat-card-header>
                 <mat-card-title>{{model.name}} - {{model.summary}}:{{(model.inputs.length - 2) - model.summary}}
                 </mat-card-title>
+                <button *ngIf="preCopy"
+                        style="width: 16px;height: 16px;position: absolute;right: 15px;top: -7px;"
+                        mat-icon-button
+                        (focus)="copy(model)">
+                  <mat-icon style="font-size: 16px;" aria-label="Example icon-button with a heart icon">playlist_add_check
+                  </mat-icon>
+                </button>
+
+                <button *ngIf="!preCopy"
+                        style="width: 16px;height: 16px;position: absolute;right: 15px;top: -7px;"
+                        mat-icon-button
+                        (cbOnError)="showMessage('copy ล้มเหลว')"
+                        (cbOnSuccess)="showMessage('copy สำเร็จ')"
+                        ngxClipboard
+                        [cbContent]="copyText">
+                  <mat-icon style="font-size: 16px;" aria-label="Example icon-button with a heart icon">library_books</mat-icon>
+                </button>
               </mat-card-header>
               <ng-template ngFor let-input [ngForOf]="model.inputs" let-currentInputsIndex="index">
 
@@ -66,6 +83,23 @@
               <mat-card-header>
                 <mat-card-title>{{model.name}} - {{model.summary}}:{{(model.inputs.length - 2) - model.summary}}
                 </mat-card-title>
+                <button *ngIf="preCopy"
+                        style="width: 16px;height: 16px;position: absolute;right: 15px;top: -7px;"
+                        mat-icon-button
+                        (focus)="copy(model)">
+                  <mat-icon style="font-size: 16px;" aria-label="Example icon-button with a heart icon">playlist_add_check
+                  </mat-icon>
+                </button>
+
+                <button *ngIf="!preCopy"
+                        style="width: 16px;height: 16px;position: absolute;right: 15px;top: -7px;"
+                        mat-icon-button
+                        (cbOnError)="showMessage('copy ล้มเหลว')"
+                        (cbOnSuccess)="showMessage('copy สำเร็จ')"
+                        ngxClipboard
+                        [cbContent]="copyText">
+                  <mat-icon style="font-size: 16px;" aria-label="Example icon-button with a heart icon">library_books</mat-icon>
+                </button>
               </mat-card-header>
               <ng-template ngFor let-input [ngForOf]="model.inputs" let-currentInputsIndex="index">
 

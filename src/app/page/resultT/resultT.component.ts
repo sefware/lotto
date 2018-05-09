@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {TdLoadingService} from '@covalent/core';
 import {Untils} from '../../shared/untils';
 import {FormulaTService} from '../../service/formulaT.service';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-resultT',
@@ -25,6 +26,7 @@ export class ResultTComponent implements OnInit {
 
   constructor(public _storageService: StorageService,
               public service: FormulaTService,
+              public snackBar: MatSnackBar,
               private _loadingService: TdLoadingService,
               private _router: Router) {
 
@@ -57,6 +59,36 @@ export class ResultTComponent implements OnInit {
             });
         });
     }
+  }
+
+  preCopy = true;
+  copyText = '';
+  showMessage(text: string) {
+    this.snackBar.open(text, 'ปิด', {
+      duration: 3000
+    });
+    this.preCopy = true;
+  }
+
+  copy(model: ResultModel) {
+    this.copyText = model.name + ' - ' + model.summary + ' : ' + ((model.inputs.length - 2) - model.summary) + '\n';
+    model.inputs.forEach(s => {
+      if (model.inputs.indexOf(s) === model.inputs.length - 1) {
+        this.copyText = this.copyText + 'ถัดไป = ' + model.inputs[model.inputs.indexOf(s) - 1].value + '\n';
+      } else {
+        if (model.inputs.indexOf(s) !== 0) {
+          let sOld = model.inputs[model.inputs.indexOf(s) - 1];
+          if (sOld.result) {
+            this.copyText = this.copyText + s.time + ' = ' + sOld.value + ' = ' + s.up + '-' + s.low + ' เด้ง \n';
+          } else {
+            this.copyText = this.copyText + s.time + ' = ' + sOld.value + ' = ' + s.up + '-' + s.low + '\n';
+          }
+        } else {
+          this.copyText = this.copyText + s.time + '\n';
+        }
+      }
+    });
+    this.preCopy = false;
   }
 
   getListA() {

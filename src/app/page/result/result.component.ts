@@ -20,7 +20,6 @@ export class ResultComponent implements OnInit {
   @Language() lang: string;
 
   preCopy = true;
-
   copyText = '';
 
   predict: ResultPredictModel;

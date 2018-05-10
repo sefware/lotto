@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 import {environment} from '../../../environments/environment.prod';
 import {MatMenuTrigger} from '@angular/material';
 import {AuthService} from '../../service/auth.service';
+import {AngularFireAuth} from 'angularfire2/auth';
 
 @Component({
   selector: 'app-main',
@@ -33,6 +34,7 @@ export class MainComponent implements OnInit {
   constructor(public _storageService: StorageService,
               public _userService: AuthService,
               private _router: Router,
+              public _auth: AngularFireAuth,
               private _locale: LocaleService,
               private _dialogService: TdDialogService,
               private _viewContainerRef: ViewContainerRef,
@@ -47,6 +49,14 @@ export class MainComponent implements OnInit {
       // console.log('isBigScreen : ' + this.isBigScreen);
     });
     // this._loadingService.register('main');
+
+    // for (let i = 2; i <= 50; i++) {
+    //   let email = 'super' + i;
+    //   let prefix = '@herolotto.com';
+    //   let password = Math.random().toString(36).slice(-8);
+    //   console.log(email + ' -> ' + password);
+    //   _auth.app.auth().createUserWithEmailAndPassword(email + prefix, password);
+    // }
   }
 
   signOut() {
@@ -105,19 +115,22 @@ export class MainComponent implements OnInit {
   }
 
   calculateTList(selectedCal: string) {
-    this._storageService.saveCalType(selectedCal);1
+    this._storageService.saveCalType(selectedCal);
+    1;
     this._router.navigateByUrl('/resultT');
     // window.open('/result', '_blank');
   }
 
   calculateT2List(selectedCal: string) {
-    this._storageService.saveCalType(selectedCal);1
+    this._storageService.saveCalType(selectedCal);
+    1;
     this._router.navigateByUrl('/resultT2');
     // window.open('/result', '_blank');
   }
 
   calculateT3List(selectedCal: string) {
-    this._storageService.saveCalType(selectedCal);1
+    this._storageService.saveCalType(selectedCal);
+    1;
     this._router.navigateByUrl('/resultT3');
     // window.open('/result', '_blank');
   }

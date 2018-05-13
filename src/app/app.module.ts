@@ -35,6 +35,7 @@ import {ResultT3Component} from './page/resultT3/resultT3.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {ClipboardModule} from 'ngx-clipboard';
 import {MatSnackBarModule} from '@angular/material';
+import {Result3rowDivComponent} from './page/result3rowDiv/result3rowDiv.component';
 
 
 const l10nConfig: L10nConfig = {
@@ -59,6 +60,7 @@ const l10nConfig: L10nConfig = {
     ResultTComponent,
     ResultT2Component,
     ResultT3Component,
+    Result3rowDivComponent,
     LoginComponent,
     MainComponent,
     PredictComponent

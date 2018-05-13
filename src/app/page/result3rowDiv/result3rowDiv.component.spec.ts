@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResultT3Component } from './resultT3.component';
+import { Result3rowDivComponent } from './result3rowDiv.component';
 
 describe('Result3rowDivComponent', () => {
-  let component: ResultT3Component;
-  let fixture: ComponentFixture<ResultT3Component>;
+  let component: Result3rowDivComponent;
+  let fixture: ComponentFixture<Result3rowDivComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ResultT3Component ]
+      declarations: [ Result3rowDivComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ResultT3Component);
+    fixture = TestBed.createComponent(Result3rowDivComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

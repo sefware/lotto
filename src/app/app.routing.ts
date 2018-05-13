@@ -9,6 +9,7 @@ import {LoginComponent} from './page/login/login.component';
 import {ResultTComponent} from './page/resultT/resultT.component';
 import {ResultT2Component} from './page/resultT2/resultT2.component';
 import {ResultT3Component} from './page/resultT3/resultT3.component';
+import {Result3rowDivComponent} from './page/result3rowDiv/result3rowDiv.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,11 @@ const routes: Routes = [
     path: 'resultT2',
     canActivate: [AppService],
     component: ResultT2Component,
+  },
+  {
+    path: 'result3rowDiv',
+    canActivate: [AppService],
+    component: Result3rowDivComponent,
   },
   {
     path: 'resultT3',

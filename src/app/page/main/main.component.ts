@@ -50,7 +50,7 @@ export class MainComponent implements OnInit {
     });
     // this._loadingService.register('main');
 
-    // for (let i = 2; i <= 50; i++) {
+    // for (let i = 51; i <= 150; i++) {
     //   let email = 'super' + i;
     //   let prefix = '@herolotto.com';
     //   let password = Math.random().toString(36).slice(-8);

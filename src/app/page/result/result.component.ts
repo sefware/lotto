@@ -88,22 +88,45 @@ export class ResultComponent implements OnInit {
   callData() {
     console.log('callData!!');
     this._loadingService.register('resultMore');
-    this.getList(this.index).then((s: ResultModel[]) => {
-      this.setRows(s, this.indexStart);
-      this.index += 1;
-      this.indexStart += 10;
-      this._loadingService.resolve('result');
-      if (this.index === 2) {
-        this._loadingService.register('resultMore');
-        this.getList(this.index).then((s: ResultModel[]) => {
-          this.setRows(s, this.indexStart);
-          this.index += 1;
-          this.indexStart += 10;
-        });
-      }
-      ;
+    this.getList(this.index)
+      .then((s: ResultModel[]) => {
+        this.setRows(s, this.indexStart);
+        this.index += 1;
+        this.indexStart += 10;
 
-    });
+        this.getList(this.index)
+          .then((s2: ResultModel[]) => {
+            this.setRows(s2, this.indexStart);
+            this.index += 1;
+            this.indexStart += 10;
+
+            this.getList(this.index)
+              .then((s3: ResultModel[]) => {
+                this.setRows(s3, this.indexStart);
+                this.index += 1;
+                this.indexStart += 10;
+
+                this.getList(this.index)
+                  .then((s4: ResultModel[]) => {
+                    this.setRows(s4, this.indexStart);
+                    this.index += 1;
+                    this.indexStart += 10;
+
+                    this.getList(this.index)
+                      .then((s5: ResultModel[]) => {
+                        this.setRows(s5, this.indexStart);
+                        this.index += 1;
+                        this.indexStart += 10;
+                      });
+
+                  });
+
+              });
+
+          });
+      });
+
+    this._loadingService.resolve('result');
   }
 
   ngOnInit() {

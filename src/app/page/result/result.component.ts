@@ -86,51 +86,82 @@ export class ResultComponent implements OnInit {
   }
 
   callData() {
-    console.log('callData!!');
-    this._loadingService.register('resultMore');
-    this.getList(this.index)
+    this.getList(1)
       .then((s: ResultModel[]) => {
-        this.setRows(s, this.indexStart);
-        this.index += 1;
-        this.indexStart += 10;
-
-        this.getList(this.index)
-          .then((s2: ResultModel[]) => {
-            this.setRows(s2, this.indexStart);
-            this.index += 1;
-            this.indexStart += 10;
-
-            this.getList(this.index)
-              .then((s3: ResultModel[]) => {
-                this.setRows(s3, this.indexStart);
-                this.index += 1;
-                this.indexStart += 10;
-
-                this.getList(this.index)
-                  .then((s4: ResultModel[]) => {
-                    this.setRows(s4, this.indexStart);
-                    this.index += 1;
-                    this.indexStart += 10;
-
-                    this.getList(this.index)
-                      .then((s5: ResultModel[]) => {
-                        this.setRows(s5, this.indexStart);
-                        this.index += 1;
-                        this.indexStart += 10;
-                        this._loadingService.resolve('result');
-                      }).catch((reason: any) => {
-                      this._loadingService.resolve('result');
-                    });
-                  }).catch((reason: any) => {
-                  this._loadingService.resolve('result');
-                });
-              }).catch((reason: any) => {
-              this._loadingService.resolve('result');
-            });
-          }).catch((reason: any) => {
-          this._loadingService.resolve('result');
-        });
+        this.setRows(s, 0)
+          .then(() => {
+            this._loadingService.resolve('result');
+          });
+        return this.getList(2);
+      })
+      .then((s: ResultModel[]) => {
+        this.setRows(s, 10);
+        return this.getList(3);
+      })
+      .then((s: ResultModel[]) => {
+        this.setRows(s, 20);
+        return this.getList(4);
+      })
+      .then((s: ResultModel[]) => {
+        this.setRows(s, 30);
+        return this.getList(5);
+      })
+      .then((s: ResultModel[]) => {
+        this.setRows(s, 40);
+        return this.getList(6);
+      })
+      .then((s: ResultModel[]) => {
+        this.setRows(s, 50);
+        return this.getList(7);
+      })
+      .then((s: ResultModel[]) => {
+        this.setRows(s, 60);
+        return this.getList(8);
+      })
+      .then((s: ResultModel[]) => {
+        this.setRows(s, 70);
+        return this.getList(9);
+      })
+      .then((s: ResultModel[]) => {
+        this.setRows(s, 80);
+        return this.getList(10);
+      })
+      .then((s: ResultModel[]) => {
+        this.setRows(s, 90);
+        return this.getList(11);
+      })
+      .then((s: ResultModel[]) => {
+        this.setRows(s, 100);
+        return this.getList(12);
+      })
+      .then((s: ResultModel[]) => {
+        this.setRows(s, 110);
+        return this.getList(13);
+      })
+      .then((s: ResultModel[]) => {
+        this.setRows(s, 120);
+        return this.getList(14);
+      })
+      .then((s: ResultModel[]) => {
+        this.setRows(s, 130);
+        return this.getList(15);
+      })
+      .then((s: ResultModel[]) => {
+        this.setRows(s, 140);
+        return this.getList(16);
+      })
+      .then((s: ResultModel[]) => {
+        this.setRows(s, 150);
+        return this.getList(17);
+      })
+      .then((s: ResultModel[]) => {
+        this.setRows(s, 160);
+        return this.getList(18);
+      })
+      .then((s: ResultModel[]) => {
+        this.setRows(s, 170);
       });
+
   }
 
   ngOnInit() {

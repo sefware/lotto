@@ -17,14 +17,7 @@
         <button mat-menu-item *ngIf="isSmallMode" (click)="isSmallMode = !isSmallMode">ดูผลแบบเต็ม</button>
       </mat-menu>
 
-      <div
-        class="search-results"
-        infiniteScroll
-        [infiniteScrollDistance]="1"
-        [infiniteScrollThrottle]="0"
-        (scrolled)="callData()"
-        [scrollWindow]="false"
-      >
+      <div>
 
         <div fxFlex *ngIf="isSmallMode">
 
@@ -332,11 +325,6 @@
             </ng-template>
           </div>
         </div>
-
-      </div>
-
-      <div *tdLoading="'resultMore'; mode:'indeterminate'; type:'linear'; strategy:'overlay'; color:'accent'"
-           style="height:10px;background: transparent">
 
       </div>
     </div>

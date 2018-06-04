@@ -117,16 +117,20 @@ export class ResultComponent implements OnInit {
                         this.setRows(s5, this.indexStart);
                         this.index += 1;
                         this.indexStart += 10;
-                      });
-
-                  });
-
-              });
-
-          });
+                        this._loadingService.resolve('result');
+                      }).catch((reason: any) => {
+                      this._loadingService.resolve('result');
+                    });
+                  }).catch((reason: any) => {
+                  this._loadingService.resolve('result');
+                });
+              }).catch((reason: any) => {
+              this._loadingService.resolve('result');
+            });
+          }).catch((reason: any) => {
+          this._loadingService.resolve('result');
+        });
       });
-
-    this._loadingService.resolve('result');
   }
 
   ngOnInit() {

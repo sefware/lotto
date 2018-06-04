@@ -42,6 +42,15 @@ export class FormulaT2Service {
 
     for (let _i = 2; _i < 18; _i++) {
       let input = this.formulaA(_i);
+
+      let lastInput = input.pop();
+      input.sort(function (obj1: InputModel, obj2: InputModel) {
+        if (obj1.time < obj2.time) return -1;
+        else if (obj1.time > obj2.time) return 1;
+        else return 0;
+      });
+      input.push(lastInput);
+
       resultModel.push({
         name: this.getFormulaA(_i),
         inputs: input,
@@ -60,6 +69,14 @@ export class FormulaT2Service {
 
     for (let _i = 2; _i < 18; _i++) {
       let input = this.formulaB(_i);
+      let lastInput = input.pop();
+      input.sort(function (obj1: InputModel, obj2: InputModel) {
+        if (obj1.time < obj2.time) return -1;
+        else if (obj1.time > obj2.time) return 1;
+        else return 0;
+      });
+      input.push(lastInput);
+
       resultModel.push({
         name: this.getFormulaB(_i),
         inputs: input,

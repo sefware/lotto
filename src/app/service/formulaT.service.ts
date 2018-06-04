@@ -44,8 +44,8 @@ export class FormulaTService {
       let input = this.formulaA(_i);
       resultModel.push({
         name: this.getFormulaA(_i),
-        inputs: input,
-        summary: input.filter( s => s.result).length - 1
+        inputs: input.slice().sort(),
+        summary: input.filter(s => s.result).length - 1
       });
     }
 
@@ -60,10 +60,18 @@ export class FormulaTService {
 
     for (let _i = 2; _i < 18; _i++) {
       let input = this.formulaB(_i);
+      let lastInput = input.pop();
+      input.sort(function (obj1: InputModel, obj2: InputModel) {
+        if (obj1.time < obj2.time) return -1;
+        else if (obj1.time > obj2.time) return 1;
+        else return 0;
+      });
+      input.push(lastInput);
+
       resultModel.push({
         name: this.getFormulaB(_i),
         inputs: input,
-        summary: input.filter( s => s.result).length - 1
+        summary: input.filter(s => s.result).length - 1
       });
     }
 
@@ -155,7 +163,7 @@ export class FormulaTService {
       let resultCount = 0;
       if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
         let _caldata = this.inputs[this.inputs.indexOf(s) + 1].up + this.inputs[this.inputs.indexOf(s) + 1].low;
-        _caldata = _caldata.substring(1,6);
+        _caldata = _caldata.substring(1, 6);
         if (type % 2 == 0) {
           const valueResult1 = String(sumInput).replace('.', '').substring(0, 1);
           const valueResult2 = String(sumInput).replace('.', '').substring(1, 2);
@@ -302,7 +310,7 @@ export class FormulaTService {
       let checking = false;
       if (this.inputs.indexOf(s) !== (this.inputs.length - 1)) {
         let _caldata = this.inputs[this.inputs.indexOf(s) + 1].up + this.inputs[this.inputs.indexOf(s) + 1].low;
-        _caldata = _caldata.substring(1,6);
+        _caldata = _caldata.substring(1, 6);
         if (type % 2 == 0) {
           const valueResult1 = String(sumInput).replace('.', '').substring(0, 1);
           const valueResult2 = String(sumInput).replace('.', '').substring(1, 2);

@@ -195,11 +195,20 @@ export class FormulaService {
             }
           });
 
+          let lastInput = _inputs.pop();
+          _inputs.sort(function (obj1: InputModel, obj2: InputModel) {
+            if (obj1.time < obj2.time) return -1;
+            else if (obj1.time > obj2.time) return 1;
+            else return 0;
+          });
+          _inputs.push(lastInput);
+
           resultModel.push({
             name: this.getFormulaHero(_i + 1),
             inputs: _inputs,
             summary: summary
           });
+
         }
         break;
       }
@@ -214,6 +223,14 @@ export class FormulaService {
               summary = summary + 1;
             }
           });
+
+          let lastInput = _inputs.pop();
+          _inputs.sort(function (obj1: InputModel, obj2: InputModel) {
+            if (obj1.time < obj2.time) return -1;
+            else if (obj1.time > obj2.time) return 1;
+            else return 0;
+          });
+          _inputs.push(lastInput);
 
           resultModel.push({
             name: this.getFormulaHero(_i + 1),
@@ -235,6 +252,14 @@ export class FormulaService {
             }
           });
 
+          let lastInput = _inputs.pop();
+          _inputs.sort(function (obj1: InputModel, obj2: InputModel) {
+            if (obj1.time < obj2.time) return -1;
+            else if (obj1.time > obj2.time) return 1;
+            else return 0;
+          });
+          _inputs.push(lastInput);
+
           resultModel.push({
             name: this.getFormulaHero(_i + 1),
             inputs: _inputs,
@@ -254,6 +279,14 @@ export class FormulaService {
               summary = summary + 1;
             }
           });
+
+          let lastInput = _inputs.pop();
+          _inputs.sort(function (obj1: InputModel, obj2: InputModel) {
+            if (obj1.time < obj2.time) return -1;
+            else if (obj1.time > obj2.time) return 1;
+            else return 0;
+          });
+          _inputs.push(lastInput);
 
           resultModel.push({
             name: this.getFormulaHero(_i + 1),
@@ -275,6 +308,14 @@ export class FormulaService {
             }
           });
 
+          let lastInput = _inputs.pop();
+          _inputs.sort(function (obj1: InputModel, obj2: InputModel) {
+            if (obj1.time < obj2.time) return -1;
+            else if (obj1.time > obj2.time) return 1;
+            else return 0;
+          });
+          _inputs.push(lastInput);
+
           resultModel.push({
             name: this.getFormulaHero(_i + 1),
             inputs: _inputs,
@@ -293,6 +334,14 @@ export class FormulaService {
               summary = summary + 1;
             }
           });
+
+          let lastInput = _inputs.pop();
+          _inputs.sort(function (obj1: InputModel, obj2: InputModel) {
+            if (obj1.time < obj2.time) return -1;
+            else if (obj1.time > obj2.time) return 1;
+            else return 0;
+          });
+          _inputs.push(lastInput);
 
           resultModel.push({
             name: this.getFormulaHero(_i + 1),
@@ -332,6 +381,14 @@ export class FormulaService {
             }
           });
 
+          let lastInput = _inputs.pop();
+          _inputs.sort(function (obj1: InputModel, obj2: InputModel) {
+            if (obj1.time < obj2.time) return -1;
+            else if (obj1.time > obj2.time) return 1;
+            else return 0;
+          });
+          _inputs.push(lastInput);
+
           resultModel.push({
             name: this.getFormulaHero(_i + 1),
             inputs: _inputs,
@@ -350,6 +407,14 @@ export class FormulaService {
               summary = summary + 1;
             }
           });
+
+          let lastInput = _inputs.pop();
+          _inputs.sort(function (obj1: InputModel, obj2: InputModel) {
+            if (obj1.time < obj2.time) return -1;
+            else if (obj1.time > obj2.time) return 1;
+            else return 0;
+          });
+          _inputs.push(lastInput);
 
           resultModel.push({
             name: this.getFormulaHero(_i + 1),
@@ -370,6 +435,14 @@ export class FormulaService {
             }
           });
 
+          let lastInput = _inputs.pop();
+          _inputs.sort(function (obj1: InputModel, obj2: InputModel) {
+            if (obj1.time < obj2.time) return -1;
+            else if (obj1.time > obj2.time) return 1;
+            else return 0;
+          });
+          _inputs.push(lastInput);
+
           resultModel.push({
             name: this.getFormulaHero(_i + 1),
             inputs: _inputs,
@@ -388,6 +461,14 @@ export class FormulaService {
               summary = summary + 1;
             }
           });
+
+          let lastInput = _inputs.pop();
+          _inputs.sort(function (obj1: InputModel, obj2: InputModel) {
+            if (obj1.time < obj2.time) return -1;
+            else if (obj1.time > obj2.time) return 1;
+            else return 0;
+          });
+          _inputs.push(lastInput);
 
           resultModel.push({
             name: this.getFormulaHero(_i + 1),
@@ -408,6 +489,14 @@ export class FormulaService {
             }
           });
 
+          let lastInput = _inputs.pop();
+          _inputs.sort(function (obj1: InputModel, obj2: InputModel) {
+            if (obj1.time < obj2.time) return -1;
+            else if (obj1.time > obj2.time) return 1;
+            else return 0;
+          });
+          _inputs.push(lastInput);
+
           resultModel.push({
             name: this.getFormulaHero(_i + 1),
             inputs: _inputs,
@@ -426,6 +515,14 @@ export class FormulaService {
               summary = summary + 1;
             }
           });
+
+          let lastInput = _inputs.pop();
+          _inputs.sort(function (obj1: InputModel, obj2: InputModel) {
+            if (obj1.time < obj2.time) return -1;
+            else if (obj1.time > obj2.time) return 1;
+            else return 0;
+          });
+          _inputs.push(lastInput);
 
           resultModel.push({
             name: this.getFormulaHero(_i + 1),
@@ -446,6 +543,14 @@ export class FormulaService {
             }
           });
 
+          let lastInput = _inputs.pop();
+          _inputs.sort(function (obj1: InputModel, obj2: InputModel) {
+            if (obj1.time < obj2.time) return -1;
+            else if (obj1.time > obj2.time) return 1;
+            else return 0;
+          });
+          _inputs.push(lastInput);
+
           resultModel.push({
             name: this.getFormulaHero(_i + 1),
             inputs: _inputs,
@@ -464,6 +569,14 @@ export class FormulaService {
               summary = summary + 1;
             }
           });
+
+          let lastInput = _inputs.pop();
+          _inputs.sort(function (obj1: InputModel, obj2: InputModel) {
+            if (obj1.time < obj2.time) return -1;
+            else if (obj1.time > obj2.time) return 1;
+            else return 0;
+          });
+          _inputs.push(lastInput);
 
           resultModel.push({
             name: this.getFormulaHero(_i + 1),
@@ -484,6 +597,14 @@ export class FormulaService {
             }
           });
 
+          let lastInput = _inputs.pop();
+          _inputs.sort(function (obj1: InputModel, obj2: InputModel) {
+            if (obj1.time < obj2.time) return -1;
+            else if (obj1.time > obj2.time) return 1;
+            else return 0;
+          });
+          _inputs.push(lastInput);
+
           resultModel.push({
             name: this.getFormulaHero(_i + 1),
             inputs: _inputs,
@@ -502,6 +623,14 @@ export class FormulaService {
               summary = summary + 1;
             }
           });
+
+          let lastInput = _inputs.pop();
+          _inputs.sort(function (obj1: InputModel, obj2: InputModel) {
+            if (obj1.time < obj2.time) return -1;
+            else if (obj1.time > obj2.time) return 1;
+            else return 0;
+          });
+          _inputs.push(lastInput);
 
           resultModel.push({
             name: this.getFormulaHero(_i + 1),
@@ -524,7 +653,11 @@ export class FormulaService {
 
           resultModel.push({
             name: this.getFormulaHero(_i + 1),
-            inputs: _inputs,
+            inputs: _inputs.sort(function (obj1: InputModel, obj2: InputModel) {
+              if (obj1.time < obj2.time) return -1;
+              else if (obj1.time > obj2.time) return 1;
+              else return 0;
+            }),
             summary: summary
           })
           ;

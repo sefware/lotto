@@ -3,9 +3,7 @@
 
   <div fxLayout="column" class="input-box">
 
-    <div class="well-come-title">สูตรคำนวณหวย</div>
-
-    <div class="well-come-back">ยินดีต้อนรับ</div>
+    <div class="well-come-title">ฮีโร่สูตรหวย</div>
 
     <mat-form-field [floatPlaceholder]="'never'">
       <mat-icon matPrefix style="color: #0091DE;"> person</mat-icon>
@@ -32,38 +30,23 @@
       <button class="button" mat-raised-button fxFlexFill color="primary" (click)="login()">เข้าสู่ระบบ</button>
     </div>
 
-    <!--<div fxLayout="row">-->
-      <!--<div class="forgot">ลืมรหัสผ่าน?</div>-->
-    <!--</div>-->
+    <div  style="margin-top: 20px" fxLayout="column">
+      <span class="text-primary">รหัสทดลอง</span>
+      <span class="text-primary">ชื่อผู้ใช้    : hero</span>
+      <span class="text-primary">รหัสผ่าน   : 123456</span>
+    </div>
 
-    <!--<mat-card class="card" fxFlex fxFlexAlign="center center">-->
-    <!--<div style="max-width: 300px;text-align: center;margin: auto;" fxLayout="column">-->
 
-    <!--<div style="font-size: 24px; font-weight: 400; line-height: 32px;text-align: start;padding-top: 10px;">-->
-    <!--เข้าสู่ระบบ-->
-    <!--</div>-->
-
-    <!--<div style="text-align: start; font-size: 14px; line-height: 20px;color: rgba(0,0,0,.87)">-->
-
-    <!--</div>-->
-
-    <!--<div style="padding-top: 32px;" >-->
-    <!--<mat-form-field [floatPlaceholder]="'auto'" fxFlexFill>-->
-    <!--<input #_username matInput placeholder="ชื่อผู้ใช้" type="text" [value]="username" (change)="setUsername(_username.value)">-->
-    <!--</mat-form-field>-->
-    <!--</div>-->
-    <!--<div>-->
-    <!--<mat-form-field [floatPlaceholder]="'auto'" fxFlexFill>-->
-    <!--<input #_password matInput placeholder="รหัสผ่าน" type="password" [value]="password" (change)="setPassword(_password.value)">-->
-    <!--</mat-form-field>-->
-    <!--</div>-->
-
-    <!--<div class="push-top push-bottom">-->
-    <!--<button id="email" mat-raised-button fxFlexFill color="primary" (click)="login()">เข้าสู่ระบบ</button>-->
-    <!--</div>-->
-
-    <!--</div>-->
-    <!--</mat-card>-->
+    <div style="margin-top: 20px;text-align: start;" fxLayout="column">
+      <span class="text-primary">วิธีการใช้สูตร</span>
+      <span class="text-secondary">1. เข้าระบบโดยการใส่ชื่อผู้ใช้และรหัสผ่านทดลอง</span>
+      <span class="text-secondary">2. กดปุ่มสีดำเพื่อเพิ่มเลข กรอกผลหวยที่ต้องการคำนวนลงไปอย่างน้อย 10 รอบ เพื่อดูสถิติ</span>
+      <span class="text-secondary">3. กดปุ่มบันทึกสีเขียวขวามือ</span>
+      <span class="text-secondary">4. เลือกสูตรที่ต้องการคำนวน</span>
+      <span class="text-secondary">5. เครื่องหมายถูกสีเขียวคือเด้ง</span>
+      <span class="text-secondary">6. เลือกสูตรที่เลขเด้งดีมาเล่น</span>
+      <span class="text-secondary">7. ไม่มีสูตรไหนตายตัว ให้สูตรไว้เพื่อเป็นแนวทาง</span>
+    </div>
 
   </div>
 

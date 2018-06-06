@@ -1,0 +1,121 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.3
+    steps:
+      - checkout
+      - run: sudo npm install @angular/cli
+      - run: sudo npm install typescript -g
+      - run: sudo npm install
+      - run: sudo npm run build:all
+
+  lint-test:
+    docker:
+      - image: circleci/node:8.3
+    steps:
+      - checkout
+      - run: sudo npm install @angular/cli
+      - run: sudo npm install
+      - run: sudo npm run test:lint
+
+  e2e-test:
+    docker:
+      - image: circleci/node:8.3-browsers
+        environment:
+          CHROME_BIN: "/usr/bin/google-chrome"
+    steps:
+      - checkout
+      - run: sudo npm install @angular/cli
+      - run: sudo npm install -g karma
+      - run: sudo npm install
+      - run: sudo npm run e2e
+
+  unit-test:
+    docker:
+      - image: circleci/node:8.3-browsers
+        environment:
+          CHROME_BIN: "/usr/bin/google-chrome"
+    steps:
+      - checkout
+      - run: sudo npm install @angular/cli
+      - run: sudo npm install -g karma
+      - run: sudo npm install
+      - run: sudo npm run test:ci
+      - run: bash <(curl -s https://codecov.io/bash) -t $UPLOAD_TOKEN
+      - run: ls
+      - store_test_results:
+          path: /coverage
+
+  deploy-firebase:
+    docker:
+      - image: circleci/node:7
+    steps:
+      - checkout
+      - run: sudo npm run deploy:build:frontend
+      - run: sudo npm install -g firebase-tools
+      - run: sudo firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
+
+  deploy-heroku:
+    docker:
+      - image: circleci/node:8.3
+    steps:
+      - checkout
+      - run: sudo npm run deploy:build:frontend
+      - run: sudo npm run deploy:build:backend
+      - run: sudo npm install -g heroku-cli
+      - run: bash .circleci/setup-heroku.sh
+      - run: ssh-keyscan -H heroku.com >> ~/.ssh/known_hosts
+      - add_ssh_keys:
+          fingerprints:
+            - "66:3a:1c:0e:76:84:29:33:2d:7c:a2:85:51:52:d3:8d"
+      - run: git init
+      - run: heroku git:remote -a seftour
+      - run: git fetch
+      - run: git add .
+      - run: git add -f ./dist
+      - run: git commit -am "deploy to heroku"
+      - run: git show-ref
+      - run: git push heroku refs/heads/develop:master -f
+
+  deploy-gae:
+      docker:
+        - image: nerdsandcompany/docker-gae-node
+      steps:
+        - checkout
+        - run: npm run deploy:build:frontend
+        - run: npm run deploy:build:backend
+        - run: gcloud -v
+        - run: npm -v
+        - run: echo $GCLOUD_KEY_FILE > .gcloud-key
+        - run: gcloud auth activate-service-account --key-file=.gcloud-key
+        - run: gcloud config set project sefware-tour
+        - run: gcloud -q app deploy --verbosity=info --no-stop-previous-version app.yaml
+workflows:
+  version: 2
+  build-test-deploy:
+    jobs:
+      - build
+      - lint-test:
+          requires:
+            - build
+#      - e2e-test:
+#          requires:
+#            - build
+#      - unit-test:
+#          requires:
+#            - build
+      - deploy-firebase:
+          requires:
+            - lint-test
+            - unit-test
+          filters:
+            branches:
+              only: master
+#      - deploy-heroku:
+#          requires:
+#            - lint-test
+#            - unit-test
+#          filters:
+#            branches:
+#              only: develop

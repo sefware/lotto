@@ -1,0 +1,255 @@
+@import "../../../styles/variable";
+
+:host /deep/ {
+
+  background: #2F4359;
+
+  mat-form-field {
+    margin-right: 0 !important;
+    .mat-focused {
+      color: transparent !important;
+    }
+  }
+
+  .body {
+    text-align: center;
+    width: 100%;
+  }
+
+  .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: transparent;
+  }
+
+  .well-come-title {
+    color: #ffffff;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  .text-primary {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .text-secondary {
+    color: white;
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+
+  .button {
+    background-color: #0091DE;
+    border-radius: 20px;
+    line-height: 40px;
+    font-size: 16px;
+  }
+
+  .forgot {
+    margin: auto;
+    padding-top: 10px;
+    color: #ffffff;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .forgot:hover {
+    color: #02AEF0;
+  }
+
+  /deep/ .mat-form-field {
+    margin-right: 40px;
+  }
+
+  /deep/ .mat-form-field-flex {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    border: 2px solid #0091DE;
+    border-radius: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /deep/ .mat-form-field-underline {
+    background-color: transparent;
+  }
+
+  /deep/ .mat-form-field-ripple {
+    background-color: transparent;
+  }
+
+  /deep/ .mat-form-field-prefix {
+    margin-right: 20px;
+  }
+
+  /deep/ .mat-form-field-infix {
+    padding: 0.35em 0;
+    border-top: 0;
+    line-height: 28px;
+  }
+
+  /deep/ .mat-form-field-wrapper {
+    padding-bottom: 0.7em;
+  }
+
+  /deep/ .mat-input-element {
+    caret-color: #0091DE;
+  }
+
+  /deep/ .mat-form-field-label {
+    color: #fff !important;
+  }
+
+  /deep/ .mat-input-element {
+    font: inherit;
+    background: 0 0;
+    color: #ffffff;
+    border: none;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    vertical-align: bottom;
+    text-align: inherit;
+  }
+
+  .input-box {
+    width: 300px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .input {
+    //max-width: 300px;
+  }
+
+  .card {
+    max-width: 300px;
+  }
+
+  .ct-toolbar {
+    -webkit-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12), 0 1px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12), 0 1px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  #email {
+    border: 1px solid $default-primary-color;
+    background: $default-primary-color;
+    color: #fff;
+  }
+
+  .link {
+    cursor: pointer;
+    color: #4285f4;
+    text-decoration: none;
+    outline: none;
+    :hover {
+      text-decoration: underline;
+    }
+  }
+
+  .mat-toolbar-row {
+    height: 48px;
+  }
+
+  .mat-toolbar {
+    height: 48px;
+    min-height: 48px;
+  }
+
+  .centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+  }
+
+  .login-card {
+    background: #f0f0f0;
+    text-align: left;
+    width: 320px;
+    display: inline-block;
+    padding: 40px 40px 36px !important;
+    margin-bottom: 50px;
+    overflow: auto;
+  }
+
+  .login-card-xs {
+    margin: 0px;
+
+  }
+
+  .form-login {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 14px;
+    padding: 10px 0 0;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    vertical-align: top;
+    white-space: normal;
+    width: 100%;
+  }
+
+  .color-title {
+    color: #fff;
+  }
+
+  .language {
+    margin-top: 5px;
+    margin-right: 5px;
+    text-align: end;
+    color: rgba(0, 0, 0, 0.89);
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .login-button {
+    text-transform: uppercase;
+    background-color: var(--default-primary-color);
+    color: #fff;
+  }
+
+  .action {
+    margin-top: 20px;
+  }
+
+  .action-signin {
+    width: 100%;
+    text-align: right
+  }
+
+  .forgot-email:hover {
+    text-decoration: underline;
+  }
+
+  .forgot-email {
+    white-space: nowrap;
+    color: #4285f4;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    width: 100%;
+  }
+
+  .head {
+    margin-bottom: 5px;
+  }
+
+  .recovery-email {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+}
+
+

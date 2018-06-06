@@ -1,0 +1,54 @@
+<td-layout>
+  <td-layout-nav toolbarTitle="รอบการคำนวณ">
+    <div td-toolbar-content layout="row" layout-align="start center" fxFlex="true">
+      <span fxFlex="true"></span>
+      <button class="overflow-visible" mat-icon-button (click)="disable()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <div class="input-container" for>
+      <!--<form >-->
+      <ng-template ngFor let-list [ngForOf]="lists" let-currentListIndex="index" style="margin: 10px">
+
+        <div fxLayout="row">
+          <mat-form-field hintLabel="" fxFlex="80px">
+            <input [value]="list.time" matInput placeholder="" [disabled]="true">
+          </mat-form-field>
+          <div fxFlex="10px"></div>
+          <mat-form-field hintLabel="" fxFlex>
+            <input #up matInput placeholder="" type="text"
+                   [textMask]="{mask: mask}"
+                   [value]="list.up"
+                   (change)="setValue(currentListIndex,'up',up.value)"/>
+          </mat-form-field>
+        </div>
+      </ng-template>
+
+      <a mat-list-item *ngIf="lists.length < 100">
+        <button fxFlex mat-raised-button (click)="addEmptyList()" style="margin-bottom: 10px">
+          <mat-icon>plus</mat-icon>
+          เพิ่มแถว
+        </button>
+      </a>
+    </div>
+
+
+    <td-layout-footer>
+      <div fxLayout="row">
+        <div>
+          <button mat-raised-button (click)="clearList()">
+            <mat-icon>cached</mat-icon>
+            รีเซ็ทข้อมูล
+          </button>
+        </div>
+        <div fxFlex></div>
+        <div>
+          <button mat-raised-button color="primary" (click)="saveData()">บันทึก</button>
+        </div>
+      </div>
+    </td-layout-footer>
+
+  </td-layout-nav>
+</td-layout>
+

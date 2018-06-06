@@ -1,20 +1,12 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "pretty": true,
     "outDir": "../out-tsc/app",
-    "baseUrl": "./",
     "module": "es2015",
-    "types": [
-      "node",
-      "firebase"
-    ]
+    "types": []
   },
-  "typeRoots": [
-    "../node_modules/@types"
-  ],
   "exclude": [
-    "test.ts",
+    "src/test.ts",
     "**/*.spec.ts"
   ]
 }

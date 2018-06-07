@@ -33,4 +33,20 @@ export class StorageService {
     });
     return dataList;
   }
+
+  public saveLastJedi(data: string) {
+    this.localStorageService.set('lastJedi', data);
+  }
+
+  public getLastJedi(): string {
+    return this.localStorageService.utility.get('lastJedi');
+  }
+
+  public saveNewHope(data: string) {
+    this.localStorageService.set('newHope', data);
+  }
+
+  public getNewHope(): string {
+    return this.localStorageService.utility.get('newHope');
+  }
 }

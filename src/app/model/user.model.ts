@@ -7,6 +7,9 @@ export class User {
   phoneNumber: string | null;
   providerId: string;
   emailVerified: boolean;
+  lastLogin:string;
+  deviceID:string;
+  firstLoginTime:string;
 
   constructor(params: User) {
     Object.assign(this, params);

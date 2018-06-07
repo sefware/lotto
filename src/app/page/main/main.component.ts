@@ -60,9 +60,7 @@ export class MainComponent implements OnInit {
   }
 
   signOut() {
-    this._userService.authentication.auth.signOut().then(s => {
-      this._router.navigateByUrl('/login');
-    });
+    this._userService.signOut()
   }
 
   someMethod() {

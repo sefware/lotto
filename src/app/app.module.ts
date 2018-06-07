@@ -9,7 +9,6 @@ import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AuthService} from './service/auth.service';
-import {LoginService} from './service/login.service';
 import {AppService} from './service/app.service';
 import {WebStorageModule} from 'ngx-store';
 import {DataComponent} from './page/data/data.component';
@@ -32,6 +31,7 @@ import {ClipboardModule} from 'ngx-clipboard';
 import {Result3rowDivComponent} from './page/result3rowDiv/result3rowDiv.component';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from "@angular/core";
 import {CommonModule} from "@angular/common";
+import {DeviceDetectorModule} from "ngx-device-detector";
 
 
 const l10nConfig: L10nConfig = {
@@ -64,6 +64,7 @@ const l10nConfig: L10nConfig = {
   imports: [
     BrowserAnimationsModule,
     CommonModule,
+    DeviceDetectorModule.forRoot(),
     TranslationModule.forRoot(l10nConfig),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
@@ -90,7 +91,6 @@ const l10nConfig: L10nConfig = {
   ],
   providers: [
     AuthService,
-    LoginService,
     AppService,
     StorageService,
     FormulaService,

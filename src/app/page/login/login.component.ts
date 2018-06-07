@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this._authService.authentication.authState.subscribe((user) => {
       if (this._authService.verified(user)) {
-        this._authService.updateUser(user);
         this._authService.updateUserStatus();
         this._router.navigateByUrl('');
       }
@@ -50,7 +49,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     // this.error = false;
     this._loadingService.register();
     this._angularFireAuth.auth.languageCode = 'th';
-    this._angularFireAuth.auth.signInWithEmailAndPassword(this.username + '@herolotto.com', this.password)
+    this._authService.signIn(this.username, this.password)
       .then((user: firebase.User) => {
         this._loadingService.resolve();
       }).catch((err: any) => {

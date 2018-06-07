@@ -3,6 +3,10 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import {AngularFirestore} from 'angularfire2/firestore';
 import {User} from '../model/user.model';
+import {StorageService} from "./storage.service";
+import {Router} from "@angular/router";
+import {Untils} from "../shared/untils";
+import {DeviceDetectorService} from "ngx-device-detector";
 
 @Injectable()
 export class AuthService {
@@ -10,32 +14,18 @@ export class AuthService {
   public authentication: AngularFireAuth;
   public currentUser: User;
 
-  constructor(private _afa: AngularFireAuth,
+  constructor(private _storageService: StorageService,
+              private _deviceService: DeviceDetectorService,
+              private _router: Router,
+              private _afa: AngularFireAuth,
               private _afs: AngularFirestore) {
     this.authentication = _afa;
   }
 
-  // importJson(): void {
-  //   const content = require('../../assets/jdr-tour-export.json');
-  //
-  //   if (content) {
-  //     Object.keys(content).forEach((contentKey) => {
-  //       const nestedContent = content[contentKey];
-  //       if (typeof nestedContent === 'object') {
-  //         Object.keys(nestedContent).forEach((docTitle) => {
-  //           console.log(nestedContent[docTitle]);
-  //           this._fbFireStore
-  //             .collection(contentKey)
-  //             .doc(docTitle)
-  //             .set(nestedContent[docTitle]);
-  //         });
-  //       }
-  //     });
-  //   }
-  // }
-
   verified(user: firebase.User): boolean {
-    // return (user && user.emailVerified);
+    if (!!user) {
+      this.updateUser(user);
+    }
     return !!user;
   }
 
@@ -48,62 +38,58 @@ export class AuthService {
       providerId: user.providerId,
       disabled: false,
       displayName: user.displayName,
-      emailVerified: user.emailVerified
+      emailVerified: user.emailVerified,
+      lastLogin: this._storageService.getLastJedi(),
+      deviceID: '',
+      firstLoginTime: '',
     };
+  }
+
+  getDeviceID() {
+    let result = this._deviceService.getDeviceInfo().userAgent;
+    result = result.replace('/','');
+    result = result.replace(';','');
+    result = result.replace('(','');
+    result = result.replace(')','');
+    result = result.replace(' ','');
+    return result.trim();
   }
 
   updateUserStatus() {
     if (!this.currentUser) {
       return;
     }
-    // const user_id = this.currentUser.uid;
-    // const ref = firebase.database().ref('.info/connected');
-    // ref.on('value', (snap) => {
-    //   if (snap.val() === true) {
-    //     console.log(user_id + ' online');
-    //     this._afs.collection('user_online').doc('all').collection(user_id).doc('').set(
-    //       {
-    //         uid: this.currentUser.uid,
-    //         last_changed: firebase.database.ServerValue.TIMESTAMP
-    //       });
-    //     // if (this.currentProperty) {
-    //     //   this._afs.collection('user_online').doc('property').collection(this.currentProperty).add(
-    //     //     {
-    //     //       uid: this.currentUser.uid,
-    //     //       last_changed: firebase.database.ServerValue.TIMESTAMP,
-    //     //     }
-    //     //   );
-    //     // }
-    //   } else {
-    //     console.log(user_id + ' offline');
-    //     this._afs.collection('user_online').doc('all').collection(user_id).add({});
-    //     if (this.currentProperty) {
-    //       this._afs.collection('user_online').doc('property').collection(this.currentProperty).doc(user_id).delete();
-    //     }
-    //   }
-    // });
+
+    this.currentUser.deviceID = this.getDeviceID();
+    this.currentUser.lastLogin = new Date().getTime().toFixed(0);
+
+    if (this.isNotDemo()) {
+      this._storageService.saveLastJedi(this.currentUser.lastLogin);
+      this._afs.collection('user').doc(this.currentUser.uid).set(this.currentUser);
+      this._afs.collection('login').doc(this.currentUser.uid).set(this.currentUser)
+    } else {
+      this.currentUser.firstLoginTime = this.currentUser.lastLogin;
+      this._afs.collection('demo').doc(this.currentUser.deviceID).update(this.currentUser);
+    }
   }
 
-  // signIn(): void {
-  //   if (!this.currentUser) {
-  //     return;
-  //   }
-  //   this.currentProperty = null;
-  //   this._router.navigateByUrl('/chooseproperty');
-  // }
+  signIn(username: string, password: string): Promise<any> {
+    this._afa.auth.languageCode = 'th';
+    return this._afa.auth.signInWithEmailAndPassword(username + '@herolotto.com', password)
+  }
 
-  // signOut(): void {
-    // if (this.currentUser) {
-    //   firebase.database().ref('status/' + this.currentUser.uid).set(
-    //     new UserStatus({
-    //       uid: this.currentUser.uid,
-    //       state: 'offline',
-    //       last_changed: firebase.database.ServerValue.TIMESTAMP
-    //     })
-    //   );
-    // }
-    // this.authentication.auth.signOut();
-    // this._router.navigateByUrl('/login');
-  // }
+  signOut(): void {
+    if (this.isNotDemo()) {
+      this._afs.collection('login').doc(this.currentUser.uid).delete().then(() => {
+        this.authentication.auth.signOut().then(() => {
+          this._router.navigateByUrl('/login').then(() => {
+          });
+        });
+      })
+    }
+  }
 
+  isNotDemo() {
+    return this.currentUser.email != Untils.DEMO_EMAIL
+  }
 }

@@ -21,14 +21,18 @@ export class  AppService implements CanActivate {
         if (!this._authService.verified(user)) {
           this._router.navigateByUrl('/login');
         }
-        if(!!this._authService.currentUser.lastLogin){
-          let currentTime =  new Date().getTime().toFixed(0);
-          if((Number(currentTime) - Number(this._authService.currentUser.lastLogin) )> 86394068){
-            this._authService.signOut()
-          }
-        }
+
+        // if(this._authService.currentUser.lastLogin === ''){
+        //   this._authService.signOut()
+        // }
+
+        // if(!!this._authService.currentUser.lastLogin){
+        //   let currentTime =  new Date().getTime().toFixed(0);
+        //   if((Number(currentTime) - Number(this._authService.currentUser.lastLogin) )> 86394068){
+        //     this._authService.signOut()
+        //   }
+        // }
       })
       .map((user) => this._authService.verified(user));
   }
-
 }

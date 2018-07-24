@@ -110,9 +110,6 @@ export class InputDialogComponent {
       saveUp.replace('_', '');
       saveLow.replace('_', '');
 
-      // console.log('saveUp ' + saveUp);
-      // console.log('saveLow ' + saveLow);
-
       if (saveUp !== '' && saveLow !== '') {
 
         if (saveUp.length < 3) {

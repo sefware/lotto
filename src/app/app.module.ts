@@ -32,6 +32,8 @@ import {Result3rowDivComponent} from './page/result3rowDiv/result3rowDiv.compone
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DeviceDetectorModule} from "ngx-device-detector";
+import {ResultOther1Component} from "./page/resultOther1/resultOther1.component";
+import {FormulaOtherService} from "./service/formulaOther.service";
 
 
 const l10nConfig: L10nConfig = {
@@ -56,6 +58,7 @@ const l10nConfig: L10nConfig = {
     ResultTComponent,
     ResultT2Component,
     ResultT3Component,
+    ResultOther1Component,
     Result3rowDivComponent,
     LoginComponent,
     MainComponent,
@@ -85,6 +88,7 @@ const l10nConfig: L10nConfig = {
     ResultTComponent,
     ResultT2Component,
     ResultT3Component,
+    ResultOther1Component,
     MainComponent,
     LoginComponent,
     PredictComponent,
@@ -95,7 +99,8 @@ const l10nConfig: L10nConfig = {
     StorageService,
     FormulaService,
     FormulaTService,
-    FormulaT2Service
+    FormulaT2Service,
+    FormulaOtherService
   ],
   bootstrap: [AppComponent]
 })

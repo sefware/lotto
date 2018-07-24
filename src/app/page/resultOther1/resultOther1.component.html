@@ -1,0 +1,81 @@
+<td-layout>
+  <td-layout-nav toolbarTitle="สูตรอื่นๆ 1">
+
+    <div td-toolbar-content layout="row" layout-align="start center" fxFlex="true">
+      <span fxFlex="true"></span>
+      <button class="overflow-visible" mat-icon-button (click)="disable()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <div *ngIf="resultModel1.length == 0" style="margin-top: 80px"></div>
+    <div *tdLoading="'result'; mode:'indeterminate'; type:'circle'; strategy:'overlay'; color:'accent'">
+
+      <div class="content" fxLayout="row">
+        <div fxFlex>
+          <ng-template ngFor let-model [ngForOf]="resultModel1" let-currentModelIndex="index">
+
+            <mat-card class="card" *ngIf="model.name == 'A-001'">
+              <mat-card-header>
+                <mat-card-title>
+                </mat-card-title>
+
+                <button *ngIf="preCopy"
+                        style="width: 16px;height: 16px;position: absolute;right: 15px;top: -7px;"
+                        mat-icon-button
+                        (focus)="copy(model)">
+                  <mat-icon style="font-size: 16px;" aria-label="Example icon-button with a heart icon">
+                    playlist_add_check
+                  </mat-icon>
+                </button>
+
+                <button *ngIf="!preCopy"
+                        style="width: 16px;height: 16px;position: absolute;right: 15px;top: -7px;"
+                        mat-icon-button
+                        (cbOnError)="showMessage('copy ล้มเหลว')"
+                        (cbOnSuccess)="showMessage('copy สำเร็จ')"
+                        ngxClipboard
+                        [cbContent]="copyText">
+                  <mat-icon style="font-size: 16px;" aria-label="Example icon-button with a heart icon">library_books
+                  </mat-icon>
+                </button>
+
+              </mat-card-header>
+              <ng-template ngFor let-input [ngForOf]="model.inputs" let-currentInputsIndex="index">
+
+                <div fxLayout="row" *ngIf="currentInputsIndex != (model.inputs.length - 1)">
+                  <div>{{input.time}}</div>
+
+                  <div
+                    style="margin-left: 0px;margin-right: 0px;">=
+                  </div>
+
+                  <div>
+                    {{input.up}}-{{input.low}}
+                  </div>
+
+                  <div style="margin-left: 0px;margin-right: 0px;">=</div>
+                  <div>{{model.inputs[currentInputsIndex].value}}</div>
+
+                  <div
+                    style="margin-left: 0px;margin-right: 0px;">=
+                  </div>
+
+                  <div>{{model.inputs[currentInputsIndex].value.substring(model.inputs[currentInputsIndex].value.length - 1,model.inputs[currentInputsIndex].value.length)}}</div>
+
+                </div>
+
+              </ng-template>
+
+            </mat-card>
+
+          </ng-template>
+        </div>
+
+      </div>
+
+    </div>
+
+  </td-layout-nav>
+
+</td-layout>

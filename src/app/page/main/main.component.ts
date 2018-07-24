@@ -112,6 +112,11 @@ export class MainComponent implements OnInit {
     // window.open('/result', '_blank');
   }
 
+  calculateOther1(selectedCal: string) {
+    this._storageService.saveCalType(selectedCal);
+    this._router.navigateByUrl('/resultOther1');
+  }
+
   calculateTList(selectedCal: string) {
     this._storageService.saveCalType(selectedCal);
     this._router.navigateByUrl('/resultT');
@@ -121,13 +126,11 @@ export class MainComponent implements OnInit {
   calculateT2List(selectedCal: string) {
     this._storageService.saveCalType(selectedCal);
     this._router.navigateByUrl('/resultT2');
-    // window.open('/result', '_blank');
   }
 
   calculateT3List(selectedCal: string) {
     this._storageService.saveCalType(selectedCal);
     this._router.navigateByUrl('/resultT3');
-    // window.open('/result', '_blank');
   }
 
   calculate3rowDivList(selectedCal: string) {

@@ -42,9 +42,18 @@ export class FormulaTService {
 
     for (let _i = 2; _i < 18; _i++) {
       let input = this.formulaA(_i);
+
+      let lastInput = input.pop();
+      input.sort(function (obj1: InputModel, obj2: InputModel) {
+        if (obj1.time < obj2.time) return -1;
+        else if (obj1.time > obj2.time) return 1;
+        else return 0;
+      });
+      input.push(lastInput);
+
       resultModel.push({
         name: this.getFormulaA(_i),
-        inputs: input.slice().sort(),
+        inputs: input,
         summary: input.filter(s => s.result).length - 1
       });
     }
@@ -158,6 +167,8 @@ export class FormulaTService {
       }
 
       sumInput = sumInput * Number(value);
+      sumInput = sumInput * 1000000;
+      sumInput = Number(String(sumInput).substring(0, 6));
 
       let checking = false;
       let resultCount = 0;
@@ -208,7 +219,7 @@ export class FormulaTService {
         time: s.time,
         up: s.up,
         low: s.low,
-        value: String(sumInput).replace('.', '').substring(0, 6),
+        value: String(sumInput).substring(0, 6),
         result: checking,
         resultCount: resultCount
       });
@@ -305,6 +316,8 @@ export class FormulaTService {
       }
 
       sumInput = sumInput * Number(value);
+      sumInput = sumInput * 1000000;
+      sumInput = Number(String(sumInput).substring(0, 6));
 
       let resultCount = 0;
       let checking = false;
@@ -355,7 +368,7 @@ export class FormulaTService {
         time: s.time,
         up: s.up,
         low: s.low,
-        value: String(sumInput).replace('.', '').substring(0, 6),
+        value: String(sumInput).substring(0, 6),
         result: checking,
         resultCount: resultCount
       });
